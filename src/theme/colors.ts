@@ -1,0 +1,18 @@
+export const palette = {
+  primary: "#012d62",
+  primaryDark: "skyblue",
+  secondary: "#f95a22",
+  lightGrey: "#efecec",
+  darkGrey: "#616161",
+  grey: "#ffe3e3",
+  success: "#58b65d",
+  warning: "#f2b13e",
+  error: "#c83724",
+  default: "#efefef",
+  defaultDark: "#121212",
+  disable: "#fafafa",
+  oddRowTable: "white",
+  evenRowTable: "#f7f7f7",
+  oddRowTableDark: "black",
+  evenRowTableDark: "#121212",
+};
