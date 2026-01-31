@@ -1,2255 +1,1239 @@
 {
-  "releases": [
+  "releaseInfo": {
+    "name": "Release 2.0.0",
+    "description": "Large scale feature rollout with multiple teams contribution"
+  },
+  "stats": {
+    "totalTicketCount": 20,
+    "totalStoryPoints": 100,
+    "totalTimeSeconds": 131018
+  },
+  "tickets": [
     {
-      "id": "REL-001",
-      "name": "Release 0.0",
-      "releaseDate": "2026-02-01",
-      "status": "Unreleased",
-      "epics": [],
-      "issues": [
-        {
-          "id": "ISSUE-001",
-          "key": "STORY-001",
-          "description": "Story description 1",
-          "status": "To do",
-          "type": "Story",
-          "assignee": {
-            "accountId": "U001",
-            "name": "Bob"
-          },
-          "timeSpent": "7h",
-          "storyPoint": 1,
-          "subTask": [
-            {
-              "id": "SUB-010",
-              "key": "SUB-010",
-              "description": "Subtask description 10",
-              "status": "Done",
-              "type": "Sub Task",
-              "assignee": {
-                "accountId": "U001",
-                "name": "Bob"
-              },
-              "timeSpent": "5h"
-            }
-          ]
-        },
-        {
-          "id": "ISSUE-002",
-          "key": "TASK-002",
-          "description": "Task description 2",
-          "status": "To do",
-          "type": "Task",
-          "assignee": {
-            "accountId": "U002",
-            "name": "Charlie"
-          },
-          "timeSpent": "7h",
-          "storyPoint": 1,
-          "subTask": []
-        }
-      ],
-      "stats": {
-        "totalStoryPoints": 2,
-        "percentageCompleted": 0
-      }
+      "key": "PROJ-101",
+      "summary": "Sample summary for PROJ-101",
+      "status": "Done",
+      "statusCategory": "done",
+      "type": "Bug",
+      "priority": "Highest",
+      "created": "2026-01-30T19:23:57Z",
+      "dueDate": "2026-02-06T19:23:57Z",
+      "timeSpentSeconds": 9516,
+      "assignee": {
+        "accountId": "u4",
+        "displayName": "User 4",
+        "avatarUrl": "https://example.com/avatar/u4.png"
+      },
+      "sprint": {
+        "id": 3,
+        "name": "Sprint 3",
+        "state": "closed",
+        "startDate": "2026-02-12T00:00:00Z",
+        "endDate": "2026-02-25T00:00:00Z"
+      },
+      "release": {
+        "name": "Release 2.0.0",
+        "description": "Large scale feature rollout with multiple teams contribution"
+      },
+      "storyPoints": 5,
+      "reopenCount": 1,
+      "gitStats": {
+        "branchName": "feature/proj-101",
+        "commitCount": 21,
+        "prCount": 1,
+        "lastCommitDate": "2026-01-25T00:16:10Z"
+      },
+      "subtasks": []
     },
     {
-      "id": "REL-002",
-      "name": "Release 1.1",
-      "releaseDate": "2026-03-03",
-      "status": "Release",
-      "epics": [
+      "key": "PROJ-102",
+      "summary": "Sample summary for PROJ-102",
+      "status": "In Progress",
+      "statusCategory": "indeterminate",
+      "type": "Task",
+      "priority": "High",
+      "created": "2026-01-15T09:54:29Z",
+      "dueDate": "2026-01-22T09:54:29Z",
+      "timeSpentSeconds": 9720,
+      "assignee": {
+        "accountId": "u3",
+        "displayName": "User 3",
+        "avatarUrl": "https://example.com/avatar/u3.png"
+      },
+      "sprint": {
+        "id": 4,
+        "name": "Sprint 4",
+        "state": "closed",
+        "startDate": "2026-02-26T00:00:00Z",
+        "endDate": "2026-03-11T00:00:00Z"
+      },
+      "release": {
+        "name": "Release 2.0.0",
+        "description": "Large scale feature rollout with multiple teams contribution"
+      },
+      "storyPoints": null,
+      "reopenCount": 1,
+      "gitStats": {
+        "branchName": "feature/proj-102",
+        "commitCount": 6,
+        "prCount": 2,
+        "lastCommitDate": "2026-01-21T18:50:02Z"
+      },
+      "subtasks": []
+    },
+    {
+      "key": "PROJ-103",
+      "summary": "Sample summary for PROJ-103",
+      "status": "In Review",
+      "statusCategory": "indeterminate",
+      "type": "Task",
+      "priority": "High",
+      "created": "2026-01-01T22:22:46Z",
+      "dueDate": "2026-01-08T22:22:46Z",
+      "timeSpentSeconds": null,
+      "assignee": {
+        "accountId": "u6",
+        "displayName": "User 6",
+        "avatarUrl": "https://example.com/avatar/u6.png"
+      },
+      "sprint": {
+        "id": 3,
+        "name": "Sprint 3",
+        "state": "closed",
+        "startDate": "2026-02-12T00:00:00Z",
+        "endDate": "2026-02-25T00:00:00Z"
+      },
+      "release": {
+        "name": "Release 2.0.0",
+        "description": "Large scale feature rollout with multiple teams contribution"
+      },
+      "storyPoints": 1,
+      "reopenCount": 1,
+      "gitStats": {
+        "branchName": "feature/proj-103",
+        "commitCount": 26,
+        "prCount": 3,
+        "lastCommitDate": "2026-01-14T21:45:44Z"
+      },
+      "subtasks": [
         {
-          "id": "EPIC-001",
-          "key": "EPIC-001",
-          "description": "Epic description 1",
-          "status": "To do",
-          "type": "Epic",
+          "key": "PROJ-103-SUB1",
+          "summary": "Subtask 1 for PROJ-103",
+          "status": "To Do",
+          "statusCategory": "indeterminate",
+          "type": "Sub-task",
+          "priority": "Medium",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": 6056,
           "assignee": {
-            "accountId": "U003",
-            "name": "Diana"
+            "accountId": "u1",
+            "displayName": "User 1",
+            "avatarUrl": "https://example.com/avatar/u1.png"
           },
-          "timeSpent": "9h",
-          "childIssue": [
-            {
-              "id": "ISSUE-003",
-              "key": "TASK-003",
-              "description": "Task description 3",
-              "status": "To do",
-              "type": "Task",
-              "assignee": {
-                "accountId": "U003",
-                "name": "Diana"
-              },
-              "timeSpent": "10h",
-              "storyPoint": 5,
-              "subTask": []
-            }
-          ]
+          "parentKey": "PROJ-103"
         },
         {
-          "id": "EPIC-002",
-          "key": "EPIC-002",
-          "description": "Epic description 2",
+          "key": "PROJ-103-SUB2",
+          "summary": "Subtask 2 for PROJ-103",
           "status": "In Progress",
-          "type": "Epic",
+          "statusCategory": "indeterminate",
+          "type": "Sub-task",
+          "priority": "Highest",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": null,
           "assignee": {
-            "accountId": "U004",
-            "name": "Eve"
+            "accountId": "u3",
+            "displayName": "User 3",
+            "avatarUrl": "https://example.com/avatar/u3.png"
           },
-          "timeSpent": "19h",
-          "childIssue": [
-            {
-              "id": "ISSUE-004",
-              "key": "TASK-004",
-              "description": "Task description 4",
-              "status": "In Progress",
-              "type": "Task",
-              "assignee": {
-                "accountId": "U004",
-                "name": "Eve"
-              },
-              "timeSpent": "0h",
-              "storyPoint": 8,
-              "subTask": [
-                {
-                  "id": "SUB-040",
-                  "key": "SUB-040",
-                  "description": "Subtask description 40",
-                  "status": "To do",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U004",
-                    "name": "Eve"
-                  },
-                  "timeSpent": "4h"
-                },
-                {
-                  "id": "SUB-041",
-                  "key": "SUB-041",
-                  "description": "Subtask description 41",
-                  "status": "In Progress",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U005",
-                    "name": "Frank"
-                  },
-                  "timeSpent": "3h"
-                }
-              ]
-            },
-            {
-              "id": "ISSUE-005",
-              "key": "TASK-005",
-              "description": "Task description 5",
-              "status": "To do",
-              "type": "Task",
-              "assignee": {
-                "accountId": "U005",
-                "name": "Frank"
-              },
-              "timeSpent": "9h",
-              "storyPoint": 1,
-              "subTask": [
-                {
-                  "id": "SUB-050",
-                  "key": "SUB-050",
-                  "description": "Subtask description 50",
-                  "status": "Done",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U005",
-                    "name": "Frank"
-                  },
-                  "timeSpent": "3h"
-                }
-              ]
-            }
-          ]
+          "parentKey": "PROJ-103"
+        }
+      ]
+    },
+    {
+      "key": "PROJ-104",
+      "summary": "Sample summary for PROJ-104",
+      "status": "In Progress",
+      "statusCategory": "indeterminate",
+      "type": "Story",
+      "priority": "High",
+      "created": "2026-01-14T07:15:40Z",
+      "dueDate": null,
+      "timeSpentSeconds": 18113,
+      "assignee": {
+        "accountId": "u9",
+        "displayName": "User 9",
+        "avatarUrl": "https://example.com/avatar/u9.png"
+      },
+      "sprint": {
+        "id": 5,
+        "name": "Sprint 5",
+        "state": "closed",
+        "startDate": "2026-03-12T00:00:00Z",
+        "endDate": "2026-03-25T00:00:00Z"
+      },
+      "release": {
+        "name": "Release 2.0.0",
+        "description": "Large scale feature rollout with multiple teams contribution"
+      },
+      "storyPoints": null,
+      "reopenCount": 0,
+      "gitStats": {
+        "branchName": "feature/proj-104",
+        "commitCount": 13,
+        "prCount": 4,
+        "lastCommitDate": "2026-01-26T16:02:39Z"
+      },
+      "subtasks": [
+        {
+          "key": "PROJ-104-SUB1",
+          "summary": "Subtask 1 for PROJ-104",
+          "status": "To Do",
+          "statusCategory": "done",
+          "type": "Sub-task",
+          "priority": "Low",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": null,
+          "assignee": {
+            "accountId": "u7",
+            "displayName": "User 7",
+            "avatarUrl": "https://example.com/avatar/u7.png"
+          },
+          "parentKey": "PROJ-104"
         },
         {
-          "id": "EPIC-003",
-          "key": "EPIC-003",
-          "description": "Epic description 3",
+          "key": "PROJ-104-SUB2",
+          "summary": "Subtask 2 for PROJ-104",
+          "status": "Done",
+          "statusCategory": "indeterminate",
+          "type": "Sub-task",
+          "priority": "Low",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": 5335,
+          "assignee": {
+            "accountId": "u5",
+            "displayName": "User 5",
+            "avatarUrl": "https://example.com/avatar/u5.png"
+          },
+          "parentKey": "PROJ-104"
+        },
+        {
+          "key": "PROJ-104-SUB3",
+          "summary": "Subtask 3 for PROJ-104",
+          "status": "Done",
+          "statusCategory": "new",
+          "type": "Sub-task",
+          "priority": "Medium",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": 3664,
+          "assignee": {
+            "accountId": "u10",
+            "displayName": "User 10",
+            "avatarUrl": "https://example.com/avatar/u10.png"
+          },
+          "parentKey": "PROJ-104"
+        }
+      ]
+    },
+    {
+      "key": "PROJ-105",
+      "summary": "Sample summary for PROJ-105",
+      "status": "Done",
+      "statusCategory": "done",
+      "type": "Story",
+      "priority": "Low",
+      "created": "2026-01-01T06:15:38Z",
+      "dueDate": null,
+      "timeSpentSeconds": null,
+      "assignee": {
+        "accountId": "u8",
+        "displayName": "User 8",
+        "avatarUrl": "https://example.com/avatar/u8.png"
+      },
+      "sprint": {
+        "id": 3,
+        "name": "Sprint 3",
+        "state": "closed",
+        "startDate": "2026-02-12T00:00:00Z",
+        "endDate": "2026-02-25T00:00:00Z"
+      },
+      "release": {
+        "name": "Release 2.0.0",
+        "description": "Large scale feature rollout with multiple teams contribution"
+      },
+      "storyPoints": 5,
+      "reopenCount": 2,
+      "gitStats": {
+        "branchName": "feature/proj-105",
+        "commitCount": 7,
+        "prCount": 4,
+        "lastCommitDate": "2026-01-08T13:28:54Z"
+      },
+      "subtasks": []
+    },
+    {
+      "key": "PROJ-106",
+      "summary": "Sample summary for PROJ-106",
+      "status": "To Do",
+      "statusCategory": "new",
+      "type": "Task",
+      "priority": "Low",
+      "created": "2026-01-11T13:25:40Z",
+      "dueDate": null,
+      "timeSpentSeconds": null,
+      "assignee": {
+        "accountId": "u3",
+        "displayName": "User 3",
+        "avatarUrl": "https://example.com/avatar/u3.png"
+      },
+      "sprint": {
+        "id": 3,
+        "name": "Sprint 3",
+        "state": "closed",
+        "startDate": "2026-02-12T00:00:00Z",
+        "endDate": "2026-02-25T00:00:00Z"
+      },
+      "release": {
+        "name": "Release 2.0.0",
+        "description": "Large scale feature rollout with multiple teams contribution"
+      },
+      "storyPoints": 2,
+      "reopenCount": 2,
+      "gitStats": {
+        "branchName": "feature/proj-106",
+        "commitCount": 23,
+        "prCount": 1,
+        "lastCommitDate": "2026-01-07T03:28:56Z"
+      },
+      "subtasks": []
+    },
+    {
+      "key": "PROJ-107",
+      "summary": "Sample summary for PROJ-107",
+      "status": "To Do",
+      "statusCategory": "new",
+      "type": "Task",
+      "priority": "High",
+      "created": "2026-01-14T21:55:08Z",
+      "dueDate": "2026-01-21T21:55:08Z",
+      "timeSpentSeconds": 8672,
+      "assignee": {
+        "accountId": "u8",
+        "displayName": "User 8",
+        "avatarUrl": "https://example.com/avatar/u8.png"
+      },
+      "sprint": {
+        "id": 4,
+        "name": "Sprint 4",
+        "state": "closed",
+        "startDate": "2026-02-26T00:00:00Z",
+        "endDate": "2026-03-11T00:00:00Z"
+      },
+      "release": {
+        "name": "Release 2.0.0",
+        "description": "Large scale feature rollout with multiple teams contribution"
+      },
+      "storyPoints": 5,
+      "reopenCount": 2,
+      "gitStats": {
+        "branchName": "feature/proj-107",
+        "commitCount": 26,
+        "prCount": 2,
+        "lastCommitDate": "2026-01-03T21:46:24Z"
+      },
+      "subtasks": []
+    },
+    {
+      "key": "PROJ-108",
+      "summary": "Sample summary for PROJ-108",
+      "status": "Done",
+      "statusCategory": "done",
+      "type": "Task",
+      "priority": "High",
+      "created": "2026-01-05T08:32:39Z",
+      "dueDate": null,
+      "timeSpentSeconds": null,
+      "assignee": {
+        "accountId": "u6",
+        "displayName": "User 6",
+        "avatarUrl": "https://example.com/avatar/u6.png"
+      },
+      "sprint": {
+        "id": 1,
+        "name": "Sprint 1",
+        "state": "active",
+        "startDate": "2026-01-15T00:00:00Z",
+        "endDate": "2026-01-28T00:00:00Z"
+      },
+      "release": {
+        "name": "Release 2.0.0",
+        "description": "Large scale feature rollout with multiple teams contribution"
+      },
+      "storyPoints": null,
+      "reopenCount": 1,
+      "gitStats": {
+        "branchName": "feature/proj-108",
+        "commitCount": 20,
+        "prCount": 2,
+        "lastCommitDate": "2026-01-08T07:35:15Z"
+      },
+      "subtasks": []
+    },
+    {
+      "key": "PROJ-109",
+      "summary": "Sample summary for PROJ-109",
+      "status": "To Do",
+      "statusCategory": "new",
+      "type": "Story",
+      "priority": "Medium",
+      "created": "2026-01-20T21:51:45Z",
+      "dueDate": null,
+      "timeSpentSeconds": null,
+      "assignee": {
+        "accountId": "u6",
+        "displayName": "User 6",
+        "avatarUrl": "https://example.com/avatar/u6.png"
+      },
+      "sprint": {
+        "id": 4,
+        "name": "Sprint 4",
+        "state": "closed",
+        "startDate": "2026-02-26T00:00:00Z",
+        "endDate": "2026-03-11T00:00:00Z"
+      },
+      "release": {
+        "name": "Release 2.0.0",
+        "description": "Large scale feature rollout with multiple teams contribution"
+      },
+      "storyPoints": 8,
+      "reopenCount": 3,
+      "gitStats": {
+        "branchName": "feature/proj-109",
+        "commitCount": 13,
+        "prCount": 4,
+        "lastCommitDate": "2026-01-06T15:21:41Z"
+      },
+      "subtasks": [
+        {
+          "key": "PROJ-109-SUB1",
+          "summary": "Subtask 1 for PROJ-109",
           "status": "In Progress",
-          "type": "Epic",
+          "statusCategory": "new",
+          "type": "Sub-task",
+          "priority": "Medium",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": null,
           "assignee": {
-            "accountId": "U006",
-            "name": "Grace"
+            "accountId": "u6",
+            "displayName": "User 6",
+            "avatarUrl": "https://example.com/avatar/u6.png"
           },
-          "timeSpent": "19h",
-          "childIssue": [
-            {
-              "id": "ISSUE-006",
-              "key": "BUG-006",
-              "description": "Bug description 6",
-              "status": "In Progress",
-              "type": "Bug",
-              "assignee": {
-                "accountId": "U006",
-                "name": "Grace"
-              },
-              "timeSpent": "8h",
-              "storyPoint": 5,
-              "subTask": []
-            },
-            {
-              "id": "ISSUE-007",
-              "key": "TASK-007",
-              "description": "Task description 7",
-              "status": "In Progress",
-              "type": "Task",
-              "assignee": {
-                "accountId": "U007",
-                "name": "Henry"
-              },
-              "timeSpent": "1h",
-              "storyPoint": 3,
-              "subTask": [
-                {
-                  "id": "SUB-070",
-                  "key": "SUB-070",
-                  "description": "Subtask description 70",
-                  "status": "To do",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U007",
-                    "name": "Henry"
-                  },
-                  "timeSpent": "5h"
-                },
-                {
-                  "id": "SUB-071",
-                  "key": "SUB-071",
-                  "description": "Subtask description 71",
-                  "status": "To do",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U008",
-                    "name": "Ivy"
-                  },
-                  "timeSpent": "3h"
-                }
-              ]
-            },
-            {
-              "id": "ISSUE-008",
-              "key": "BUG-008",
-              "description": "Bug description 8",
-              "status": "Done",
-              "type": "Bug",
-              "assignee": {
-                "accountId": "U008",
-                "name": "Ivy"
-              },
-              "timeSpent": "2h",
-              "storyPoint": 8,
-              "subTask": [
-                {
-                  "id": "SUB-080",
-                  "key": "SUB-080",
-                  "description": "Subtask description 80",
-                  "status": "In Progress",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U008",
-                    "name": "Ivy"
-                  },
-                  "timeSpent": "5h"
-                },
-                {
-                  "id": "SUB-081",
-                  "key": "SUB-081",
-                  "description": "Subtask description 81",
-                  "status": "To do",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U009",
-                    "name": "Jack"
-                  },
-                  "timeSpent": "2h"
-                }
-              ]
-            }
-          ]
+          "parentKey": "PROJ-109"
         }
-      ],
-      "issues": [
-        {
-          "id": "ISSUE-009",
-          "key": "STORY-009",
-          "description": "Story description 9",
-          "status": "To do",
-          "type": "Story",
-          "assignee": {
-            "accountId": "U009",
-            "name": "Jack"
-          },
-          "timeSpent": "6h",
-          "storyPoint": 1,
-          "subTask": []
-        },
-        {
-          "id": "ISSUE-010",
-          "key": "BUG-010",
-          "description": "Bug description 10",
-          "status": "Done",
-          "type": "Bug",
-          "assignee": {
-            "accountId": "U010",
-            "name": "Kate"
-          },
-          "timeSpent": "7h",
-          "storyPoint": 1,
-          "subTask": [
-            {
-              "id": "SUB-100",
-              "key": "SUB-100",
-              "description": "Subtask description 100",
-              "status": "In Progress",
-              "type": "Sub Task",
-              "assignee": {
-                "accountId": "U010",
-                "name": "Kate"
-              },
-              "timeSpent": "2h"
-            },
-            {
-              "id": "SUB-101",
-              "key": "SUB-101",
-              "description": "Subtask description 101",
-              "status": "In Progress",
-              "type": "Sub Task",
-              "assignee": {
-                "accountId": "U011",
-                "name": "Leo"
-              },
-              "timeSpent": "4h"
-            }
-          ]
-        }
-      ],
-      "stats": {
-        "totalStoryPoints": 32,
-        "percentageCompleted": 28
-      }
+      ]
     },
     {
-      "id": "REL-003",
-      "name": "Release 1.2",
-      "releaseDate": "2026-04-02",
-      "status": "Release",
-      "epics": [
+      "key": "PROJ-110",
+      "summary": "Sample summary for PROJ-110",
+      "status": "In Review",
+      "statusCategory": "indeterminate",
+      "type": "Story",
+      "priority": "High",
+      "created": "2026-01-13T00:02:26Z",
+      "dueDate": "2026-01-20T00:02:26Z",
+      "timeSpentSeconds": 10138,
+      "assignee": {
+        "accountId": "u2",
+        "displayName": "User 2",
+        "avatarUrl": "https://example.com/avatar/u2.png"
+      },
+      "sprint": {
+        "id": 2,
+        "name": "Sprint 2",
+        "state": "active",
+        "startDate": "2026-01-29T00:00:00Z",
+        "endDate": "2026-02-11T00:00:00Z"
+      },
+      "release": {
+        "name": "Release 2.0.0",
+        "description": "Large scale feature rollout with multiple teams contribution"
+      },
+      "storyPoints": 2,
+      "reopenCount": 1,
+      "gitStats": {
+        "branchName": "feature/proj-110",
+        "commitCount": 12,
+        "prCount": 5,
+        "lastCommitDate": "2026-01-18T11:21:46Z"
+      },
+      "subtasks": [
         {
-          "id": "EPIC-004",
-          "key": "EPIC-004",
-          "description": "Epic description 4",
+          "key": "PROJ-110-SUB1",
+          "summary": "Subtask 1 for PROJ-110",
+          "status": "In Review",
+          "statusCategory": "done",
+          "type": "Sub-task",
+          "priority": "Low",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": null,
+          "assignee": {
+            "accountId": "u6",
+            "displayName": "User 6",
+            "avatarUrl": "https://example.com/avatar/u6.png"
+          },
+          "parentKey": "PROJ-110"
+        },
+        {
+          "key": "PROJ-110-SUB2",
+          "summary": "Subtask 2 for PROJ-110",
+          "status": "Done",
+          "statusCategory": "new",
+          "type": "Sub-task",
+          "priority": "Medium",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": null,
+          "assignee": {
+            "accountId": "u1",
+            "displayName": "User 1",
+            "avatarUrl": "https://example.com/avatar/u1.png"
+          },
+          "parentKey": "PROJ-110"
+        },
+        {
+          "key": "PROJ-110-SUB3",
+          "summary": "Subtask 3 for PROJ-110",
+          "status": "In Review",
+          "statusCategory": "indeterminate",
+          "type": "Sub-task",
+          "priority": "Low",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": null,
+          "assignee": {
+            "accountId": "u6",
+            "displayName": "User 6",
+            "avatarUrl": "https://example.com/avatar/u6.png"
+          },
+          "parentKey": "PROJ-110"
+        }
+      ]
+    },
+    {
+      "key": "PROJ-111",
+      "summary": "Sample summary for PROJ-111",
+      "status": "Done",
+      "statusCategory": "done",
+      "type": "Task",
+      "priority": "High",
+      "created": "2026-01-29T15:08:53Z",
+      "dueDate": null,
+      "timeSpentSeconds": 18707,
+      "assignee": {
+        "accountId": "u9",
+        "displayName": "User 9",
+        "avatarUrl": "https://example.com/avatar/u9.png"
+      },
+      "sprint": {
+        "id": 4,
+        "name": "Sprint 4",
+        "state": "closed",
+        "startDate": "2026-02-26T00:00:00Z",
+        "endDate": "2026-03-11T00:00:00Z"
+      },
+      "release": {
+        "name": "Release 2.0.0",
+        "description": "Large scale feature rollout with multiple teams contribution"
+      },
+      "storyPoints": 5,
+      "reopenCount": 2,
+      "gitStats": {
+        "branchName": "feature/proj-111",
+        "commitCount": 22,
+        "prCount": 3,
+        "lastCommitDate": "2026-01-03T22:59:24Z"
+      },
+      "subtasks": [
+        {
+          "key": "PROJ-111-SUB1",
+          "summary": "Subtask 1 for PROJ-111",
           "status": "In Progress",
-          "type": "Epic",
+          "statusCategory": "done",
+          "type": "Sub-task",
+          "priority": "High",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": 2920,
           "assignee": {
-            "accountId": "U011",
-            "name": "Leo"
+            "accountId": "u8",
+            "displayName": "User 8",
+            "avatarUrl": "https://example.com/avatar/u8.png"
           },
-          "timeSpent": "7h",
-          "childIssue": [
-            {
-              "id": "ISSUE-011",
-              "key": "TASK-011",
-              "description": "Task description 11",
-              "status": "To do",
-              "type": "Task",
-              "assignee": {
-                "accountId": "U011",
-                "name": "Leo"
-              },
-              "timeSpent": "8h",
-              "storyPoint": 3,
-              "subTask": [
-                {
-                  "id": "SUB-110",
-                  "key": "SUB-110",
-                  "description": "Subtask description 110",
-                  "status": "To do",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U011",
-                    "name": "Leo"
-                  },
-                  "timeSpent": "3h"
-                },
-                {
-                  "id": "SUB-111",
-                  "key": "SUB-111",
-                  "description": "Subtask description 111",
-                  "status": "Done",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U012",
-                    "name": "Mia"
-                  },
-                  "timeSpent": "5h"
-                }
-              ]
-            },
-            {
-              "id": "ISSUE-012",
-              "key": "STORY-012",
-              "description": "Story description 12",
-              "status": "In Progress",
-              "type": "Story",
-              "assignee": {
-                "accountId": "U012",
-                "name": "Mia"
-              },
-              "timeSpent": "6h",
-              "storyPoint": 3,
-              "subTask": [
-                {
-                  "id": "SUB-120",
-                  "key": "SUB-120",
-                  "description": "Subtask description 120",
-                  "status": "To do",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U012",
-                    "name": "Mia"
-                  },
-                  "timeSpent": "3h"
-                },
-                {
-                  "id": "SUB-121",
-                  "key": "SUB-121",
-                  "description": "Subtask description 121",
-                  "status": "In Progress",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U013",
-                    "name": "Noah"
-                  },
-                  "timeSpent": "3h"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "id": "EPIC-005",
-          "key": "EPIC-005",
-          "description": "Epic description 5",
-          "status": "Done",
-          "type": "Epic",
-          "assignee": {
-            "accountId": "U013",
-            "name": "Noah"
-          },
-          "timeSpent": "6h",
-          "childIssue": [
-            {
-              "id": "ISSUE-013",
-              "key": "STORY-013",
-              "description": "Story description 13",
-              "status": "In Progress",
-              "type": "Story",
-              "assignee": {
-                "accountId": "U013",
-                "name": "Noah"
-              },
-              "timeSpent": "1h",
-              "storyPoint": 1,
-              "subTask": [
-                {
-                  "id": "SUB-130",
-                  "key": "SUB-130",
-                  "description": "Subtask description 130",
-                  "status": "To do",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U013",
-                    "name": "Noah"
-                  },
-                  "timeSpent": "0h"
-                }
-              ]
-            },
-            {
-              "id": "ISSUE-014",
-              "key": "STORY-014",
-              "description": "Story description 14",
-              "status": "Done",
-              "type": "Story",
-              "assignee": {
-                "accountId": "U014",
-                "name": "Olivia"
-              },
-              "timeSpent": "10h",
-              "storyPoint": 3,
-              "subTask": []
-            },
-            {
-              "id": "ISSUE-015",
-              "key": "BUG-015",
-              "description": "Bug description 15",
-              "status": "To do",
-              "type": "Bug",
-              "assignee": {
-                "accountId": "U015",
-                "name": "Paul"
-              },
-              "timeSpent": "1h",
-              "storyPoint": 1,
-              "subTask": []
-            }
-          ]
-        },
-        {
-          "id": "EPIC-006",
-          "key": "EPIC-006",
-          "description": "Epic description 6",
-          "status": "To do",
-          "type": "Epic",
-          "assignee": {
-            "accountId": "U016",
-            "name": "Quinn"
-          },
-          "timeSpent": "0h",
-          "childIssue": [
-            {
-              "id": "ISSUE-016",
-              "key": "BUG-016",
-              "description": "Bug description 16",
-              "status": "Done",
-              "type": "Bug",
-              "assignee": {
-                "accountId": "U016",
-                "name": "Quinn"
-              },
-              "timeSpent": "7h",
-              "storyPoint": 8,
-              "subTask": [
-                {
-                  "id": "SUB-160",
-                  "key": "SUB-160",
-                  "description": "Subtask description 160",
-                  "status": "In Progress",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U016",
-                    "name": "Quinn"
-                  },
-                  "timeSpent": "4h"
-                },
-                {
-                  "id": "SUB-161",
-                  "key": "SUB-161",
-                  "description": "Subtask description 161",
-                  "status": "Done",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U017",
-                    "name": "Rita"
-                  },
-                  "timeSpent": "4h"
-                }
-              ]
-            },
-            {
-              "id": "ISSUE-017",
-              "key": "STORY-017",
-              "description": "Story description 17",
-              "status": "Done",
-              "type": "Story",
-              "assignee": {
-                "accountId": "U017",
-                "name": "Rita"
-              },
-              "timeSpent": "6h",
-              "storyPoint": 8,
-              "subTask": [
-                {
-                  "id": "SUB-170",
-                  "key": "SUB-170",
-                  "description": "Subtask description 170",
-                  "status": "In Progress",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U017",
-                    "name": "Rita"
-                  },
-                  "timeSpent": "1h"
-                },
-                {
-                  "id": "SUB-171",
-                  "key": "SUB-171",
-                  "description": "Subtask description 171",
-                  "status": "To do",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U018",
-                    "name": "Sam"
-                  },
-                  "timeSpent": "4h"
-                }
-              ]
-            }
-          ]
+          "parentKey": "PROJ-111"
         }
-      ],
-      "issues": [],
-      "stats": {
-        "totalStoryPoints": 27,
-        "percentageCompleted": 70
-      }
+      ]
     },
     {
-      "id": "REL-004",
-      "name": "Release 1.3",
-      "releaseDate": "2026-05-02",
-      "status": "Unreleased",
-      "epics": [],
-      "issues": [
+      "key": "PROJ-112",
+      "summary": "Sample summary for PROJ-112",
+      "status": "To Do",
+      "statusCategory": "new",
+      "type": "Task",
+      "priority": "Highest",
+      "created": "2026-01-12T18:15:23Z",
+      "dueDate": null,
+      "timeSpentSeconds": null,
+      "assignee": {
+        "accountId": "u2",
+        "displayName": "User 2",
+        "avatarUrl": "https://example.com/avatar/u2.png"
+      },
+      "sprint": {
+        "id": 2,
+        "name": "Sprint 2",
+        "state": "active",
+        "startDate": "2026-01-29T00:00:00Z",
+        "endDate": "2026-02-11T00:00:00Z"
+      },
+      "release": {
+        "name": "Release 2.0.0",
+        "description": "Large scale feature rollout with multiple teams contribution"
+      },
+      "storyPoints": 3,
+      "reopenCount": 1,
+      "gitStats": {
+        "branchName": "feature/proj-112",
+        "commitCount": 24,
+        "prCount": 1,
+        "lastCommitDate": "2026-01-20T12:58:21Z"
+      },
+      "subtasks": [
         {
-          "id": "ISSUE-018",
-          "key": "BUG-018",
-          "description": "Bug description 18",
-          "status": "To do",
-          "type": "Bug",
+          "key": "PROJ-112-SUB1",
+          "summary": "Subtask 1 for PROJ-112",
+          "status": "Done",
+          "statusCategory": "indeterminate",
+          "type": "Sub-task",
+          "priority": "High",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": null,
           "assignee": {
-            "accountId": "U018",
-            "name": "Sam"
+            "accountId": "u3",
+            "displayName": "User 3",
+            "avatarUrl": "https://example.com/avatar/u3.png"
           },
-          "timeSpent": "0h",
-          "storyPoint": 8,
-          "subTask": []
-        }
-      ],
-      "stats": {
-        "totalStoryPoints": 8,
-        "percentageCompleted": 0
-      }
-    },
-    {
-      "id": "REL-005",
-      "name": "Release 1.4",
-      "releaseDate": "2026-06-01",
-      "status": "Unreleased",
-      "epics": [],
-      "issues": [
-        {
-          "id": "ISSUE-019",
-          "key": "TASK-019",
-          "description": "Task description 19",
-          "status": "To do",
-          "type": "Task",
-          "assignee": {
-            "accountId": "U019",
-            "name": "Tina"
-          },
-          "timeSpent": "6h",
-          "storyPoint": 8,
-          "subTask": []
+          "parentKey": "PROJ-112"
         },
         {
-          "id": "ISSUE-020",
-          "key": "TASK-020",
-          "description": "Task description 20",
-          "status": "Done",
-          "type": "Task",
-          "assignee": {
-            "accountId": "U020",
-            "name": "Alice"
-          },
-          "timeSpent": "4h",
-          "storyPoint": 3,
-          "subTask": [
-            {
-              "id": "SUB-200",
-              "key": "SUB-200",
-              "description": "Subtask description 200",
-              "status": "Done",
-              "type": "Sub Task",
-              "assignee": {
-                "accountId": "U020",
-                "name": "Alice"
-              },
-              "timeSpent": "0h"
-            }
-          ]
-        }
-      ],
-      "stats": {
-        "totalStoryPoints": 11,
-        "percentageCompleted": 27
-      }
-    },
-    {
-      "id": "REL-006",
-      "name": "Release 1.0",
-      "releaseDate": "2026-07-01",
-      "status": "Release",
-      "epics": [
-        {
-          "id": "EPIC-007",
-          "key": "EPIC-007",
-          "description": "Epic description 7",
-          "status": "Done",
-          "type": "Epic",
-          "assignee": {
-            "accountId": "U021",
-            "name": "Bob"
-          },
-          "timeSpent": "15h",
-          "childIssue": [
-            {
-              "id": "ISSUE-021",
-              "key": "TASK-021",
-              "description": "Task description 21",
-              "status": "In Progress",
-              "type": "Task",
-              "assignee": {
-                "accountId": "U021",
-                "name": "Bob"
-              },
-              "timeSpent": "10h",
-              "storyPoint": 1,
-              "subTask": [
-                {
-                  "id": "SUB-210",
-                  "key": "SUB-210",
-                  "description": "Subtask description 210",
-                  "status": "To do",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U021",
-                    "name": "Bob"
-                  },
-                  "timeSpent": "1h"
-                },
-                {
-                  "id": "SUB-211",
-                  "key": "SUB-211",
-                  "description": "Subtask description 211",
-                  "status": "In Progress",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U022",
-                    "name": "Charlie"
-                  },
-                  "timeSpent": "4h"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "id": "EPIC-008",
-          "key": "EPIC-008",
-          "description": "Epic description 8",
+          "key": "PROJ-112-SUB2",
+          "summary": "Subtask 2 for PROJ-112",
           "status": "In Progress",
-          "type": "Epic",
+          "statusCategory": "indeterminate",
+          "type": "Sub-task",
+          "priority": "Medium",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": null,
           "assignee": {
-            "accountId": "U022",
-            "name": "Charlie"
+            "accountId": "u1",
+            "displayName": "User 1",
+            "avatarUrl": "https://example.com/avatar/u1.png"
           },
-          "timeSpent": "5h",
-          "childIssue": [
-            {
-              "id": "ISSUE-022",
-              "key": "BUG-022",
-              "description": "Bug description 22",
-              "status": "In Progress",
-              "type": "Bug",
-              "assignee": {
-                "accountId": "U022",
-                "name": "Charlie"
-              },
-              "timeSpent": "8h",
-              "storyPoint": 3,
-              "subTask": [
-                {
-                  "id": "SUB-220",
-                  "key": "SUB-220",
-                  "description": "Subtask description 220",
-                  "status": "In Progress",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U022",
-                    "name": "Charlie"
-                  },
-                  "timeSpent": "3h"
-                },
-                {
-                  "id": "SUB-221",
-                  "key": "SUB-221",
-                  "description": "Subtask description 221",
-                  "status": "Done",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U023",
-                    "name": "Diana"
-                  },
-                  "timeSpent": "3h"
-                }
-              ]
-            },
-            {
-              "id": "ISSUE-023",
-              "key": "BUG-023",
-              "description": "Bug description 23",
-              "status": "To do",
-              "type": "Bug",
-              "assignee": {
-                "accountId": "U023",
-                "name": "Diana"
-              },
-              "timeSpent": "1h",
-              "storyPoint": 3,
-              "subTask": [
-                {
-                  "id": "SUB-230",
-                  "key": "SUB-230",
-                  "description": "Subtask description 230",
-                  "status": "To do",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U023",
-                    "name": "Diana"
-                  },
-                  "timeSpent": "0h"
-                }
-              ]
-            }
-          ]
+          "parentKey": "PROJ-112"
         },
         {
-          "id": "EPIC-009",
-          "key": "EPIC-009",
-          "description": "Epic description 9",
+          "key": "PROJ-112-SUB3",
+          "summary": "Subtask 3 for PROJ-112",
+          "status": "To Do",
+          "statusCategory": "done",
+          "type": "Sub-task",
+          "priority": "Medium",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": null,
+          "assignee": {
+            "accountId": "u3",
+            "displayName": "User 3",
+            "avatarUrl": "https://example.com/avatar/u3.png"
+          },
+          "parentKey": "PROJ-112"
+        }
+      ]
+    },
+    {
+      "key": "PROJ-113",
+      "summary": "Sample summary for PROJ-113",
+      "status": "In Review",
+      "statusCategory": "indeterminate",
+      "type": "Task",
+      "priority": "Highest",
+      "created": "2026-01-15T14:06:19Z",
+      "dueDate": null,
+      "timeSpentSeconds": null,
+      "assignee": {
+        "accountId": "u6",
+        "displayName": "User 6",
+        "avatarUrl": "https://example.com/avatar/u6.png"
+      },
+      "sprint": {
+        "id": 5,
+        "name": "Sprint 5",
+        "state": "closed",
+        "startDate": "2026-03-12T00:00:00Z",
+        "endDate": "2026-03-25T00:00:00Z"
+      },
+      "release": {
+        "name": "Release 2.0.0",
+        "description": "Large scale feature rollout with multiple teams contribution"
+      },
+      "storyPoints": 13,
+      "reopenCount": 1,
+      "gitStats": {
+        "branchName": "feature/proj-113",
+        "commitCount": 25,
+        "prCount": 4,
+        "lastCommitDate": "2026-01-13T05:34:18Z"
+      },
+      "subtasks": [
+        {
+          "key": "PROJ-113-SUB1",
+          "summary": "Subtask 1 for PROJ-113",
+          "status": "To Do",
+          "statusCategory": "new",
+          "type": "Sub-task",
+          "priority": "Medium",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": 2753,
+          "assignee": {
+            "accountId": "u6",
+            "displayName": "User 6",
+            "avatarUrl": "https://example.com/avatar/u6.png"
+          },
+          "parentKey": "PROJ-113"
+        },
+        {
+          "key": "PROJ-113-SUB2",
+          "summary": "Subtask 2 for PROJ-113",
+          "status": "Done",
+          "statusCategory": "indeterminate",
+          "type": "Sub-task",
+          "priority": "Highest",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": null,
+          "assignee": {
+            "accountId": "u7",
+            "displayName": "User 7",
+            "avatarUrl": "https://example.com/avatar/u7.png"
+          },
+          "parentKey": "PROJ-113"
+        },
+        {
+          "key": "PROJ-113-SUB3",
+          "summary": "Subtask 3 for PROJ-113",
+          "status": "To Do",
+          "statusCategory": "indeterminate",
+          "type": "Sub-task",
+          "priority": "Medium",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": null,
+          "assignee": {
+            "accountId": "u3",
+            "displayName": "User 3",
+            "avatarUrl": "https://example.com/avatar/u3.png"
+          },
+          "parentKey": "PROJ-113"
+        }
+      ]
+    },
+    {
+      "key": "PROJ-114",
+      "summary": "Sample summary for PROJ-114",
+      "status": "To Do",
+      "statusCategory": "new",
+      "type": "Bug",
+      "priority": "Medium",
+      "created": "2026-01-23T14:16:18Z",
+      "dueDate": null,
+      "timeSpentSeconds": 16490,
+      "assignee": {
+        "accountId": "u1",
+        "displayName": "User 1",
+        "avatarUrl": "https://example.com/avatar/u1.png"
+      },
+      "sprint": {
+        "id": 3,
+        "name": "Sprint 3",
+        "state": "closed",
+        "startDate": "2026-02-12T00:00:00Z",
+        "endDate": "2026-02-25T00:00:00Z"
+      },
+      "release": {
+        "name": "Release 2.0.0",
+        "description": "Large scale feature rollout with multiple teams contribution"
+      },
+      "storyPoints": 13,
+      "reopenCount": 2,
+      "gitStats": {
+        "branchName": "feature/proj-114",
+        "commitCount": 24,
+        "prCount": 3,
+        "lastCommitDate": "2026-01-24T05:18:53Z"
+      },
+      "subtasks": [
+        {
+          "key": "PROJ-114-SUB1",
+          "summary": "Subtask 1 for PROJ-114",
+          "status": "In Review",
+          "statusCategory": "indeterminate",
+          "type": "Sub-task",
+          "priority": "Medium",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": 4323,
+          "assignee": {
+            "accountId": "u7",
+            "displayName": "User 7",
+            "avatarUrl": "https://example.com/avatar/u7.png"
+          },
+          "parentKey": "PROJ-114"
+        },
+        {
+          "key": "PROJ-114-SUB2",
+          "summary": "Subtask 2 for PROJ-114",
+          "status": "Done",
+          "statusCategory": "indeterminate",
+          "type": "Sub-task",
+          "priority": "Highest",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": null,
+          "assignee": {
+            "accountId": "u2",
+            "displayName": "User 2",
+            "avatarUrl": "https://example.com/avatar/u2.png"
+          },
+          "parentKey": "PROJ-114"
+        }
+      ]
+    },
+    {
+      "key": "PROJ-115",
+      "summary": "Sample summary for PROJ-115",
+      "status": "In Review",
+      "statusCategory": "indeterminate",
+      "type": "Task",
+      "priority": "High",
+      "created": "2026-01-15T05:57:25Z",
+      "dueDate": "2026-01-22T05:57:25Z",
+      "timeSpentSeconds": 10376,
+      "assignee": {
+        "accountId": "u10",
+        "displayName": "User 10",
+        "avatarUrl": "https://example.com/avatar/u10.png"
+      },
+      "sprint": {
+        "id": 1,
+        "name": "Sprint 1",
+        "state": "active",
+        "startDate": "2026-01-15T00:00:00Z",
+        "endDate": "2026-01-28T00:00:00Z"
+      },
+      "release": {
+        "name": "Release 2.0.0",
+        "description": "Large scale feature rollout with multiple teams contribution"
+      },
+      "storyPoints": 13,
+      "reopenCount": 0,
+      "gitStats": {
+        "branchName": "feature/proj-115",
+        "commitCount": 20,
+        "prCount": 3,
+        "lastCommitDate": "2026-01-05T04:04:03Z"
+      },
+      "subtasks": [
+        {
+          "key": "PROJ-115-SUB1",
+          "summary": "Subtask 1 for PROJ-115",
+          "status": "To Do",
+          "statusCategory": "indeterminate",
+          "type": "Sub-task",
+          "priority": "Highest",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": null,
+          "assignee": {
+            "accountId": "u4",
+            "displayName": "User 4",
+            "avatarUrl": "https://example.com/avatar/u4.png"
+          },
+          "parentKey": "PROJ-115"
+        },
+        {
+          "key": "PROJ-115-SUB2",
+          "summary": "Subtask 2 for PROJ-115",
+          "status": "To Do",
+          "statusCategory": "done",
+          "type": "Sub-task",
+          "priority": "Highest",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": 2198,
+          "assignee": {
+            "accountId": "u3",
+            "displayName": "User 3",
+            "avatarUrl": "https://example.com/avatar/u3.png"
+          },
+          "parentKey": "PROJ-115"
+        },
+        {
+          "key": "PROJ-115-SUB3",
+          "summary": "Subtask 3 for PROJ-115",
+          "status": "To Do",
+          "statusCategory": "indeterminate",
+          "type": "Sub-task",
+          "priority": "Low",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": null,
+          "assignee": {
+            "accountId": "u1",
+            "displayName": "User 1",
+            "avatarUrl": "https://example.com/avatar/u1.png"
+          },
+          "parentKey": "PROJ-115"
+        }
+      ]
+    },
+    {
+      "key": "PROJ-116",
+      "summary": "Sample summary for PROJ-116",
+      "status": "In Review",
+      "statusCategory": "indeterminate",
+      "type": "Task",
+      "priority": "Highest",
+      "created": "2026-01-22T23:44:47Z",
+      "dueDate": "2026-01-29T23:44:47Z",
+      "timeSpentSeconds": null,
+      "assignee": {
+        "accountId": "u3",
+        "displayName": "User 3",
+        "avatarUrl": "https://example.com/avatar/u3.png"
+      },
+      "sprint": {
+        "id": 2,
+        "name": "Sprint 2",
+        "state": "active",
+        "startDate": "2026-01-29T00:00:00Z",
+        "endDate": "2026-02-11T00:00:00Z"
+      },
+      "release": {
+        "name": "Release 2.0.0",
+        "description": "Large scale feature rollout with multiple teams contribution"
+      },
+      "storyPoints": 8,
+      "reopenCount": 2,
+      "gitStats": {
+        "branchName": "feature/proj-116",
+        "commitCount": 1,
+        "prCount": 2,
+        "lastCommitDate": "2026-01-31T06:26:14Z"
+      },
+      "subtasks": [
+        {
+          "key": "PROJ-116-SUB1",
+          "summary": "Subtask 1 for PROJ-116",
+          "status": "To Do",
+          "statusCategory": "indeterminate",
+          "type": "Sub-task",
+          "priority": "Low",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": 4407,
+          "assignee": {
+            "accountId": "u2",
+            "displayName": "User 2",
+            "avatarUrl": "https://example.com/avatar/u2.png"
+          },
+          "parentKey": "PROJ-116"
+        },
+        {
+          "key": "PROJ-116-SUB2",
+          "summary": "Subtask 2 for PROJ-116",
+          "status": "In Review",
+          "statusCategory": "indeterminate",
+          "type": "Sub-task",
+          "priority": "High",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": null,
+          "assignee": {
+            "accountId": "u8",
+            "displayName": "User 8",
+            "avatarUrl": "https://example.com/avatar/u8.png"
+          },
+          "parentKey": "PROJ-116"
+        }
+      ]
+    },
+    {
+      "key": "PROJ-117",
+      "summary": "Sample summary for PROJ-117",
+      "status": "Done",
+      "statusCategory": "done",
+      "type": "Task",
+      "priority": "Highest",
+      "created": "2026-01-09T17:37:30Z",
+      "dueDate": null,
+      "timeSpentSeconds": null,
+      "assignee": {
+        "accountId": "u6",
+        "displayName": "User 6",
+        "avatarUrl": "https://example.com/avatar/u6.png"
+      },
+      "sprint": {
+        "id": 3,
+        "name": "Sprint 3",
+        "state": "closed",
+        "startDate": "2026-02-12T00:00:00Z",
+        "endDate": "2026-02-25T00:00:00Z"
+      },
+      "release": {
+        "name": "Release 2.0.0",
+        "description": "Large scale feature rollout with multiple teams contribution"
+      },
+      "storyPoints": 2,
+      "reopenCount": 2,
+      "gitStats": {
+        "branchName": "feature/proj-117",
+        "commitCount": 14,
+        "prCount": 4,
+        "lastCommitDate": "2026-01-03T06:24:20Z"
+      },
+      "subtasks": [
+        {
+          "key": "PROJ-117-SUB1",
+          "summary": "Subtask 1 for PROJ-117",
+          "status": "Done",
+          "statusCategory": "indeterminate",
+          "type": "Sub-task",
+          "priority": "High",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": null,
+          "assignee": {
+            "accountId": "u4",
+            "displayName": "User 4",
+            "avatarUrl": "https://example.com/avatar/u4.png"
+          },
+          "parentKey": "PROJ-117"
+        },
+        {
+          "key": "PROJ-117-SUB2",
+          "summary": "Subtask 2 for PROJ-117",
+          "status": "Done",
+          "statusCategory": "indeterminate",
+          "type": "Sub-task",
+          "priority": "Low",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": 1822,
+          "assignee": {
+            "accountId": "u4",
+            "displayName": "User 4",
+            "avatarUrl": "https://example.com/avatar/u4.png"
+          },
+          "parentKey": "PROJ-117"
+        }
+      ]
+    },
+    {
+      "key": "PROJ-118",
+      "summary": "Sample summary for PROJ-118",
+      "status": "To Do",
+      "statusCategory": "new",
+      "type": "Bug",
+      "priority": "Medium",
+      "created": "2026-01-18T19:10:52Z",
+      "dueDate": null,
+      "timeSpentSeconds": null,
+      "assignee": {
+        "accountId": "u9",
+        "displayName": "User 9",
+        "avatarUrl": "https://example.com/avatar/u9.png"
+      },
+      "sprint": {
+        "id": 3,
+        "name": "Sprint 3",
+        "state": "closed",
+        "startDate": "2026-02-12T00:00:00Z",
+        "endDate": "2026-02-25T00:00:00Z"
+      },
+      "release": {
+        "name": "Release 2.0.0",
+        "description": "Large scale feature rollout with multiple teams contribution"
+      },
+      "storyPoints": 5,
+      "reopenCount": 2,
+      "gitStats": {
+        "branchName": "feature/proj-118",
+        "commitCount": 2,
+        "prCount": 3,
+        "lastCommitDate": "2026-01-17T15:30:36Z"
+      },
+      "subtasks": []
+    },
+    {
+      "key": "PROJ-119",
+      "summary": "Sample summary for PROJ-119",
+      "status": "In Progress",
+      "statusCategory": "indeterminate",
+      "type": "Story",
+      "priority": "High",
+      "created": "2026-01-03T04:51:48Z",
+      "dueDate": null,
+      "timeSpentSeconds": 14626,
+      "assignee": {
+        "accountId": "u6",
+        "displayName": "User 6",
+        "avatarUrl": "https://example.com/avatar/u6.png"
+      },
+      "sprint": {
+        "id": 1,
+        "name": "Sprint 1",
+        "state": "active",
+        "startDate": "2026-01-15T00:00:00Z",
+        "endDate": "2026-01-28T00:00:00Z"
+      },
+      "release": {
+        "name": "Release 2.0.0",
+        "description": "Large scale feature rollout with multiple teams contribution"
+      },
+      "storyPoints": 8,
+      "reopenCount": 3,
+      "gitStats": {
+        "branchName": "feature/proj-119",
+        "commitCount": 6,
+        "prCount": 3,
+        "lastCommitDate": "2026-01-21T20:43:53Z"
+      },
+      "subtasks": [
+        {
+          "key": "PROJ-119-SUB1",
+          "summary": "Subtask 1 for PROJ-119",
+          "status": "To Do",
+          "statusCategory": "new",
+          "type": "Sub-task",
+          "priority": "Highest",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": 5745,
+          "assignee": {
+            "accountId": "u1",
+            "displayName": "User 1",
+            "avatarUrl": "https://example.com/avatar/u1.png"
+          },
+          "parentKey": "PROJ-119"
+        },
+        {
+          "key": "PROJ-119-SUB2",
+          "summary": "Subtask 2 for PROJ-119",
           "status": "In Progress",
-          "type": "Epic",
+          "statusCategory": "new",
+          "type": "Sub-task",
+          "priority": "Highest",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": 5668,
           "assignee": {
-            "accountId": "U024",
-            "name": "Eve"
+            "accountId": "u9",
+            "displayName": "User 9",
+            "avatarUrl": "https://example.com/avatar/u9.png"
           },
-          "timeSpent": "6h",
-          "childIssue": [
-            {
-              "id": "ISSUE-024",
-              "key": "STORY-024",
-              "description": "Story description 24",
-              "status": "To do",
-              "type": "Story",
-              "assignee": {
-                "accountId": "U024",
-                "name": "Eve"
-              },
-              "timeSpent": "2h",
-              "storyPoint": 8,
-              "subTask": [
-                {
-                  "id": "SUB-240",
-                  "key": "SUB-240",
-                  "description": "Subtask description 240",
-                  "status": "In Progress",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U024",
-                    "name": "Eve"
-                  },
-                  "timeSpent": "0h"
-                }
-              ]
-            },
-            {
-              "id": "ISSUE-025",
-              "key": "TASK-025",
-              "description": "Task description 25",
-              "status": "To do",
-              "type": "Task",
-              "assignee": {
-                "accountId": "U025",
-                "name": "Frank"
-              },
-              "timeSpent": "10h",
-              "storyPoint": 8,
-              "subTask": [
-                {
-                  "id": "SUB-250",
-                  "key": "SUB-250",
-                  "description": "Subtask description 250",
-                  "status": "In Progress",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U025",
-                    "name": "Frank"
-                  },
-                  "timeSpent": "5h"
-                },
-                {
-                  "id": "SUB-251",
-                  "key": "SUB-251",
-                  "description": "Subtask description 251",
-                  "status": "In Progress",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U026",
-                    "name": "Grace"
-                  },
-                  "timeSpent": "5h"
-                }
-              ]
-            },
-            {
-              "id": "ISSUE-026",
-              "key": "STORY-026",
-              "description": "Story description 26",
-              "status": "To do",
-              "type": "Story",
-              "assignee": {
-                "accountId": "U026",
-                "name": "Grace"
-              },
-              "timeSpent": "0h",
-              "storyPoint": 3,
-              "subTask": [
-                {
-                  "id": "SUB-260",
-                  "key": "SUB-260",
-                  "description": "Subtask description 260",
-                  "status": "To do",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U026",
-                    "name": "Grace"
-                  },
-                  "timeSpent": "2h"
-                },
-                {
-                  "id": "SUB-261",
-                  "key": "SUB-261",
-                  "description": "Subtask description 261",
-                  "status": "In Progress",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U027",
-                    "name": "Henry"
-                  },
-                  "timeSpent": "0h"
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "issues": [],
-      "stats": {
-        "totalStoryPoints": 26,
-        "percentageCompleted": 0
-      }
-    },
-    {
-      "id": "REL-007",
-      "name": "Release 2.1",
-      "releaseDate": "2026-07-31",
-      "status": "Unreleased",
-      "epics": [
+          "parentKey": "PROJ-119"
+        },
         {
-          "id": "EPIC-010",
-          "key": "EPIC-010",
-          "description": "Epic description 10",
+          "key": "PROJ-119-SUB3",
+          "summary": "Subtask 3 for PROJ-119",
           "status": "In Progress",
-          "type": "Epic",
+          "statusCategory": "done",
+          "type": "Sub-task",
+          "priority": "Medium",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": 4598,
           "assignee": {
-            "accountId": "U027",
-            "name": "Henry"
+            "accountId": "u5",
+            "displayName": "User 5",
+            "avatarUrl": "https://example.com/avatar/u5.png"
           },
-          "timeSpent": "0h",
-          "childIssue": [
-            {
-              "id": "ISSUE-027",
-              "key": "TASK-027",
-              "description": "Task description 27",
-              "status": "In Progress",
-              "type": "Task",
-              "assignee": {
-                "accountId": "U027",
-                "name": "Henry"
-              },
-              "timeSpent": "9h",
-              "storyPoint": 5,
-              "subTask": [
-                {
-                  "id": "SUB-270",
-                  "key": "SUB-270",
-                  "description": "Subtask description 270",
-                  "status": "Done",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U027",
-                    "name": "Henry"
-                  },
-                  "timeSpent": "4h"
-                },
-                {
-                  "id": "SUB-271",
-                  "key": "SUB-271",
-                  "description": "Subtask description 271",
-                  "status": "To do",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U028",
-                    "name": "Ivy"
-                  },
-                  "timeSpent": "1h"
-                }
-              ]
-            }
-          ]
+          "parentKey": "PROJ-119"
         }
-      ],
-      "issues": [],
-      "stats": {
-        "totalStoryPoints": 5,
-        "percentageCompleted": 0
-      }
+      ]
     },
     {
-      "id": "REL-008",
-      "name": "Release 2.2",
-      "releaseDate": "2026-08-30",
-      "status": "Unreleased",
-      "epics": [
+      "key": "PROJ-120",
+      "summary": "Sample summary for PROJ-120",
+      "status": "To Do",
+      "statusCategory": "new",
+      "type": "Bug",
+      "priority": "High",
+      "created": "2026-01-06T10:28:10Z",
+      "dueDate": "2026-01-13T10:28:10Z",
+      "timeSpentSeconds": 14660,
+      "assignee": {
+        "accountId": "u7",
+        "displayName": "User 7",
+        "avatarUrl": "https://example.com/avatar/u7.png"
+      },
+      "sprint": {
+        "id": 5,
+        "name": "Sprint 5",
+        "state": "closed",
+        "startDate": "2026-03-12T00:00:00Z",
+        "endDate": "2026-03-25T00:00:00Z"
+      },
+      "release": {
+        "name": "Release 2.0.0",
+        "description": "Large scale feature rollout with multiple teams contribution"
+      },
+      "storyPoints": 2,
+      "reopenCount": 0,
+      "gitStats": {
+        "branchName": "feature/proj-120",
+        "commitCount": 17,
+        "prCount": 4,
+        "lastCommitDate": "2026-01-30T13:57:50Z"
+      },
+      "subtasks": [
         {
-          "id": "EPIC-011",
-          "key": "EPIC-011",
-          "description": "Epic description 11",
-          "status": "Done",
-          "type": "Epic",
+          "key": "PROJ-120-SUB1",
+          "summary": "Subtask 1 for PROJ-120",
+          "status": "To Do",
+          "statusCategory": "indeterminate",
+          "type": "Sub-task",
+          "priority": "High",
+          "created": "2026-01-01T00:00:00Z",
+          "dueDate": null,
+          "timeSpentSeconds": null,
           "assignee": {
-            "accountId": "U028",
-            "name": "Ivy"
+            "accountId": "u1",
+            "displayName": "User 1",
+            "avatarUrl": "https://example.com/avatar/u1.png"
           },
-          "timeSpent": "7h",
-          "childIssue": [
-            {
-              "id": "ISSUE-028",
-              "key": "TASK-028",
-              "description": "Task description 28",
-              "status": "Done",
-              "type": "Task",
-              "assignee": {
-                "accountId": "U028",
-                "name": "Ivy"
-              },
-              "timeSpent": "6h",
-              "storyPoint": 3,
-              "subTask": [
-                {
-                  "id": "SUB-280",
-                  "key": "SUB-280",
-                  "description": "Subtask description 280",
-                  "status": "In Progress",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U028",
-                    "name": "Ivy"
-                  },
-                  "timeSpent": "5h"
-                },
-                {
-                  "id": "SUB-281",
-                  "key": "SUB-281",
-                  "description": "Subtask description 281",
-                  "status": "To do",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U029",
-                    "name": "Jack"
-                  },
-                  "timeSpent": "3h"
-                }
-              ]
-            },
-            {
-              "id": "ISSUE-029",
-              "key": "STORY-029",
-              "description": "Story description 29",
-              "status": "In Progress",
-              "type": "Story",
-              "assignee": {
-                "accountId": "U029",
-                "name": "Jack"
-              },
-              "timeSpent": "1h",
-              "storyPoint": 5,
-              "subTask": [
-                {
-                  "id": "SUB-290",
-                  "key": "SUB-290",
-                  "description": "Subtask description 290",
-                  "status": "To do",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U029",
-                    "name": "Jack"
-                  },
-                  "timeSpent": "0h"
-                },
-                {
-                  "id": "SUB-291",
-                  "key": "SUB-291",
-                  "description": "Subtask description 291",
-                  "status": "To do",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U030",
-                    "name": "Kate"
-                  },
-                  "timeSpent": "3h"
-                }
-              ]
-            }
-          ]
+          "parentKey": "PROJ-120"
         }
-      ],
-      "issues": [],
-      "stats": {
-        "totalStoryPoints": 8,
-        "percentageCompleted": 37
-      }
-    },
-    {
-      "id": "REL-009",
-      "name": "Release 2.3",
-      "releaseDate": "2026-09-29",
-      "status": "Release",
-      "epics": [],
-      "issues": [
-        {
-          "id": "ISSUE-030",
-          "key": "STORY-030",
-          "description": "Story description 30",
-          "status": "To do",
-          "type": "Story",
-          "assignee": {
-            "accountId": "U030",
-            "name": "Kate"
-          },
-          "timeSpent": "5h",
-          "storyPoint": 3,
-          "subTask": []
-        },
-        {
-          "id": "ISSUE-031",
-          "key": "TASK-031",
-          "description": "Task description 31",
-          "status": "To do",
-          "type": "Task",
-          "assignee": {
-            "accountId": "U031",
-            "name": "Leo"
-          },
-          "timeSpent": "9h",
-          "storyPoint": 1,
-          "subTask": [
-            {
-              "id": "SUB-310",
-              "key": "SUB-310",
-              "description": "Subtask description 310",
-              "status": "In Progress",
-              "type": "Sub Task",
-              "assignee": {
-                "accountId": "U031",
-                "name": "Leo"
-              },
-              "timeSpent": "1h"
-            }
-          ]
-        },
-        {
-          "id": "ISSUE-032",
-          "key": "BUG-032",
-          "description": "Bug description 32",
-          "status": "Done",
-          "type": "Bug",
-          "assignee": {
-            "accountId": "U032",
-            "name": "Mia"
-          },
-          "timeSpent": "10h",
-          "storyPoint": 5,
-          "subTask": []
-        },
-        {
-          "id": "ISSUE-033",
-          "key": "STORY-033",
-          "description": "Story description 33",
-          "status": "Done",
-          "type": "Story",
-          "assignee": {
-            "accountId": "U033",
-            "name": "Noah"
-          },
-          "timeSpent": "7h",
-          "storyPoint": 1,
-          "subTask": []
-        }
-      ],
-      "stats": {
-        "totalStoryPoints": 10,
-        "percentageCompleted": 60
-      }
-    },
-    {
-      "id": "REL-010",
-      "name": "Release 2.4",
-      "releaseDate": "2026-10-29",
-      "status": "Unreleased",
-      "epics": [],
-      "issues": [
-        {
-          "id": "ISSUE-034",
-          "key": "TASK-034",
-          "description": "Task description 34",
-          "status": "Done",
-          "type": "Task",
-          "assignee": {
-            "accountId": "U034",
-            "name": "Olivia"
-          },
-          "timeSpent": "4h",
-          "storyPoint": 1,
-          "subTask": []
-        },
-        {
-          "id": "ISSUE-035",
-          "key": "BUG-035",
-          "description": "Bug description 35",
-          "status": "In Progress",
-          "type": "Bug",
-          "assignee": {
-            "accountId": "U035",
-            "name": "Paul"
-          },
-          "timeSpent": "3h",
-          "storyPoint": 1,
-          "subTask": [
-            {
-              "id": "SUB-350",
-              "key": "SUB-350",
-              "description": "Subtask description 350",
-              "status": "To do",
-              "type": "Sub Task",
-              "assignee": {
-                "accountId": "U035",
-                "name": "Paul"
-              },
-              "timeSpent": "2h"
-            },
-            {
-              "id": "SUB-351",
-              "key": "SUB-351",
-              "description": "Subtask description 351",
-              "status": "To do",
-              "type": "Sub Task",
-              "assignee": {
-                "accountId": "U036",
-                "name": "Quinn"
-              },
-              "timeSpent": "2h"
-            }
-          ]
-        },
-        {
-          "id": "ISSUE-036",
-          "key": "TASK-036",
-          "description": "Task description 36",
-          "status": "In Progress",
-          "type": "Task",
-          "assignee": {
-            "accountId": "U036",
-            "name": "Quinn"
-          },
-          "timeSpent": "2h",
-          "storyPoint": 5,
-          "subTask": []
-        }
-      ],
-      "stats": {
-        "totalStoryPoints": 7,
-        "percentageCompleted": 14
-      }
-    },
-    {
-      "id": "REL-011",
-      "name": "Release 2.0",
-      "releaseDate": "2026-11-28",
-      "status": "Unreleased",
-      "epics": [],
-      "issues": [
-        {
-          "id": "ISSUE-037",
-          "key": "TASK-037",
-          "description": "Task description 37",
-          "status": "In Progress",
-          "type": "Task",
-          "assignee": {
-            "accountId": "U037",
-            "name": "Rita"
-          },
-          "timeSpent": "0h",
-          "storyPoint": 5,
-          "subTask": [
-            {
-              "id": "SUB-370",
-              "key": "SUB-370",
-              "description": "Subtask description 370",
-              "status": "Done",
-              "type": "Sub Task",
-              "assignee": {
-                "accountId": "U037",
-                "name": "Rita"
-              },
-              "timeSpent": "5h"
-            },
-            {
-              "id": "SUB-371",
-              "key": "SUB-371",
-              "description": "Subtask description 371",
-              "status": "To do",
-              "type": "Sub Task",
-              "assignee": {
-                "accountId": "U038",
-                "name": "Sam"
-              },
-              "timeSpent": "4h"
-            }
-          ]
-        }
-      ],
-      "stats": {
-        "totalStoryPoints": 5,
-        "percentageCompleted": 0
-      }
-    },
-    {
-      "id": "REL-012",
-      "name": "Release 3.1",
-      "releaseDate": "2026-12-28",
-      "status": "Unreleased",
-      "epics": [],
-      "issues": [
-        {
-          "id": "ISSUE-038",
-          "key": "STORY-038",
-          "description": "Story description 38",
-          "status": "In Progress",
-          "type": "Story",
-          "assignee": {
-            "accountId": "U038",
-            "name": "Sam"
-          },
-          "timeSpent": "3h",
-          "storyPoint": 8,
-          "subTask": []
-        },
-        {
-          "id": "ISSUE-039",
-          "key": "TASK-039",
-          "description": "Task description 39",
-          "status": "Done",
-          "type": "Task",
-          "assignee": {
-            "accountId": "U039",
-            "name": "Tina"
-          },
-          "timeSpent": "2h",
-          "storyPoint": 3,
-          "subTask": []
-        },
-        {
-          "id": "ISSUE-040",
-          "key": "TASK-040",
-          "description": "Task description 40",
-          "status": "In Progress",
-          "type": "Task",
-          "assignee": {
-            "accountId": "U040",
-            "name": "Alice"
-          },
-          "timeSpent": "3h",
-          "storyPoint": 8,
-          "subTask": [
-            {
-              "id": "SUB-400",
-              "key": "SUB-400",
-              "description": "Subtask description 400",
-              "status": "Done",
-              "type": "Sub Task",
-              "assignee": {
-                "accountId": "U040",
-                "name": "Alice"
-              },
-              "timeSpent": "0h"
-            }
-          ]
-        }
-      ],
-      "stats": {
-        "totalStoryPoints": 19,
-        "percentageCompleted": 15
-      }
-    },
-    {
-      "id": "REL-013",
-      "name": "Release 3.2",
-      "releaseDate": "2027-01-27",
-      "status": "Unreleased",
-      "epics": [
-        {
-          "id": "EPIC-012",
-          "key": "EPIC-012",
-          "description": "Epic description 12",
-          "status": "To do",
-          "type": "Epic",
-          "assignee": {
-            "accountId": "U041",
-            "name": "Bob"
-          },
-          "timeSpent": "2h",
-          "childIssue": [
-            {
-              "id": "ISSUE-041",
-              "key": "TASK-041",
-              "description": "Task description 41",
-              "status": "Done",
-              "type": "Task",
-              "assignee": {
-                "accountId": "U041",
-                "name": "Bob"
-              },
-              "timeSpent": "3h",
-              "storyPoint": 8,
-              "subTask": [
-                {
-                  "id": "SUB-410",
-                  "key": "SUB-410",
-                  "description": "Subtask description 410",
-                  "status": "To do",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U041",
-                    "name": "Bob"
-                  },
-                  "timeSpent": "3h"
-                },
-                {
-                  "id": "SUB-411",
-                  "key": "SUB-411",
-                  "description": "Subtask description 411",
-                  "status": "Done",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U042",
-                    "name": "Charlie"
-                  },
-                  "timeSpent": "0h"
-                }
-              ]
-            },
-            {
-              "id": "ISSUE-042",
-              "key": "BUG-042",
-              "description": "Bug description 42",
-              "status": "In Progress",
-              "type": "Bug",
-              "assignee": {
-                "accountId": "U042",
-                "name": "Charlie"
-              },
-              "timeSpent": "5h",
-              "storyPoint": 1,
-              "subTask": []
-            }
-          ]
-        },
-        {
-          "id": "EPIC-013",
-          "key": "EPIC-013",
-          "description": "Epic description 13",
-          "status": "Done",
-          "type": "Epic",
-          "assignee": {
-            "accountId": "U043",
-            "name": "Diana"
-          },
-          "timeSpent": "4h",
-          "childIssue": [
-            {
-              "id": "ISSUE-043",
-              "key": "TASK-043",
-              "description": "Task description 43",
-              "status": "In Progress",
-              "type": "Task",
-              "assignee": {
-                "accountId": "U043",
-                "name": "Diana"
-              },
-              "timeSpent": "9h",
-              "storyPoint": 5,
-              "subTask": []
-            },
-            {
-              "id": "ISSUE-044",
-              "key": "TASK-044",
-              "description": "Task description 44",
-              "status": "In Progress",
-              "type": "Task",
-              "assignee": {
-                "accountId": "U044",
-                "name": "Eve"
-              },
-              "timeSpent": "9h",
-              "storyPoint": 3,
-              "subTask": []
-            }
-          ]
-        },
-        {
-          "id": "EPIC-014",
-          "key": "EPIC-014",
-          "description": "Epic description 14",
-          "status": "To do",
-          "type": "Epic",
-          "assignee": {
-            "accountId": "U045",
-            "name": "Frank"
-          },
-          "timeSpent": "18h",
-          "childIssue": [
-            {
-              "id": "ISSUE-045",
-              "key": "TASK-045",
-              "description": "Task description 45",
-              "status": "To do",
-              "type": "Task",
-              "assignee": {
-                "accountId": "U045",
-                "name": "Frank"
-              },
-              "timeSpent": "4h",
-              "storyPoint": 8,
-              "subTask": [
-                {
-                  "id": "SUB-450",
-                  "key": "SUB-450",
-                  "description": "Subtask description 450",
-                  "status": "Done",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U045",
-                    "name": "Frank"
-                  },
-                  "timeSpent": "0h"
-                },
-                {
-                  "id": "SUB-451",
-                  "key": "SUB-451",
-                  "description": "Subtask description 451",
-                  "status": "To do",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U046",
-                    "name": "Grace"
-                  },
-                  "timeSpent": "0h"
-                }
-              ]
-            },
-            {
-              "id": "ISSUE-046",
-              "key": "BUG-046",
-              "description": "Bug description 46",
-              "status": "Done",
-              "type": "Bug",
-              "assignee": {
-                "accountId": "U046",
-                "name": "Grace"
-              },
-              "timeSpent": "10h",
-              "storyPoint": 5,
-              "subTask": [
-                {
-                  "id": "SUB-460",
-                  "key": "SUB-460",
-                  "description": "Subtask description 460",
-                  "status": "To do",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U046",
-                    "name": "Grace"
-                  },
-                  "timeSpent": "2h"
-                },
-                {
-                  "id": "SUB-461",
-                  "key": "SUB-461",
-                  "description": "Subtask description 461",
-                  "status": "To do",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U047",
-                    "name": "Henry"
-                  },
-                  "timeSpent": "2h"
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "issues": [],
-      "stats": {
-        "totalStoryPoints": 30,
-        "percentageCompleted": 43
-      }
-    },
-    {
-      "id": "REL-014",
-      "name": "Release 3.3",
-      "releaseDate": "2027-02-26",
-      "status": "Release",
-      "epics": [
-        {
-          "id": "EPIC-015",
-          "key": "EPIC-015",
-          "description": "Epic description 15",
-          "status": "Done",
-          "type": "Epic",
-          "assignee": {
-            "accountId": "U047",
-            "name": "Henry"
-          },
-          "timeSpent": "17h",
-          "childIssue": [
-            {
-              "id": "ISSUE-047",
-              "key": "BUG-047",
-              "description": "Bug description 47",
-              "status": "In Progress",
-              "type": "Bug",
-              "assignee": {
-                "accountId": "U047",
-                "name": "Henry"
-              },
-              "timeSpent": "3h",
-              "storyPoint": 1,
-              "subTask": [
-                {
-                  "id": "SUB-470",
-                  "key": "SUB-470",
-                  "description": "Subtask description 470",
-                  "status": "To do",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U047",
-                    "name": "Henry"
-                  },
-                  "timeSpent": "0h"
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "issues": [],
-      "stats": {
-        "totalStoryPoints": 1,
-        "percentageCompleted": 0
-      }
-    },
-    {
-      "id": "REL-015",
-      "name": "Release 3.4",
-      "releaseDate": "2027-03-28",
-      "status": "Unreleased",
-      "epics": [],
-      "issues": [
-        {
-          "id": "ISSUE-048",
-          "key": "BUG-048",
-          "description": "Bug description 48",
-          "status": "Done",
-          "type": "Bug",
-          "assignee": {
-            "accountId": "U048",
-            "name": "Ivy"
-          },
-          "timeSpent": "0h",
-          "storyPoint": 1,
-          "subTask": [
-            {
-              "id": "SUB-480",
-              "key": "SUB-480",
-              "description": "Subtask description 480",
-              "status": "Done",
-              "type": "Sub Task",
-              "assignee": {
-                "accountId": "U048",
-                "name": "Ivy"
-              },
-              "timeSpent": "1h"
-            },
-            {
-              "id": "SUB-481",
-              "key": "SUB-481",
-              "description": "Subtask description 481",
-              "status": "In Progress",
-              "type": "Sub Task",
-              "assignee": {
-                "accountId": "U049",
-                "name": "Jack"
-              },
-              "timeSpent": "0h"
-            }
-          ]
-        },
-        {
-          "id": "ISSUE-049",
-          "key": "TASK-049",
-          "description": "Task description 49",
-          "status": "In Progress",
-          "type": "Task",
-          "assignee": {
-            "accountId": "U049",
-            "name": "Jack"
-          },
-          "timeSpent": "9h",
-          "storyPoint": 3,
-          "subTask": []
-        },
-        {
-          "id": "ISSUE-050",
-          "key": "TASK-050",
-          "description": "Task description 50",
-          "status": "Done",
-          "type": "Task",
-          "assignee": {
-            "accountId": "U050",
-            "name": "Kate"
-          },
-          "timeSpent": "0h",
-          "storyPoint": 3,
-          "subTask": [
-            {
-              "id": "SUB-500",
-              "key": "SUB-500",
-              "description": "Subtask description 500",
-              "status": "In Progress",
-              "type": "Sub Task",
-              "assignee": {
-                "accountId": "U050",
-                "name": "Kate"
-              },
-              "timeSpent": "0h"
-            }
-          ]
-        }
-      ],
-      "stats": {
-        "totalStoryPoints": 7,
-        "percentageCompleted": 57
-      }
-    },
-    {
-      "id": "REL-016",
-      "name": "Release 3.0",
-      "releaseDate": "2027-04-27",
-      "status": "Release",
-      "epics": [],
-      "issues": [
-        {
-          "id": "ISSUE-051",
-          "key": "BUG-051",
-          "description": "Bug description 51",
-          "status": "To do",
-          "type": "Bug",
-          "assignee": {
-            "accountId": "U051",
-            "name": "Leo"
-          },
-          "timeSpent": "9h",
-          "storyPoint": 5,
-          "subTask": []
-        },
-        {
-          "id": "ISSUE-052",
-          "key": "TASK-052",
-          "description": "Task description 52",
-          "status": "In Progress",
-          "type": "Task",
-          "assignee": {
-            "accountId": "U052",
-            "name": "Mia"
-          },
-          "timeSpent": "6h",
-          "storyPoint": 1,
-          "subTask": [
-            {
-              "id": "SUB-520",
-              "key": "SUB-520",
-              "description": "Subtask description 520",
-              "status": "Done",
-              "type": "Sub Task",
-              "assignee": {
-                "accountId": "U052",
-                "name": "Mia"
-              },
-              "timeSpent": "2h"
-            },
-            {
-              "id": "SUB-521",
-              "key": "SUB-521",
-              "description": "Subtask description 521",
-              "status": "In Progress",
-              "type": "Sub Task",
-              "assignee": {
-                "accountId": "U053",
-                "name": "Noah"
-              },
-              "timeSpent": "1h"
-            }
-          ]
-        },
-        {
-          "id": "ISSUE-053",
-          "key": "STORY-053",
-          "description": "Story description 53",
-          "status": "To do",
-          "type": "Story",
-          "assignee": {
-            "accountId": "U053",
-            "name": "Noah"
-          },
-          "timeSpent": "1h",
-          "storyPoint": 5,
-          "subTask": [
-            {
-              "id": "SUB-530",
-              "key": "SUB-530",
-              "description": "Subtask description 530",
-              "status": "Done",
-              "type": "Sub Task",
-              "assignee": {
-                "accountId": "U053",
-                "name": "Noah"
-              },
-              "timeSpent": "1h"
-            },
-            {
-              "id": "SUB-531",
-              "key": "SUB-531",
-              "description": "Subtask description 531",
-              "status": "To do",
-              "type": "Sub Task",
-              "assignee": {
-                "accountId": "U054",
-                "name": "Olivia"
-              },
-              "timeSpent": "0h"
-            }
-          ]
-        }
-      ],
-      "stats": {
-        "totalStoryPoints": 11,
-        "percentageCompleted": 0
-      }
-    },
-    {
-      "id": "REL-017",
-      "name": "Release 4.1",
-      "releaseDate": "2027-05-27",
-      "status": "Unreleased",
-      "epics": [],
-      "issues": [
-        {
-          "id": "ISSUE-054",
-          "key": "STORY-054",
-          "description": "Story description 54",
-          "status": "Done",
-          "type": "Story",
-          "assignee": {
-            "accountId": "U054",
-            "name": "Olivia"
-          },
-          "timeSpent": "10h",
-          "storyPoint": 1,
-          "subTask": [
-            {
-              "id": "SUB-540",
-              "key": "SUB-540",
-              "description": "Subtask description 540",
-              "status": "To do",
-              "type": "Sub Task",
-              "assignee": {
-                "accountId": "U054",
-                "name": "Olivia"
-              },
-              "timeSpent": "5h"
-            }
-          ]
-        }
-      ],
-      "stats": {
-        "totalStoryPoints": 1,
-        "percentageCompleted": 100
-      }
-    },
-    {
-      "id": "REL-018",
-      "name": "Release 4.2",
-      "releaseDate": "2027-06-26",
-      "status": "Unreleased",
-      "epics": [
-        {
-          "id": "EPIC-016",
-          "key": "EPIC-016",
-          "description": "Epic description 16",
-          "status": "In Progress",
-          "type": "Epic",
-          "assignee": {
-            "accountId": "U055",
-            "name": "Paul"
-          },
-          "timeSpent": "15h",
-          "childIssue": [
-            {
-              "id": "ISSUE-055",
-              "key": "TASK-055",
-              "description": "Task description 55",
-              "status": "In Progress",
-              "type": "Task",
-              "assignee": {
-                "accountId": "U055",
-                "name": "Paul"
-              },
-              "timeSpent": "4h",
-              "storyPoint": 8,
-              "subTask": [
-                {
-                  "id": "SUB-550",
-                  "key": "SUB-550",
-                  "description": "Subtask description 550",
-                  "status": "To do",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U055",
-                    "name": "Paul"
-                  },
-                  "timeSpent": "5h"
-                },
-                {
-                  "id": "SUB-551",
-                  "key": "SUB-551",
-                  "description": "Subtask description 551",
-                  "status": "In Progress",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U056",
-                    "name": "Quinn"
-                  },
-                  "timeSpent": "4h"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "id": "EPIC-017",
-          "key": "EPIC-017",
-          "description": "Epic description 17",
-          "status": "Done",
-          "type": "Epic",
-          "assignee": {
-            "accountId": "U056",
-            "name": "Quinn"
-          },
-          "timeSpent": "4h",
-          "childIssue": [
-            {
-              "id": "ISSUE-056",
-              "key": "STORY-056",
-              "description": "Story description 56",
-              "status": "Done",
-              "type": "Story",
-              "assignee": {
-                "accountId": "U056",
-                "name": "Quinn"
-              },
-              "timeSpent": "10h",
-              "storyPoint": 5,
-              "subTask": [
-                {
-                  "id": "SUB-560",
-                  "key": "SUB-560",
-                  "description": "Subtask description 560",
-                  "status": "Done",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U056",
-                    "name": "Quinn"
-                  },
-                  "timeSpent": "1h"
-                },
-                {
-                  "id": "SUB-561",
-                  "key": "SUB-561",
-                  "description": "Subtask description 561",
-                  "status": "To do",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U057",
-                    "name": "Rita"
-                  },
-                  "timeSpent": "5h"
-                }
-              ]
-            },
-            {
-              "id": "ISSUE-057",
-              "key": "TASK-057",
-              "description": "Task description 57",
-              "status": "To do",
-              "type": "Task",
-              "assignee": {
-                "accountId": "U057",
-                "name": "Rita"
-              },
-              "timeSpent": "0h",
-              "storyPoint": 1,
-              "subTask": [
-                {
-                  "id": "SUB-570",
-                  "key": "SUB-570",
-                  "description": "Subtask description 570",
-                  "status": "In Progress",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U057",
-                    "name": "Rita"
-                  },
-                  "timeSpent": "0h"
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "issues": [],
-      "stats": {
-        "totalStoryPoints": 14,
-        "percentageCompleted": 35
-      }
-    },
-    {
-      "id": "REL-019",
-      "name": "Release 4.3",
-      "releaseDate": "2027-07-26",
-      "status": "Unreleased",
-      "epics": [
-        {
-          "id": "EPIC-018",
-          "key": "EPIC-018",
-          "description": "Epic description 18",
-          "status": "Done",
-          "type": "Epic",
-          "assignee": {
-            "accountId": "U058",
-            "name": "Sam"
-          },
-          "timeSpent": "12h",
-          "childIssue": [
-            {
-              "id": "ISSUE-058",
-              "key": "BUG-058",
-              "description": "Bug description 58",
-              "status": "Done",
-              "type": "Bug",
-              "assignee": {
-                "accountId": "U058",
-                "name": "Sam"
-              },
-              "timeSpent": "6h",
-              "storyPoint": 1,
-              "subTask": [
-                {
-                  "id": "SUB-580",
-                  "key": "SUB-580",
-                  "description": "Subtask description 580",
-                  "status": "To do",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U058",
-                    "name": "Sam"
-                  },
-                  "timeSpent": "3h"
-                },
-                {
-                  "id": "SUB-581",
-                  "key": "SUB-581",
-                  "description": "Subtask description 581",
-                  "status": "To do",
-                  "type": "Sub Task",
-                  "assignee": {
-                    "accountId": "U059",
-                    "name": "Tina"
-                  },
-                  "timeSpent": "3h"
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "issues": [],
-      "stats": {
-        "totalStoryPoints": 1,
-        "percentageCompleted": 100
-      }
-    },
-    {
-      "id": "REL-020",
-      "name": "Release 4.4",
-      "releaseDate": "2027-08-25",
-      "status": "Unreleased",
-      "epics": [],
-      "issues": [
-        {
-          "id": "ISSUE-059",
-          "key": "BUG-059",
-          "description": "Bug description 59",
-          "status": "To do",
-          "type": "Bug",
-          "assignee": {
-            "accountId": "U059",
-            "name": "Tina"
-          },
-          "timeSpent": "7h",
-          "storyPoint": 1,
-          "subTask": [
-            {
-              "id": "SUB-590",
-              "key": "SUB-590",
-              "description": "Subtask description 590",
-              "status": "In Progress",
-              "type": "Sub Task",
-              "assignee": {
-                "accountId": "U059",
-                "name": "Tina"
-              },
-              "timeSpent": "0h"
-            }
-          ]
-        },
-        {
-          "id": "ISSUE-060",
-          "key": "STORY-060",
-          "description": "Story description 60",
-          "status": "Done",
-          "type": "Story",
-          "assignee": {
-            "accountId": "U060",
-            "name": "Alice"
-          },
-          "timeSpent": "9h",
-          "storyPoint": 5,
-          "subTask": [
-            {
-              "id": "SUB-600",
-              "key": "SUB-600",
-              "description": "Subtask description 600",
-              "status": "In Progress",
-              "type": "Sub Task",
-              "assignee": {
-                "accountId": "U060",
-                "name": "Alice"
-              },
-              "timeSpent": "4h"
-            },
-            {
-              "id": "SUB-601",
-              "key": "SUB-601",
-              "description": "Subtask description 601",
-              "status": "To do",
-              "type": "Sub Task",
-              "assignee": {
-                "accountId": "U061",
-                "name": "Bob"
-              },
-              "timeSpent": "4h"
-            }
-          ]
-        },
-        {
-          "id": "ISSUE-061",
-          "key": "TASK-061",
-          "description": "Task description 61",
-          "status": "To do",
-          "type": "Task",
-          "assignee": {
-            "accountId": "U061",
-            "name": "Bob"
-          },
-          "timeSpent": "6h",
-          "storyPoint": 3,
-          "subTask": [
-            {
-              "id": "SUB-610",
-              "key": "SUB-610",
-              "description": "Subtask description 610",
-              "status": "Done",
-              "type": "Sub Task",
-              "assignee": {
-                "accountId": "U061",
-                "name": "Bob"
-              },
-              "timeSpent": "0h"
-            }
-          ]
-        },
-        {
-          "id": "ISSUE-062",
-          "key": "BUG-062",
-          "description": "Bug description 62",
-          "status": "Done",
-          "type": "Bug",
-          "assignee": {
-            "accountId": "U062",
-            "name": "Charlie"
-          },
-          "timeSpent": "4h",
-          "storyPoint": 8,
-          "subTask": [
-            {
-              "id": "SUB-620",
-              "key": "SUB-620",
-              "description": "Subtask description 620",
-              "status": "To do",
-              "type": "Sub Task",
-              "assignee": {
-                "accountId": "U062",
-                "name": "Charlie"
-              },
-              "timeSpent": "5h"
-            }
-          ]
-        }
-      ],
-      "stats": {
-        "totalStoryPoints": 17,
-        "percentageCompleted": 76
-      }
+      ]
     }
   ]
 }

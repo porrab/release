@@ -1,49 +1,69 @@
-export type JiraStatus = "To do" | "In Progress" | "Done";
-
-export type IssueType = "Epic" | "Task" | "Story" | "Bug" | "Sub Task";
-
 export interface JiraUser {
   accountId: string;
+  displayName: string;
+  avatarUrl: string;
+}
+
+export interface JiraSprint {
+  id: number;
   name: string;
-  profile?: string;
+  state: "active" | "closed" | "future";
+  startDate: string;
+  endDate: string;
+  completeDate?: string;
+}
+
+export interface JiraReleaseInfo {
+  name: string;
+  description?: string;
+}
+
+export interface GitStats {
+  branchName: string;
+  commitCount: number;
+  prCount: number;
+  lastCommitDate?: string;
 }
 
 interface BaseTicket {
-  id: string;
   key: string;
-  description: string;
-  status: JiraStatus;
-  type: IssueType;
-  assignee: JiraUser;
-  timeSpent: string;
+  summary: string;
+
+  status: string;
+  statusCategory: "new" | "indeterminate" | "done";
+
+  type: "Story" | "Task" | "Bug" | "Sub-task";
+  priority: string;
+  created: string;
+  dueDate: string | null;
+  timeSpentSeconds: number | null;
+  assignee?: JiraUser;
+
+  sprint?: JiraSprint;
+  release?: JiraReleaseInfo;
 }
 
 export interface JiraSubtask extends BaseTicket {
-  type: "Sub Task";
+  type: "Sub-task";
+  parentKey: string;
 }
 
 export interface JiraIssue extends BaseTicket {
-  type: "Task" | "Story" | "Bug";
-  storyPoint: number;
-  subTask: JiraSubtask[];
+  type: "Story" | "Task" | "Bug";
+  storyPoints: number | null;
+  reopenCount: number;
+
+  gitStats?: GitStats;
+
+  subtasks: JiraSubtask[];
 }
 
-export interface JiraEpic extends BaseTicket {
-  type: "Epic";
-  childIssue: JiraIssue[];
-}
-
-export interface Stat {
-  totalStoryPoints: number;
-  percentageCompleted: number;
-}
-
-export interface JiraRelease {
-  id: string;
-  name: string;
-  releaseDate: string;
-  status: "Release" | "Unreleased";
-  epics: JiraEpic[];
-  issues: JiraIssue[];
-  stats: Stat;
+export interface DashboardResponse {
+  releaseInfo: JiraReleaseInfo;
+  stats: {
+    totalTicketCount: number;
+    totalStoryPoints: number;
+    totalTimeSeconds: number;
+  };
+  tickets: JiraIssue[];
 }
