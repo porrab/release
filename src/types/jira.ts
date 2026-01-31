@@ -14,6 +14,7 @@ export interface JiraSprint {
 }
 
 export interface JiraReleaseInfo {
+  id: string;
   name: string;
   description?: string;
 }

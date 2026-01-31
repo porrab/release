@@ -1,1237 +1,150 @@
 {
-  "releaseInfo": {
-    "name": "Release 2.0.0",
-    "description": "Large scale feature rollout with multiple teams contribution"
-  },
-  "stats": {
-    "totalTicketCount": 20,
-    "totalStoryPoints": 100,
-    "totalTimeSeconds": 131018
-  },
-  "tickets": [
+  "releases": [
     {
-      "key": "PROJ-101",
-      "summary": "Sample summary for PROJ-101",
-      "status": "Done",
-      "statusCategory": "done",
-      "type": "Bug",
-      "priority": "Highest",
-      "created": "2026-01-30T19:23:57Z",
-      "dueDate": "2026-02-06T19:23:57Z",
-      "timeSpentSeconds": 9516,
-      "assignee": {
-        "accountId": "u4",
-        "displayName": "User 4",
-        "avatarUrl": "https://example.com/avatar/u4.png"
-      },
-      "sprint": {
-        "id": 3,
-        "name": "Sprint 3",
-        "state": "closed",
-        "startDate": "2026-02-12T00:00:00Z",
-        "endDate": "2026-02-25T00:00:00Z"
-      },
-      "release": {
-        "name": "Release 2.0.0",
-        "description": "Large scale feature rollout with multiple teams contribution"
-      },
-      "storyPoints": 5,
-      "reopenCount": 1,
-      "gitStats": {
-        "branchName": "feature/proj-101",
-        "commitCount": 21,
-        "prCount": 1,
-        "lastCommitDate": "2026-01-25T00:16:10Z"
-      },
-      "subtasks": []
+      "id": "1",
+      "name": "Release 2.0.0",
+      "description": "Large scale feature rollout"
     },
     {
-      "key": "PROJ-102",
-      "summary": "Sample summary for PROJ-102",
-      "status": "In Progress",
-      "statusCategory": "indeterminate",
-      "type": "Task",
-      "priority": "High",
-      "created": "2026-01-15T09:54:29Z",
-      "dueDate": "2026-01-22T09:54:29Z",
-      "timeSpentSeconds": 9720,
-      "assignee": {
-        "accountId": "u3",
-        "displayName": "User 3",
-        "avatarUrl": "https://example.com/avatar/u3.png"
-      },
-      "sprint": {
-        "id": 4,
-        "name": "Sprint 4",
-        "state": "closed",
-        "startDate": "2026-02-26T00:00:00Z",
-        "endDate": "2026-03-11T00:00:00Z"
-      },
-      "release": {
-        "name": "Release 2.0.0",
-        "description": "Large scale feature rollout with multiple teams contribution"
-      },
-      "storyPoints": null,
-      "reopenCount": 1,
-      "gitStats": {
-        "branchName": "feature/proj-102",
-        "commitCount": 6,
-        "prCount": 2,
-        "lastCommitDate": "2026-01-21T18:50:02Z"
-      },
-      "subtasks": []
-    },
+      "id": "2",
+      "name": "Release 1.5.0",
+      "description": "Maintenance & Bug fixes"
+    }
+  ],
+  "dashboard": [
     {
-      "key": "PROJ-103",
-      "summary": "Sample summary for PROJ-103",
-      "status": "In Review",
-      "statusCategory": "indeterminate",
-      "type": "Task",
-      "priority": "High",
-      "created": "2026-01-01T22:22:46Z",
-      "dueDate": "2026-01-08T22:22:46Z",
-      "timeSpentSeconds": null,
-      "assignee": {
-        "accountId": "u6",
-        "displayName": "User 6",
-        "avatarUrl": "https://example.com/avatar/u6.png"
-      },
-      "sprint": {
-        "id": 3,
-        "name": "Sprint 3",
-        "state": "closed",
-        "startDate": "2026-02-12T00:00:00Z",
-        "endDate": "2026-02-25T00:00:00Z"
-      },
-      "release": {
+      "id": "dash-1",
+      "releaseId": "1",
+      "releaseInfo": {
         "name": "Release 2.0.0",
         "description": "Large scale feature rollout with multiple teams contribution"
       },
-      "storyPoints": 1,
-      "reopenCount": 1,
-      "gitStats": {
-        "branchName": "feature/proj-103",
-        "commitCount": 26,
-        "prCount": 3,
-        "lastCommitDate": "2026-01-14T21:45:44Z"
+      "stats": {
+        "totalTicketCount": 25,
+        "totalStoryPoints": 120,
+        "totalTimeSeconds": 450220
       },
-      "subtasks": [
+      "tickets": [
         {
-          "key": "PROJ-103-SUB1",
-          "summary": "Subtask 1 for PROJ-103",
-          "status": "To Do",
-          "statusCategory": "indeterminate",
-          "type": "Sub-task",
-          "priority": "Medium",
-          "created": "2026-01-01T00:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": 6056,
+          "key": "PROJ-101",
+          "summary": "Implement Login with FaceID",
+          "status": "Done",
+          "statusCategory": "done",
+          "type": "Story",
+          "priority": "Highest",
+          "created": "2026-01-30T09:00:00Z",
+          "dueDate": "2026-02-15T18:00:00Z",
+          "timeSpentSeconds": 14400,
           "assignee": {
             "accountId": "u1",
-            "displayName": "User 1",
-            "avatarUrl": "https://example.com/avatar/u1.png"
+            "displayName": "Somchai Tech",
+            "avatarUrl": "https://i.pravatar.cc/150?u=somchai"
           },
-          "parentKey": "PROJ-103"
+          "sprint": {
+            "id": 101,
+            "name": "Sprint 24",
+            "state": "active",
+            "startDate": "2026-02-01T09:00:00Z",
+            "endDate": "2026-02-14T18:00:00Z"
+          },
+          "storyPoints": 8,
+          "reopenCount": 0,
+          "gitStats": {
+            "branchName": "feature/face-id-login",
+            "commitCount": 15,
+            "prCount": 2
+          },
+          "subtasks": [
+            {
+              "key": "PROJ-101-1",
+              "parentKey": "PROJ-101",
+              "summary": "Design UI on Figma",
+              "status": "Done",
+              "statusCategory": "done",
+              "type": "Sub-task",
+              "priority": "Medium",
+              "created": "2026-01-30T10:00:00Z",
+              "dueDate": null,
+              "timeSpentSeconds": 7200,
+              "assignee": {
+                "accountId": "u2",
+                "displayName": "Designer Dave",
+                "avatarUrl": "https://i.pravatar.cc/150?u=dave"
+              }
+            },
+            {
+              "key": "PROJ-101-2",
+              "parentKey": "PROJ-101",
+              "summary": "Integrate Biometric API",
+              "status": "In Progress",
+              "statusCategory": "indeterminate",
+              "type": "Sub-task",
+              "priority": "High",
+              "created": "2026-02-01T10:00:00Z",
+              "dueDate": null,
+              "timeSpentSeconds": 3600
+            }
+          ]
         },
         {
-          "key": "PROJ-103-SUB2",
-          "summary": "Subtask 2 for PROJ-103",
+          "key": "PROJ-102",
+          "summary": "Fix Crash on Payment Screen",
           "status": "In Progress",
           "statusCategory": "indeterminate",
-          "type": "Sub-task",
-          "priority": "Highest",
-          "created": "2026-01-01T00:00:00Z",
+          "type": "Bug",
+          "priority": "High",
+          "created": "2026-02-05T14:00:00Z",
           "dueDate": null,
-          "timeSpentSeconds": null,
+          "timeSpentSeconds": 5000,
           "assignee": {
             "accountId": "u3",
-            "displayName": "User 3",
-            "avatarUrl": "https://example.com/avatar/u3.png"
+            "displayName": "Dev Sarah",
+            "avatarUrl": "https://i.pravatar.cc/150?u=sarah"
           },
-          "parentKey": "PROJ-103"
+          "sprint": {
+            "id": 101,
+            "name": "Sprint 24",
+            "state": "active",
+            "startDate": "2026-02-01T09:00:00Z",
+            "endDate": "2026-02-14T18:00:00Z"
+          },
+          "storyPoints": null,
+          "reopenCount": 1,
+          "subtasks": []
         }
       ]
     },
     {
-      "key": "PROJ-104",
-      "summary": "Sample summary for PROJ-104",
-      "status": "In Progress",
-      "statusCategory": "indeterminate",
-      "type": "Story",
-      "priority": "High",
-      "created": "2026-01-14T07:15:40Z",
-      "dueDate": null,
-      "timeSpentSeconds": 18113,
-      "assignee": {
-        "accountId": "u9",
-        "displayName": "User 9",
-        "avatarUrl": "https://example.com/avatar/u9.png"
+      "id": "dash-2",
+      "releaseId": "2",
+      "releaseInfo": {
+        "name": "Release 1.5.0",
+        "description": "Maintenance & Bug fixes (Old Release)"
       },
-      "sprint": {
-        "id": 5,
-        "name": "Sprint 5",
-        "state": "closed",
-        "startDate": "2026-03-12T00:00:00Z",
-        "endDate": "2026-03-25T00:00:00Z"
+      "stats": {
+        "totalTicketCount": 10,
+        "totalStoryPoints": 40,
+        "totalTimeSeconds": 120000
       },
-      "release": {
-        "name": "Release 2.0.0",
-        "description": "Large scale feature rollout with multiple teams contribution"
-      },
-      "storyPoints": null,
-      "reopenCount": 0,
-      "gitStats": {
-        "branchName": "feature/proj-104",
-        "commitCount": 13,
-        "prCount": 4,
-        "lastCommitDate": "2026-01-26T16:02:39Z"
-      },
-      "subtasks": [
+      "tickets": [
         {
-          "key": "PROJ-104-SUB1",
-          "summary": "Subtask 1 for PROJ-104",
-          "status": "To Do",
+          "key": "PROJ-99",
+          "summary": "Update Security Patch",
+          "status": "Done",
           "statusCategory": "done",
-          "type": "Sub-task",
-          "priority": "Low",
-          "created": "2026-01-01T00:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": null,
-          "assignee": {
-            "accountId": "u7",
-            "displayName": "User 7",
-            "avatarUrl": "https://example.com/avatar/u7.png"
-          },
-          "parentKey": "PROJ-104"
-        },
-        {
-          "key": "PROJ-104-SUB2",
-          "summary": "Subtask 2 for PROJ-104",
-          "status": "Done",
-          "statusCategory": "indeterminate",
-          "type": "Sub-task",
-          "priority": "Low",
-          "created": "2026-01-01T00:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": 5335,
-          "assignee": {
-            "accountId": "u5",
-            "displayName": "User 5",
-            "avatarUrl": "https://example.com/avatar/u5.png"
-          },
-          "parentKey": "PROJ-104"
-        },
-        {
-          "key": "PROJ-104-SUB3",
-          "summary": "Subtask 3 for PROJ-104",
-          "status": "Done",
-          "statusCategory": "new",
-          "type": "Sub-task",
+          "type": "Task",
           "priority": "Medium",
-          "created": "2026-01-01T00:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": 3664,
-          "assignee": {
-            "accountId": "u10",
-            "displayName": "User 10",
-            "avatarUrl": "https://example.com/avatar/u10.png"
-          },
-          "parentKey": "PROJ-104"
-        }
-      ]
-    },
-    {
-      "key": "PROJ-105",
-      "summary": "Sample summary for PROJ-105",
-      "status": "Done",
-      "statusCategory": "done",
-      "type": "Story",
-      "priority": "Low",
-      "created": "2026-01-01T06:15:38Z",
-      "dueDate": null,
-      "timeSpentSeconds": null,
-      "assignee": {
-        "accountId": "u8",
-        "displayName": "User 8",
-        "avatarUrl": "https://example.com/avatar/u8.png"
-      },
-      "sprint": {
-        "id": 3,
-        "name": "Sprint 3",
-        "state": "closed",
-        "startDate": "2026-02-12T00:00:00Z",
-        "endDate": "2026-02-25T00:00:00Z"
-      },
-      "release": {
-        "name": "Release 2.0.0",
-        "description": "Large scale feature rollout with multiple teams contribution"
-      },
-      "storyPoints": 5,
-      "reopenCount": 2,
-      "gitStats": {
-        "branchName": "feature/proj-105",
-        "commitCount": 7,
-        "prCount": 4,
-        "lastCommitDate": "2026-01-08T13:28:54Z"
-      },
-      "subtasks": []
-    },
-    {
-      "key": "PROJ-106",
-      "summary": "Sample summary for PROJ-106",
-      "status": "To Do",
-      "statusCategory": "new",
-      "type": "Task",
-      "priority": "Low",
-      "created": "2026-01-11T13:25:40Z",
-      "dueDate": null,
-      "timeSpentSeconds": null,
-      "assignee": {
-        "accountId": "u3",
-        "displayName": "User 3",
-        "avatarUrl": "https://example.com/avatar/u3.png"
-      },
-      "sprint": {
-        "id": 3,
-        "name": "Sprint 3",
-        "state": "closed",
-        "startDate": "2026-02-12T00:00:00Z",
-        "endDate": "2026-02-25T00:00:00Z"
-      },
-      "release": {
-        "name": "Release 2.0.0",
-        "description": "Large scale feature rollout with multiple teams contribution"
-      },
-      "storyPoints": 2,
-      "reopenCount": 2,
-      "gitStats": {
-        "branchName": "feature/proj-106",
-        "commitCount": 23,
-        "prCount": 1,
-        "lastCommitDate": "2026-01-07T03:28:56Z"
-      },
-      "subtasks": []
-    },
-    {
-      "key": "PROJ-107",
-      "summary": "Sample summary for PROJ-107",
-      "status": "To Do",
-      "statusCategory": "new",
-      "type": "Task",
-      "priority": "High",
-      "created": "2026-01-14T21:55:08Z",
-      "dueDate": "2026-01-21T21:55:08Z",
-      "timeSpentSeconds": 8672,
-      "assignee": {
-        "accountId": "u8",
-        "displayName": "User 8",
-        "avatarUrl": "https://example.com/avatar/u8.png"
-      },
-      "sprint": {
-        "id": 4,
-        "name": "Sprint 4",
-        "state": "closed",
-        "startDate": "2026-02-26T00:00:00Z",
-        "endDate": "2026-03-11T00:00:00Z"
-      },
-      "release": {
-        "name": "Release 2.0.0",
-        "description": "Large scale feature rollout with multiple teams contribution"
-      },
-      "storyPoints": 5,
-      "reopenCount": 2,
-      "gitStats": {
-        "branchName": "feature/proj-107",
-        "commitCount": 26,
-        "prCount": 2,
-        "lastCommitDate": "2026-01-03T21:46:24Z"
-      },
-      "subtasks": []
-    },
-    {
-      "key": "PROJ-108",
-      "summary": "Sample summary for PROJ-108",
-      "status": "Done",
-      "statusCategory": "done",
-      "type": "Task",
-      "priority": "High",
-      "created": "2026-01-05T08:32:39Z",
-      "dueDate": null,
-      "timeSpentSeconds": null,
-      "assignee": {
-        "accountId": "u6",
-        "displayName": "User 6",
-        "avatarUrl": "https://example.com/avatar/u6.png"
-      },
-      "sprint": {
-        "id": 1,
-        "name": "Sprint 1",
-        "state": "active",
-        "startDate": "2026-01-15T00:00:00Z",
-        "endDate": "2026-01-28T00:00:00Z"
-      },
-      "release": {
-        "name": "Release 2.0.0",
-        "description": "Large scale feature rollout with multiple teams contribution"
-      },
-      "storyPoints": null,
-      "reopenCount": 1,
-      "gitStats": {
-        "branchName": "feature/proj-108",
-        "commitCount": 20,
-        "prCount": 2,
-        "lastCommitDate": "2026-01-08T07:35:15Z"
-      },
-      "subtasks": []
-    },
-    {
-      "key": "PROJ-109",
-      "summary": "Sample summary for PROJ-109",
-      "status": "To Do",
-      "statusCategory": "new",
-      "type": "Story",
-      "priority": "Medium",
-      "created": "2026-01-20T21:51:45Z",
-      "dueDate": null,
-      "timeSpentSeconds": null,
-      "assignee": {
-        "accountId": "u6",
-        "displayName": "User 6",
-        "avatarUrl": "https://example.com/avatar/u6.png"
-      },
-      "sprint": {
-        "id": 4,
-        "name": "Sprint 4",
-        "state": "closed",
-        "startDate": "2026-02-26T00:00:00Z",
-        "endDate": "2026-03-11T00:00:00Z"
-      },
-      "release": {
-        "name": "Release 2.0.0",
-        "description": "Large scale feature rollout with multiple teams contribution"
-      },
-      "storyPoints": 8,
-      "reopenCount": 3,
-      "gitStats": {
-        "branchName": "feature/proj-109",
-        "commitCount": 13,
-        "prCount": 4,
-        "lastCommitDate": "2026-01-06T15:21:41Z"
-      },
-      "subtasks": [
-        {
-          "key": "PROJ-109-SUB1",
-          "summary": "Subtask 1 for PROJ-109",
-          "status": "In Progress",
-          "statusCategory": "new",
-          "type": "Sub-task",
-          "priority": "Medium",
-          "created": "2026-01-01T00:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": null,
-          "assignee": {
-            "accountId": "u6",
-            "displayName": "User 6",
-            "avatarUrl": "https://example.com/avatar/u6.png"
-          },
-          "parentKey": "PROJ-109"
-        }
-      ]
-    },
-    {
-      "key": "PROJ-110",
-      "summary": "Sample summary for PROJ-110",
-      "status": "In Review",
-      "statusCategory": "indeterminate",
-      "type": "Story",
-      "priority": "High",
-      "created": "2026-01-13T00:02:26Z",
-      "dueDate": "2026-01-20T00:02:26Z",
-      "timeSpentSeconds": 10138,
-      "assignee": {
-        "accountId": "u2",
-        "displayName": "User 2",
-        "avatarUrl": "https://example.com/avatar/u2.png"
-      },
-      "sprint": {
-        "id": 2,
-        "name": "Sprint 2",
-        "state": "active",
-        "startDate": "2026-01-29T00:00:00Z",
-        "endDate": "2026-02-11T00:00:00Z"
-      },
-      "release": {
-        "name": "Release 2.0.0",
-        "description": "Large scale feature rollout with multiple teams contribution"
-      },
-      "storyPoints": 2,
-      "reopenCount": 1,
-      "gitStats": {
-        "branchName": "feature/proj-110",
-        "commitCount": 12,
-        "prCount": 5,
-        "lastCommitDate": "2026-01-18T11:21:46Z"
-      },
-      "subtasks": [
-        {
-          "key": "PROJ-110-SUB1",
-          "summary": "Subtask 1 for PROJ-110",
-          "status": "In Review",
-          "statusCategory": "done",
-          "type": "Sub-task",
-          "priority": "Low",
-          "created": "2026-01-01T00:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": null,
-          "assignee": {
-            "accountId": "u6",
-            "displayName": "User 6",
-            "avatarUrl": "https://example.com/avatar/u6.png"
-          },
-          "parentKey": "PROJ-110"
-        },
-        {
-          "key": "PROJ-110-SUB2",
-          "summary": "Subtask 2 for PROJ-110",
-          "status": "Done",
-          "statusCategory": "new",
-          "type": "Sub-task",
-          "priority": "Medium",
-          "created": "2026-01-01T00:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": null,
+          "created": "2025-12-01T09:00:00Z",
+          "dueDate": "2025-12-10T18:00:00Z",
+          "timeSpentSeconds": 28800,
+          "storyPoints": 3,
+          "reopenCount": 0,
           "assignee": {
             "accountId": "u1",
-            "displayName": "User 1",
-            "avatarUrl": "https://example.com/avatar/u1.png"
+            "displayName": "Somchai Tech",
+            "avatarUrl": "https://i.pravatar.cc/150?u=somchai"
           },
-          "parentKey": "PROJ-110"
-        },
-        {
-          "key": "PROJ-110-SUB3",
-          "summary": "Subtask 3 for PROJ-110",
-          "status": "In Review",
-          "statusCategory": "indeterminate",
-          "type": "Sub-task",
-          "priority": "Low",
-          "created": "2026-01-01T00:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": null,
-          "assignee": {
-            "accountId": "u6",
-            "displayName": "User 6",
-            "avatarUrl": "https://example.com/avatar/u6.png"
-          },
-          "parentKey": "PROJ-110"
-        }
-      ]
-    },
-    {
-      "key": "PROJ-111",
-      "summary": "Sample summary for PROJ-111",
-      "status": "Done",
-      "statusCategory": "done",
-      "type": "Task",
-      "priority": "High",
-      "created": "2026-01-29T15:08:53Z",
-      "dueDate": null,
-      "timeSpentSeconds": 18707,
-      "assignee": {
-        "accountId": "u9",
-        "displayName": "User 9",
-        "avatarUrl": "https://example.com/avatar/u9.png"
-      },
-      "sprint": {
-        "id": 4,
-        "name": "Sprint 4",
-        "state": "closed",
-        "startDate": "2026-02-26T00:00:00Z",
-        "endDate": "2026-03-11T00:00:00Z"
-      },
-      "release": {
-        "name": "Release 2.0.0",
-        "description": "Large scale feature rollout with multiple teams contribution"
-      },
-      "storyPoints": 5,
-      "reopenCount": 2,
-      "gitStats": {
-        "branchName": "feature/proj-111",
-        "commitCount": 22,
-        "prCount": 3,
-        "lastCommitDate": "2026-01-03T22:59:24Z"
-      },
-      "subtasks": [
-        {
-          "key": "PROJ-111-SUB1",
-          "summary": "Subtask 1 for PROJ-111",
-          "status": "In Progress",
-          "statusCategory": "done",
-          "type": "Sub-task",
-          "priority": "High",
-          "created": "2026-01-01T00:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": 2920,
-          "assignee": {
-            "accountId": "u8",
-            "displayName": "User 8",
-            "avatarUrl": "https://example.com/avatar/u8.png"
-          },
-          "parentKey": "PROJ-111"
-        }
-      ]
-    },
-    {
-      "key": "PROJ-112",
-      "summary": "Sample summary for PROJ-112",
-      "status": "To Do",
-      "statusCategory": "new",
-      "type": "Task",
-      "priority": "Highest",
-      "created": "2026-01-12T18:15:23Z",
-      "dueDate": null,
-      "timeSpentSeconds": null,
-      "assignee": {
-        "accountId": "u2",
-        "displayName": "User 2",
-        "avatarUrl": "https://example.com/avatar/u2.png"
-      },
-      "sprint": {
-        "id": 2,
-        "name": "Sprint 2",
-        "state": "active",
-        "startDate": "2026-01-29T00:00:00Z",
-        "endDate": "2026-02-11T00:00:00Z"
-      },
-      "release": {
-        "name": "Release 2.0.0",
-        "description": "Large scale feature rollout with multiple teams contribution"
-      },
-      "storyPoints": 3,
-      "reopenCount": 1,
-      "gitStats": {
-        "branchName": "feature/proj-112",
-        "commitCount": 24,
-        "prCount": 1,
-        "lastCommitDate": "2026-01-20T12:58:21Z"
-      },
-      "subtasks": [
-        {
-          "key": "PROJ-112-SUB1",
-          "summary": "Subtask 1 for PROJ-112",
-          "status": "Done",
-          "statusCategory": "indeterminate",
-          "type": "Sub-task",
-          "priority": "High",
-          "created": "2026-01-01T00:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": null,
-          "assignee": {
-            "accountId": "u3",
-            "displayName": "User 3",
-            "avatarUrl": "https://example.com/avatar/u3.png"
-          },
-          "parentKey": "PROJ-112"
-        },
-        {
-          "key": "PROJ-112-SUB2",
-          "summary": "Subtask 2 for PROJ-112",
-          "status": "In Progress",
-          "statusCategory": "indeterminate",
-          "type": "Sub-task",
-          "priority": "Medium",
-          "created": "2026-01-01T00:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": null,
-          "assignee": {
-            "accountId": "u1",
-            "displayName": "User 1",
-            "avatarUrl": "https://example.com/avatar/u1.png"
-          },
-          "parentKey": "PROJ-112"
-        },
-        {
-          "key": "PROJ-112-SUB3",
-          "summary": "Subtask 3 for PROJ-112",
-          "status": "To Do",
-          "statusCategory": "done",
-          "type": "Sub-task",
-          "priority": "Medium",
-          "created": "2026-01-01T00:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": null,
-          "assignee": {
-            "accountId": "u3",
-            "displayName": "User 3",
-            "avatarUrl": "https://example.com/avatar/u3.png"
-          },
-          "parentKey": "PROJ-112"
-        }
-      ]
-    },
-    {
-      "key": "PROJ-113",
-      "summary": "Sample summary for PROJ-113",
-      "status": "In Review",
-      "statusCategory": "indeterminate",
-      "type": "Task",
-      "priority": "Highest",
-      "created": "2026-01-15T14:06:19Z",
-      "dueDate": null,
-      "timeSpentSeconds": null,
-      "assignee": {
-        "accountId": "u6",
-        "displayName": "User 6",
-        "avatarUrl": "https://example.com/avatar/u6.png"
-      },
-      "sprint": {
-        "id": 5,
-        "name": "Sprint 5",
-        "state": "closed",
-        "startDate": "2026-03-12T00:00:00Z",
-        "endDate": "2026-03-25T00:00:00Z"
-      },
-      "release": {
-        "name": "Release 2.0.0",
-        "description": "Large scale feature rollout with multiple teams contribution"
-      },
-      "storyPoints": 13,
-      "reopenCount": 1,
-      "gitStats": {
-        "branchName": "feature/proj-113",
-        "commitCount": 25,
-        "prCount": 4,
-        "lastCommitDate": "2026-01-13T05:34:18Z"
-      },
-      "subtasks": [
-        {
-          "key": "PROJ-113-SUB1",
-          "summary": "Subtask 1 for PROJ-113",
-          "status": "To Do",
-          "statusCategory": "new",
-          "type": "Sub-task",
-          "priority": "Medium",
-          "created": "2026-01-01T00:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": 2753,
-          "assignee": {
-            "accountId": "u6",
-            "displayName": "User 6",
-            "avatarUrl": "https://example.com/avatar/u6.png"
-          },
-          "parentKey": "PROJ-113"
-        },
-        {
-          "key": "PROJ-113-SUB2",
-          "summary": "Subtask 2 for PROJ-113",
-          "status": "Done",
-          "statusCategory": "indeterminate",
-          "type": "Sub-task",
-          "priority": "Highest",
-          "created": "2026-01-01T00:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": null,
-          "assignee": {
-            "accountId": "u7",
-            "displayName": "User 7",
-            "avatarUrl": "https://example.com/avatar/u7.png"
-          },
-          "parentKey": "PROJ-113"
-        },
-        {
-          "key": "PROJ-113-SUB3",
-          "summary": "Subtask 3 for PROJ-113",
-          "status": "To Do",
-          "statusCategory": "indeterminate",
-          "type": "Sub-task",
-          "priority": "Medium",
-          "created": "2026-01-01T00:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": null,
-          "assignee": {
-            "accountId": "u3",
-            "displayName": "User 3",
-            "avatarUrl": "https://example.com/avatar/u3.png"
-          },
-          "parentKey": "PROJ-113"
-        }
-      ]
-    },
-    {
-      "key": "PROJ-114",
-      "summary": "Sample summary for PROJ-114",
-      "status": "To Do",
-      "statusCategory": "new",
-      "type": "Bug",
-      "priority": "Medium",
-      "created": "2026-01-23T14:16:18Z",
-      "dueDate": null,
-      "timeSpentSeconds": 16490,
-      "assignee": {
-        "accountId": "u1",
-        "displayName": "User 1",
-        "avatarUrl": "https://example.com/avatar/u1.png"
-      },
-      "sprint": {
-        "id": 3,
-        "name": "Sprint 3",
-        "state": "closed",
-        "startDate": "2026-02-12T00:00:00Z",
-        "endDate": "2026-02-25T00:00:00Z"
-      },
-      "release": {
-        "name": "Release 2.0.0",
-        "description": "Large scale feature rollout with multiple teams contribution"
-      },
-      "storyPoints": 13,
-      "reopenCount": 2,
-      "gitStats": {
-        "branchName": "feature/proj-114",
-        "commitCount": 24,
-        "prCount": 3,
-        "lastCommitDate": "2026-01-24T05:18:53Z"
-      },
-      "subtasks": [
-        {
-          "key": "PROJ-114-SUB1",
-          "summary": "Subtask 1 for PROJ-114",
-          "status": "In Review",
-          "statusCategory": "indeterminate",
-          "type": "Sub-task",
-          "priority": "Medium",
-          "created": "2026-01-01T00:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": 4323,
-          "assignee": {
-            "accountId": "u7",
-            "displayName": "User 7",
-            "avatarUrl": "https://example.com/avatar/u7.png"
-          },
-          "parentKey": "PROJ-114"
-        },
-        {
-          "key": "PROJ-114-SUB2",
-          "summary": "Subtask 2 for PROJ-114",
-          "status": "Done",
-          "statusCategory": "indeterminate",
-          "type": "Sub-task",
-          "priority": "Highest",
-          "created": "2026-01-01T00:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": null,
-          "assignee": {
-            "accountId": "u2",
-            "displayName": "User 2",
-            "avatarUrl": "https://example.com/avatar/u2.png"
-          },
-          "parentKey": "PROJ-114"
-        }
-      ]
-    },
-    {
-      "key": "PROJ-115",
-      "summary": "Sample summary for PROJ-115",
-      "status": "In Review",
-      "statusCategory": "indeterminate",
-      "type": "Task",
-      "priority": "High",
-      "created": "2026-01-15T05:57:25Z",
-      "dueDate": "2026-01-22T05:57:25Z",
-      "timeSpentSeconds": 10376,
-      "assignee": {
-        "accountId": "u10",
-        "displayName": "User 10",
-        "avatarUrl": "https://example.com/avatar/u10.png"
-      },
-      "sprint": {
-        "id": 1,
-        "name": "Sprint 1",
-        "state": "active",
-        "startDate": "2026-01-15T00:00:00Z",
-        "endDate": "2026-01-28T00:00:00Z"
-      },
-      "release": {
-        "name": "Release 2.0.0",
-        "description": "Large scale feature rollout with multiple teams contribution"
-      },
-      "storyPoints": 13,
-      "reopenCount": 0,
-      "gitStats": {
-        "branchName": "feature/proj-115",
-        "commitCount": 20,
-        "prCount": 3,
-        "lastCommitDate": "2026-01-05T04:04:03Z"
-      },
-      "subtasks": [
-        {
-          "key": "PROJ-115-SUB1",
-          "summary": "Subtask 1 for PROJ-115",
-          "status": "To Do",
-          "statusCategory": "indeterminate",
-          "type": "Sub-task",
-          "priority": "Highest",
-          "created": "2026-01-01T00:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": null,
-          "assignee": {
-            "accountId": "u4",
-            "displayName": "User 4",
-            "avatarUrl": "https://example.com/avatar/u4.png"
-          },
-          "parentKey": "PROJ-115"
-        },
-        {
-          "key": "PROJ-115-SUB2",
-          "summary": "Subtask 2 for PROJ-115",
-          "status": "To Do",
-          "statusCategory": "done",
-          "type": "Sub-task",
-          "priority": "Highest",
-          "created": "2026-01-01T00:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": 2198,
-          "assignee": {
-            "accountId": "u3",
-            "displayName": "User 3",
-            "avatarUrl": "https://example.com/avatar/u3.png"
-          },
-          "parentKey": "PROJ-115"
-        },
-        {
-          "key": "PROJ-115-SUB3",
-          "summary": "Subtask 3 for PROJ-115",
-          "status": "To Do",
-          "statusCategory": "indeterminate",
-          "type": "Sub-task",
-          "priority": "Low",
-          "created": "2026-01-01T00:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": null,
-          "assignee": {
-            "accountId": "u1",
-            "displayName": "User 1",
-            "avatarUrl": "https://example.com/avatar/u1.png"
-          },
-          "parentKey": "PROJ-115"
-        }
-      ]
-    },
-    {
-      "key": "PROJ-116",
-      "summary": "Sample summary for PROJ-116",
-      "status": "In Review",
-      "statusCategory": "indeterminate",
-      "type": "Task",
-      "priority": "Highest",
-      "created": "2026-01-22T23:44:47Z",
-      "dueDate": "2026-01-29T23:44:47Z",
-      "timeSpentSeconds": null,
-      "assignee": {
-        "accountId": "u3",
-        "displayName": "User 3",
-        "avatarUrl": "https://example.com/avatar/u3.png"
-      },
-      "sprint": {
-        "id": 2,
-        "name": "Sprint 2",
-        "state": "active",
-        "startDate": "2026-01-29T00:00:00Z",
-        "endDate": "2026-02-11T00:00:00Z"
-      },
-      "release": {
-        "name": "Release 2.0.0",
-        "description": "Large scale feature rollout with multiple teams contribution"
-      },
-      "storyPoints": 8,
-      "reopenCount": 2,
-      "gitStats": {
-        "branchName": "feature/proj-116",
-        "commitCount": 1,
-        "prCount": 2,
-        "lastCommitDate": "2026-01-31T06:26:14Z"
-      },
-      "subtasks": [
-        {
-          "key": "PROJ-116-SUB1",
-          "summary": "Subtask 1 for PROJ-116",
-          "status": "To Do",
-          "statusCategory": "indeterminate",
-          "type": "Sub-task",
-          "priority": "Low",
-          "created": "2026-01-01T00:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": 4407,
-          "assignee": {
-            "accountId": "u2",
-            "displayName": "User 2",
-            "avatarUrl": "https://example.com/avatar/u2.png"
-          },
-          "parentKey": "PROJ-116"
-        },
-        {
-          "key": "PROJ-116-SUB2",
-          "summary": "Subtask 2 for PROJ-116",
-          "status": "In Review",
-          "statusCategory": "indeterminate",
-          "type": "Sub-task",
-          "priority": "High",
-          "created": "2026-01-01T00:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": null,
-          "assignee": {
-            "accountId": "u8",
-            "displayName": "User 8",
-            "avatarUrl": "https://example.com/avatar/u8.png"
-          },
-          "parentKey": "PROJ-116"
-        }
-      ]
-    },
-    {
-      "key": "PROJ-117",
-      "summary": "Sample summary for PROJ-117",
-      "status": "Done",
-      "statusCategory": "done",
-      "type": "Task",
-      "priority": "Highest",
-      "created": "2026-01-09T17:37:30Z",
-      "dueDate": null,
-      "timeSpentSeconds": null,
-      "assignee": {
-        "accountId": "u6",
-        "displayName": "User 6",
-        "avatarUrl": "https://example.com/avatar/u6.png"
-      },
-      "sprint": {
-        "id": 3,
-        "name": "Sprint 3",
-        "state": "closed",
-        "startDate": "2026-02-12T00:00:00Z",
-        "endDate": "2026-02-25T00:00:00Z"
-      },
-      "release": {
-        "name": "Release 2.0.0",
-        "description": "Large scale feature rollout with multiple teams contribution"
-      },
-      "storyPoints": 2,
-      "reopenCount": 2,
-      "gitStats": {
-        "branchName": "feature/proj-117",
-        "commitCount": 14,
-        "prCount": 4,
-        "lastCommitDate": "2026-01-03T06:24:20Z"
-      },
-      "subtasks": [
-        {
-          "key": "PROJ-117-SUB1",
-          "summary": "Subtask 1 for PROJ-117",
-          "status": "Done",
-          "statusCategory": "indeterminate",
-          "type": "Sub-task",
-          "priority": "High",
-          "created": "2026-01-01T00:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": null,
-          "assignee": {
-            "accountId": "u4",
-            "displayName": "User 4",
-            "avatarUrl": "https://example.com/avatar/u4.png"
-          },
-          "parentKey": "PROJ-117"
-        },
-        {
-          "key": "PROJ-117-SUB2",
-          "summary": "Subtask 2 for PROJ-117",
-          "status": "Done",
-          "statusCategory": "indeterminate",
-          "type": "Sub-task",
-          "priority": "Low",
-          "created": "2026-01-01T00:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": 1822,
-          "assignee": {
-            "accountId": "u4",
-            "displayName": "User 4",
-            "avatarUrl": "https://example.com/avatar/u4.png"
-          },
-          "parentKey": "PROJ-117"
-        }
-      ]
-    },
-    {
-      "key": "PROJ-118",
-      "summary": "Sample summary for PROJ-118",
-      "status": "To Do",
-      "statusCategory": "new",
-      "type": "Bug",
-      "priority": "Medium",
-      "created": "2026-01-18T19:10:52Z",
-      "dueDate": null,
-      "timeSpentSeconds": null,
-      "assignee": {
-        "accountId": "u9",
-        "displayName": "User 9",
-        "avatarUrl": "https://example.com/avatar/u9.png"
-      },
-      "sprint": {
-        "id": 3,
-        "name": "Sprint 3",
-        "state": "closed",
-        "startDate": "2026-02-12T00:00:00Z",
-        "endDate": "2026-02-25T00:00:00Z"
-      },
-      "release": {
-        "name": "Release 2.0.0",
-        "description": "Large scale feature rollout with multiple teams contribution"
-      },
-      "storyPoints": 5,
-      "reopenCount": 2,
-      "gitStats": {
-        "branchName": "feature/proj-118",
-        "commitCount": 2,
-        "prCount": 3,
-        "lastCommitDate": "2026-01-17T15:30:36Z"
-      },
-      "subtasks": []
-    },
-    {
-      "key": "PROJ-119",
-      "summary": "Sample summary for PROJ-119",
-      "status": "In Progress",
-      "statusCategory": "indeterminate",
-      "type": "Story",
-      "priority": "High",
-      "created": "2026-01-03T04:51:48Z",
-      "dueDate": null,
-      "timeSpentSeconds": 14626,
-      "assignee": {
-        "accountId": "u6",
-        "displayName": "User 6",
-        "avatarUrl": "https://example.com/avatar/u6.png"
-      },
-      "sprint": {
-        "id": 1,
-        "name": "Sprint 1",
-        "state": "active",
-        "startDate": "2026-01-15T00:00:00Z",
-        "endDate": "2026-01-28T00:00:00Z"
-      },
-      "release": {
-        "name": "Release 2.0.0",
-        "description": "Large scale feature rollout with multiple teams contribution"
-      },
-      "storyPoints": 8,
-      "reopenCount": 3,
-      "gitStats": {
-        "branchName": "feature/proj-119",
-        "commitCount": 6,
-        "prCount": 3,
-        "lastCommitDate": "2026-01-21T20:43:53Z"
-      },
-      "subtasks": [
-        {
-          "key": "PROJ-119-SUB1",
-          "summary": "Subtask 1 for PROJ-119",
-          "status": "To Do",
-          "statusCategory": "new",
-          "type": "Sub-task",
-          "priority": "Highest",
-          "created": "2026-01-01T00:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": 5745,
-          "assignee": {
-            "accountId": "u1",
-            "displayName": "User 1",
-            "avatarUrl": "https://example.com/avatar/u1.png"
-          },
-          "parentKey": "PROJ-119"
-        },
-        {
-          "key": "PROJ-119-SUB2",
-          "summary": "Subtask 2 for PROJ-119",
-          "status": "In Progress",
-          "statusCategory": "new",
-          "type": "Sub-task",
-          "priority": "Highest",
-          "created": "2026-01-01T00:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": 5668,
-          "assignee": {
-            "accountId": "u9",
-            "displayName": "User 9",
-            "avatarUrl": "https://example.com/avatar/u9.png"
-          },
-          "parentKey": "PROJ-119"
-        },
-        {
-          "key": "PROJ-119-SUB3",
-          "summary": "Subtask 3 for PROJ-119",
-          "status": "In Progress",
-          "statusCategory": "done",
-          "type": "Sub-task",
-          "priority": "Medium",
-          "created": "2026-01-01T00:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": 4598,
-          "assignee": {
-            "accountId": "u5",
-            "displayName": "User 5",
-            "avatarUrl": "https://example.com/avatar/u5.png"
-          },
-          "parentKey": "PROJ-119"
-        }
-      ]
-    },
-    {
-      "key": "PROJ-120",
-      "summary": "Sample summary for PROJ-120",
-      "status": "To Do",
-      "statusCategory": "new",
-      "type": "Bug",
-      "priority": "High",
-      "created": "2026-01-06T10:28:10Z",
-      "dueDate": "2026-01-13T10:28:10Z",
-      "timeSpentSeconds": 14660,
-      "assignee": {
-        "accountId": "u7",
-        "displayName": "User 7",
-        "avatarUrl": "https://example.com/avatar/u7.png"
-      },
-      "sprint": {
-        "id": 5,
-        "name": "Sprint 5",
-        "state": "closed",
-        "startDate": "2026-03-12T00:00:00Z",
-        "endDate": "2026-03-25T00:00:00Z"
-      },
-      "release": {
-        "name": "Release 2.0.0",
-        "description": "Large scale feature rollout with multiple teams contribution"
-      },
-      "storyPoints": 2,
-      "reopenCount": 0,
-      "gitStats": {
-        "branchName": "feature/proj-120",
-        "commitCount": 17,
-        "prCount": 4,
-        "lastCommitDate": "2026-01-30T13:57:50Z"
-      },
-      "subtasks": [
-        {
-          "key": "PROJ-120-SUB1",
-          "summary": "Subtask 1 for PROJ-120",
-          "status": "To Do",
-          "statusCategory": "indeterminate",
-          "type": "Sub-task",
-          "priority": "High",
-          "created": "2026-01-01T00:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": null,
-          "assignee": {
-            "accountId": "u1",
-            "displayName": "User 1",
-            "avatarUrl": "https://example.com/avatar/u1.png"
-          },
-          "parentKey": "PROJ-120"
+          "subtasks": []
         }
       ]
     }

@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import jiraApi from "../../api/jiraApi";
-import type { JiraRelease } from "../../types/jira";
+import type { DashboardResponse, JiraReleaseInfo } from "../../types/jira";
 
 export const fetchReleases = createAsyncThunk(
   "jira/fetchReleases",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await jiraApi.getRelease();
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      const response = await jiraApi.getAllReleases();
       return response.data;
     } catch (err: any) {
       return rejectWithValue(`fetchReleases failed: ${err}`);
@@ -14,26 +15,29 @@ export const fetchReleases = createAsyncThunk(
   },
 );
 
-export const fetchReleaseById = createAsyncThunk(
-  "/jira/fetchReleaseById",
-  async (id: string, { rejectWithValue }) => {
+export const fetchDashboardByRelease = createAsyncThunk(
+  "/jira/fetchDashboardByRelease",
+  async (releaseId: string, { rejectWithValue }) => {
     try {
-      const response = await jiraApi.getReleaseById(id);
-      return response.data;
+      const response = await jiraApi.getDashboardByReleaseId(releaseId);
+      return response;
     } catch (err: any) {
       return rejectWithValue(`fetchReleasesById failed: ${err}`);
     }
   },
 );
 
-export interface ReleaseState {
-  data: JiraRelease[];
+export interface JiraState {
+  releaseList: JiraReleaseInfo[];
+  dashboardDetail: DashboardResponse | null;
+
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
 }
 
-const initialState: ReleaseState = {
-  data: [],
+const initialState: JiraState = {
+  releaseList: [],
+  dashboardDetail: null,
   status: "idle",
   error: null,
 };
@@ -50,7 +54,7 @@ export const releaseSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchReleases.fulfilled, (state, action) => {
-        state.data = action.payload;
+        state.releaseList = action.payload;
         state.status = "succeeded";
       })
       .addCase(fetchReleases.rejected, (state, action) => {
@@ -58,21 +62,15 @@ export const releaseSlice = createSlice({
         state.error = action.payload as string;
       })
       // fetch release by id
-      .addCase(fetchReleaseById.pending, (state) => {
+      .addCase(fetchDashboardByRelease.pending, (state) => {
         state.status = "loading";
         state.error = null;
       })
-      .addCase(fetchReleaseById.fulfilled, (state, action) => {
+      .addCase(fetchDashboardByRelease.fulfilled, (state, action) => {
         state.status = "succeeded";
-        const release = action.payload;
-        const index = state.data.findIndex((r) => r.id === release.id);
-        if (index !== -1) {
-          state.data[index] = action.payload;
-        } else {
-          state.data.push(action.payload);
-        }
+        state.dashboardDetail = action.payload;
       })
-      .addCase(fetchReleaseById.rejected, (state, action) => {
+      .addCase(fetchDashboardByRelease.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload as string;
       });
