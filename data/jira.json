@@ -28,6 +28,7 @@
         {
           "key": "PROJ-101",
           "summary": "Implement Login with FaceID",
+          "description": "User should be able to login using FaceID on iOS devices...",
           "status": "Done",
           "statusCategory": "done",
           "type": "Story",
@@ -59,6 +60,7 @@
               "key": "PROJ-101-1",
               "parentKey": "PROJ-101",
               "summary": "Design UI on Figma",
+              "description": "Create high-fidelity mockup for Login screen...",
               "status": "Done",
               "statusCategory": "done",
               "type": "Sub-task",
@@ -76,6 +78,7 @@
               "key": "PROJ-101-2",
               "parentKey": "PROJ-101",
               "summary": "Integrate Biometric API",
+              "description": "Create high-fidelity mockup for Login screen...",
               "status": "In Progress",
               "statusCategory": "indeterminate",
               "type": "Sub-task",
@@ -130,6 +133,7 @@
         {
           "key": "PROJ-99",
           "summary": "Update Security Patch",
+          "description": "Security Patch should be latest",
           "status": "Done",
           "statusCategory": "done",
           "type": "Task",

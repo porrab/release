@@ -29,7 +29,7 @@ export interface GitStats {
 interface BaseTicket {
   key: string;
   summary: string;
-
+  description?: string;
   status: string;
   statusCategory: "new" | "indeterminate" | "done";
 
@@ -68,3 +68,5 @@ export interface DashboardResponse {
   };
   tickets: JiraIssue[];
 }
+
+export type TicketDetailType = JiraIssue | JiraSubtask;

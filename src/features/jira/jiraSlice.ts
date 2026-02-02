@@ -6,7 +6,7 @@ export const fetchReleases = createAsyncThunk(
   "jira/fetchReleases",
   async (_, { rejectWithValue }) => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      // await new Promise((resolve) => setTimeout(resolve, 2000));
       const response = await jiraApi.getAllReleases();
       return response.data;
     } catch (err: any) {
