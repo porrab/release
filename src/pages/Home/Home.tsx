@@ -11,39 +11,34 @@ import {
   Alert,
 } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../hook/hook";
-import {
-  fetchReleases,
-  fetchDashboardByRelease,
-} from "../../features/jira/jiraSlice";
 import DashboardView from "./component/DashboardView";
+import type { ReleaseGroup } from "../../types/jira";
+import axiosService from "../../api/axiosClient";
+import jiraApi from "../../api/jiraApi";
 
 export default function Home() {
   const dispatch = useAppDispatch();
-
-  const { releaseList, dashboardDetail, status, error } = useAppSelector(
+  const { dashboardDetail, status, error } = useAppSelector(
     (state) => state.releases,
   );
-  const [selectedReleaseId, setSelectedReleaseId] = useState<string>("");
 
-  useEffect(() => {
-    dispatch(fetchReleases());
-  }, [dispatch]);
+  const [release, setRelease] = useState<ReleaseGroup[] | undefined>();
 
-  useEffect(() => {
-    if (!selectedReleaseId && releaseList.length > 0) {
-      setSelectedReleaseId(releaseList[0].id.toString());
+  const [selectedReleaseId, setSelectedReleaseId] = useState<string>(
+    release[0].releaseId,
+  );
+  async function fetchRelease() {
+    try {
+      const allRelease = await jiraApi.getAllRelease();
+      return allRelease;
+    } catch (err) {
+      console.error(err);
     }
-  }, [releaseList, selectedReleaseId]);
+  }
 
-  useEffect(() => {
-    if (selectedReleaseId) {
-      dispatch(fetchDashboardByRelease(selectedReleaseId));
-    }
-  }, [dispatch, selectedReleaseId]);
-
-  useEffect(() => {
-    console.log(dashboardDetail);
-  }, [dashboardDetail]);
+  useEffect(a () => {
+    setRelease(await fetchRelease());
+  }, []);
 
   const handleChangeRelease = (event: any) => {
     setSelectedReleaseId(event.target.value);
@@ -68,10 +63,9 @@ export default function Home() {
               value={selectedReleaseId}
               label="Select Release"
               onChange={handleChangeRelease}
-              disabled={status === "loading" && releaseList.length === 0}
             >
-              {releaseList.map((release) => (
-                <MenuItem key={release.id} value={release.id.toString()}>
+              {RELEASES.map((release) => (
+                <MenuItem key={release.id} value={release.id}>
                   {release.name}
                 </MenuItem>
               ))}
@@ -80,7 +74,8 @@ export default function Home() {
         </Box>
       </Box>
 
-      {status === "loading" && !dashboardDetail ? (
+      {/* Loading State */}
+      {status === "loading" ? (
         <Box display="flex" justifyContent="center" mt={10}>
           <CircularProgress />
         </Box>

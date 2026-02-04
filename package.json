@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "test": "vitest",
     "preview": "vite preview",
-    "db": "json-server --watch ./data/jira.json --port 8000"
+    "db": "json-server --watch data/jira.json --routes data/routes.json --port 8080"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

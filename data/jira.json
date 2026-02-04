@@ -1,156 +1,122 @@
 {
   "releases": [
     {
-      "id": "1",
-      "name": "Release 2.0.0",
-      "description": "Large scale feature rollout"
+      "id": "20",
+      "name": "Release 20",
+      "description": "Latest release Q1 2026"
     },
-    {
-      "id": "2",
-      "name": "Release 1.5.0",
-      "description": "Maintenance & Bug fixes"
-    }
+    { "id": "19", "name": "Release 19" },
+    { "id": "18", "name": "Release 18" },
+    { "id": "17", "name": "Release 17" },
+    { "id": "16", "name": "Release 16" },
+    { "id": "15", "name": "Release 15" },
+    { "id": "14", "name": "Release 14" },
+    { "id": "13", "name": "Release 13" },
+    { "id": "12", "name": "Release 12" },
+    { "id": "11", "name": "Release 11" },
+    { "id": "10", "name": "Release 10" },
+    { "id": "9", "name": "Release 9" },
+    { "id": "8", "name": "Release 8" },
+    { "id": "7", "name": "Release 7" },
+    { "id": "6", "name": "Release 6" },
+    { "id": "5", "name": "Release 5" },
+    { "id": "4", "name": "Release 4" },
+    { "id": "3", "name": "Release 3" },
+    { "id": "2", "name": "Release 2" },
+    { "id": "1", "name": "Release 1" }
   ],
-  "dashboard": [
+  "tickets": [
     {
-      "id": "dash-1",
-      "releaseId": "1",
-      "releaseInfo": {
-        "name": "Release 2.0.0",
-        "description": "Large scale feature rollout with multiple teams contribution"
-      },
-      "stats": {
-        "totalTicketCount": 25,
-        "totalStoryPoints": 120,
-        "totalTimeSeconds": 450220
-      },
-      "tickets": [
-        {
-          "key": "PROJ-101",
-          "summary": "Implement Login with FaceID",
-          "description": "User should be able to login using FaceID on iOS devices...",
-          "status": "Done",
-          "statusCategory": "done",
-          "type": "Story",
-          "priority": "Highest",
-          "created": "2026-01-30T09:00:00Z",
-          "dueDate": "2026-02-15T18:00:00Z",
-          "timeSpentSeconds": 14400,
-          "assignee": {
-            "accountId": "u1",
-            "displayName": "Somchai Tech",
-            "avatarUrl": "https://i.pravatar.cc/150?u=somchai"
-          },
-          "sprint": {
-            "id": 101,
-            "name": "Sprint 24",
-            "state": "active",
-            "startDate": "2026-02-01T09:00:00Z",
-            "endDate": "2026-02-14T18:00:00Z"
-          },
-          "storyPoints": 8,
-          "reopenCount": 0,
-          "gitStats": {
-            "branchName": "feature/face-id-login",
-            "commitCount": 15,
-            "prCount": 2
-          },
-          "subtasks": [
-            {
-              "key": "PROJ-101-1",
-              "parentKey": "PROJ-101",
-              "summary": "Design UI on Figma",
-              "description": "Create high-fidelity mockup for Login screen...",
-              "status": "Done",
-              "statusCategory": "done",
-              "type": "Sub-task",
-              "priority": "Medium",
-              "created": "2026-01-30T10:00:00Z",
-              "dueDate": null,
-              "timeSpentSeconds": 7200,
-              "assignee": {
-                "accountId": "u2",
-                "displayName": "Designer Dave",
-                "avatarUrl": "https://i.pravatar.cc/150?u=dave"
-              }
-            },
-            {
-              "key": "PROJ-101-2",
-              "parentKey": "PROJ-101",
-              "summary": "Integrate Biometric API",
-              "description": "Create high-fidelity mockup for Login screen...",
-              "status": "In Progress",
-              "statusCategory": "indeterminate",
-              "type": "Sub-task",
-              "priority": "High",
-              "created": "2026-02-01T10:00:00Z",
-              "dueDate": null,
-              "timeSpentSeconds": 3600
-            }
-          ]
+      "id": "101",
+      "releaseId": "20",
+      "key": "ONEAPP-560190",
+      "fields": {
+        "summary": "Implement Login with FaceID",
+        "description": "User should be able to login using FaceID.\n\n**Acceptance Criteria:**\n1. Show FaceID icon on login screen\n2. Verify signature with biometric API",
+        "customfield_10028": 5,
+        "issuetype": { "name": "Story" },
+        "status": {
+          "name": "Done",
+          "statusCategory": { "key": "done" }
         },
-        {
-          "key": "PROJ-102",
-          "summary": "Fix Crash on Payment Screen",
-          "status": "In Progress",
-          "statusCategory": "indeterminate",
-          "type": "Bug",
-          "priority": "High",
-          "created": "2026-02-05T14:00:00Z",
-          "dueDate": null,
-          "timeSpentSeconds": 5000,
-          "assignee": {
-            "accountId": "u3",
-            "displayName": "Dev Sarah",
-            "avatarUrl": "https://i.pravatar.cc/150?u=sarah"
+        "assignee": {
+          "displayName": "Jirapa Lapanant",
+          "avatarUrls": { "48x48": "https://i.pravatar.cc/150?u=jirapa" }
+        },
+        "subtasks": [
+          {
+            "key": "ONEAPP-560190-1",
+            "summary": "Design UI",
+            "status": {
+              "name": "Done",
+              "statusCategory": { "key": "done" }
+            },
+            "issuetype": { "name": "Sub-task" }
           },
-          "sprint": {
-            "id": 101,
-            "name": "Sprint 24",
-            "state": "active",
-            "startDate": "2026-02-01T09:00:00Z",
-            "endDate": "2026-02-14T18:00:00Z"
-          },
-          "storyPoints": null,
-          "reopenCount": 1,
-          "subtasks": []
-        }
-      ]
+          {
+            "key": "ONEAPP-560190-2",
+            "summary": "Integrate API",
+            "status": {
+              "name": "In Progress",
+              "statusCategory": { "key": "indeterminate" }
+            },
+            "issuetype": { "name": "Sub-task" }
+          }
+        ]
+      }
     },
     {
-      "id": "dash-2",
-      "releaseId": "2",
-      "releaseInfo": {
-        "name": "Release 1.5.0",
-        "description": "Maintenance & Bug fixes (Old Release)"
-      },
-      "stats": {
-        "totalTicketCount": 10,
-        "totalStoryPoints": 40,
-        "totalTimeSeconds": 120000
-      },
-      "tickets": [
-        {
-          "key": "PROJ-99",
-          "summary": "Update Security Patch",
-          "description": "Security Patch should be latest",
-          "status": "Done",
-          "statusCategory": "done",
-          "type": "Task",
-          "priority": "Medium",
-          "created": "2025-12-01T09:00:00Z",
-          "dueDate": "2025-12-10T18:00:00Z",
-          "timeSpentSeconds": 28800,
-          "storyPoints": 3,
-          "reopenCount": 0,
-          "assignee": {
-            "accountId": "u1",
-            "displayName": "Somchai Tech",
-            "avatarUrl": "https://i.pravatar.cc/150?u=somchai"
-          },
-          "subtasks": []
+      "id": "102",
+      "releaseId": "20",
+      "key": "ONEAPP-560191",
+      "fields": {
+        "summary": "Fix crash on payment screen",
+        "description": "App crashes when user clicks 'Pay' button rapidly.",
+        "customfield_10028": null,
+        "issuetype": { "name": "Bug" },
+        "status": {
+          "name": "In Progress",
+          "statusCategory": { "key": "indeterminate" }
+        },
+        "assignee": {
+          "displayName": "Dev Sarah",
+          "avatarUrls": { "48x48": "https://i.pravatar.cc/150?u=sarah" }
         }
-      ]
+      }
+    },
+    {
+      "id": "103",
+      "releaseId": "20",
+      "key": "ONEAPP-560192",
+      "fields": {
+        "summary": "Update Security Patch",
+        "description": "Routine security update for Q1.",
+        "customfield_10028": 3,
+        "issuetype": { "name": "Task" },
+        "status": {
+          "name": "To Do",
+          "statusCategory": { "key": "new" }
+        },
+        "assignee": null
+      }
+    },
+    {
+      "id": "201",
+      "releaseId": "19",
+      "key": "ONEAPP-440100",
+      "fields": {
+        "summary": "Legacy Feature Maintenance",
+        "customfield_10028": 8,
+        "issuetype": { "name": "Story" },
+        "status": {
+          "name": "Done",
+          "statusCategory": { "key": "done" }
+        },
+        "assignee": {
+          "displayName": "Senior Dev",
+          "avatarUrls": { "48x48": "https://i.pravatar.cc/150?u=senior" }
+        }
+      }
     }
   ]
 }

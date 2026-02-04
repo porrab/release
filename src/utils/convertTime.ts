@@ -7,17 +7,16 @@ function convertSecondsToHMS(totalSeconds: number) {
     throw new Error("Input must be a non-negative number of seconds.");
   }
 
-  const hours = Math.floor(totalSeconds / 3600);
+  const days = Math.floor(totalSeconds / (3600 * 24));
+  const hours = Math.floor((totalSeconds % (3600 * 24)) / 3600);
   const minutes = Math.floor((totalSeconds % 3600) / 60);
   const seconds = totalSeconds % 60;
 
-  return { hours, minutes, seconds };
+  return { days, hours, minutes, seconds };
 }
 
 export default function formatSecondsToHMS(totalSeconds: number) {
-  const { hours, minutes, seconds } = convertSecondsToHMS(totalSeconds);
+  const { days, hours } = convertSecondsToHMS(totalSeconds);
 
-  const pad = (num: number) => String(num).padStart(2, "0");
-
-  return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+  return `${days} days, ${hours} hr.`;
 }

@@ -1,40 +1,102 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Paper,
   Typography,
   Box,
-  Chip,
   Avatar,
   TablePagination,
   Tooltip,
   Grid,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 
 import TicketDetailDialog from "./TicketDetailDialog";
-import type {
-  DashboardResponse,
-  JiraIssue,
-  TicketDetailType,
-} from "../../../types/jira";
+import type { JiraIssue, TicketDetailType } from "../../../types/jira";
 import StatCard from "./StatCard";
 import TicketTypeIcon from "./TicketTypeIcon";
+import formatSecondsToHMS from "../../../utils/convertTime";
+import Status from "./Status";
+
+import { useAppDispatch, useAppSelector } from "../../../hook/hook";
+import { fetchTicketDetail } from "../../../features/jira/jiraSlice";
+import type { DashboardResponse } from "../../../types/dashboard";
 
 interface DashboardViewProps {
   data: DashboardResponse;
 }
 
 export default function DashboardView({ data }: DashboardViewProps) {
-  const { releaseInfo, stats, tickets } = data;
+  const { releaseInfo, stats } = data;
 
   const [viewingTicket, setViewingTicket] = useState<TicketDetailType | null>(
     null,
   );
+  const [isLoadingDetail, setIsLoadingDetail] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
   const [currentParent, setCurrentParent] = useState<JiraIssue | null>(null);
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const handleChangePage = (event: unknown, newPage: number) => {
+  const fullDetail = useAppSelector((state) => state.releases.ticketDetail);
+  const dispatch = useAppDispatch();
+
+  const tickets = Array.isArray(releaseInfo?.tickets)
+    ? releaseInfo.tickets
+    : [];
+
+  useEffect(() => {
+    setPage(0);
+  }, [releaseInfo.releaseId, tickets.length]);
+
+  const handleTicketClick = async (ticketKey: string) => {
+    setIsLoadingDetail(true);
+    setError(null);
+    setIsOpen(true);
+
+    try {
+      if (fullDetail?.key === ticketKey) {
+        setViewingTicket(fullDetail);
+        if (!fullDetail.type.toLowerCase().includes("sub")) {
+          setCurrentParent(fullDetail as JiraIssue);
+        }
+        return;
+      }
+
+      const releaseId = String(releaseInfo?.releaseId ?? "");
+
+      if (!releaseId) {
+        setError("Release id is missing");
+        return;
+      }
+
+      const result = await dispatch(
+        fetchTicketDetail({ releaseId, ticketKey }),
+      ).unwrap();
+
+      if (result) {
+        // If result is a parent issue, set as currentParent
+        if (!result.type.toLowerCase().includes("sub")) {
+          setCurrentParent(result as JiraIssue);
+        } else {
+          // If result is a sub-task, optionally fetch its parent
+          // (only if your API supports fetching parent by subtask; otherwise skip)
+          // Example: if result has parent key: result.parentKey -> dispatch fetchTicketDetail for parent
+        }
+        setViewingTicket(result);
+      }
+    } catch (err: any) {
+      console.error("Error fetching detail:", err);
+      setError(err?.message ?? "Cannot fetch task detail");
+    } finally {
+      setIsLoadingDetail(false);
+    }
+  };
+
+  const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
   };
 
@@ -50,21 +112,13 @@ export default function DashboardView({ data }: DashboardViewProps) {
     page * rowsPerPage + rowsPerPage,
   );
 
-  const handleOpenParent = (ticket: JiraIssue) => {
-    setCurrentParent(ticket);
-    setViewingTicket(ticket);
-  };
-
-  const handleClose = () => {
-    setViewingTicket(null);
-    setCurrentParent(null);
-  };
-
   return (
     <Box>
       <Box mb={3}>
+        <Typography variant="h5">{releaseInfo.releaseName}</Typography>
         <Typography variant="h6" color="textSecondary">
-          {releaseInfo.description || `Dashboard for ${releaseInfo.name}`}
+          {releaseInfo.description ||
+            `Dashboard for ${releaseInfo.releaseName}`}
         </Typography>
       </Box>
 
@@ -87,7 +141,7 @@ export default function DashboardView({ data }: DashboardViewProps) {
         <Grid size={{ xs: 12, sm: 4 }}>
           <StatCard
             title="Total Hours Spent"
-            value={(stats.totalTimeSeconds / 3600).toFixed(1) + " h"}
+            value={formatSecondsToHMS(stats.totalTimeSeconds || 0)}
             color="#ed6c02"
           />
         </Grid>
@@ -130,7 +184,7 @@ export default function DashboardView({ data }: DashboardViewProps) {
                   >
                     <Tooltip title={t.type}>
                       <Box display="flex" component="span">
-                        {<TicketTypeIcon type={t.type}></TicketTypeIcon>}
+                        <TicketTypeIcon type={t.type} />
                       </Box>
                     </Tooltip>
 
@@ -141,7 +195,7 @@ export default function DashboardView({ data }: DashboardViewProps) {
                         fontWeight: "bold",
                         lineHeight: 1,
                       }}
-                      onClick={() => handleOpenParent(t)}
+                      onClick={() => handleTicketClick(t.key)}
                     >
                       {t.key}
                     </span>
@@ -167,44 +221,71 @@ export default function DashboardView({ data }: DashboardViewProps) {
                         />
                       </Tooltip>
                     )}
-                    <Chip
-                      label={t.status}
-                      size="small"
-                      variant="outlined"
-                      color={
-                        t.statusCategory === "done"
-                          ? "success"
-                          : t.statusCategory === "indeterminate"
-                            ? "warning"
-                            : "default"
-                      }
+                    <Status
+                      status={t.status?.statusCategory?.name || "unKnow"}
+                      statusCategory={t.status?.statusCategory?.key}
                     />
                   </Box>
                 </Box>
               ))}
 
-              <TablePagination
-                component="div"
-                count={tickets.length}
-                page={page}
-                onPageChange={handleChangePage}
-                rowsPerPage={rowsPerPage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-                rowsPerPageOptions={[5, 10, 25]}
-                labelRowsPerPage="Rows:"
-              />
+              <Box
+                display="flex"
+                alignItems="center"
+                justifyContent="space-between"
+                ml={3}
+              >
+                <Box display="flex" maxWidth={400} overflow={"auto"}>
+                  {["Bug", "Task", "Story", "Sub-task"].map((type) => (
+                    <Typography
+                      key={type}
+                      display="flex"
+                      alignItems="center"
+                      gap={0.5}
+                      mr={2}
+                    >
+                      <TicketTypeIcon type={type} /> {type}
+                    </Typography>
+                  ))}
+                </Box>
+                <TablePagination
+                  component="div"
+                  count={tickets.length}
+                  page={page}
+                  onPageChange={handleChangePage}
+                  rowsPerPage={rowsPerPage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                  rowsPerPageOptions={[5, 10, 25]}
+                  labelRowsPerPage="Rows:"
+                />
+              </Box>
             </Box>
           )}
         </Box>
       </Paper>
 
       <TicketDetailDialog
-        open={!!viewingTicket}
-        onClose={handleClose}
+        open={isOpen}
+        onClose={() => {
+          setViewingTicket(null);
+          setIsOpen(false);
+        }}
         ticket={viewingTicket}
+        loading={isLoadingDetail}
+        onNavigate={(targetTicket) => {
+          setViewingTicket(targetTicket);
+        }}
         parentTicket={currentParent}
-        onNavigate={(targetTicket) => setViewingTicket(targetTicket)}
       />
+      <Snackbar
+        open={!!error}
+        autoHideDuration={6000}
+        onClose={() => setError(null)}
+      >
+        <Alert severity="error" onClose={() => setError(null)}>
+          {error}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }

@@ -1,15 +1,38 @@
-import type { JiraReleaseInfo, DashboardResponse } from "../types/jira";
 import axiosService from "./axiosClient";
+import type { PagedTickets, ReleaseGroup, SubTaskDTO } from "../types/jira";
 
 const jiraApi = {
-  getAllReleases: () => axiosService.get<JiraReleaseInfo[]>("/releases"),
+  getAllRelease: async () => {
+    try {
+      const response = await axiosService.get<ReleaseGroup[]>(`/dps/releases`);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching all releases:", error);
+    }
+  },
 
-  getDashboardByReleaseId: (id: string) =>
-    axiosService
-      .get<DashboardResponse[]>(`/dashboard?releaseId=${id}`)
-      .then((res) => {
-        return res.data[0];
-      }),
+  getReleaseDetailById: async (releaseId: string) => {
+    try {
+      const response = await axiosService.get<PagedTickets>(
+        `/dps/release/${releaseId}`,
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching release by id:", error);
+      throw error;
+    }
+  },
+
+  getSubtaskByKey: async (key: string) => {
+    try {
+      const response = await axiosService.get<SubTaskDTO[]>(
+        `/dps/tickets/${key}`,
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching subtask by key:", error);
+    }
+  },
 };
 
 export default jiraApi;

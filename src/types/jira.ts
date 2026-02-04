@@ -1,72 +1,68 @@
-export interface JiraUser {
-  accountId: string;
-  displayName: string;
-  avatarUrl: string;
+export interface AvatarUrls {
+  sm: string;
+  md: string;
+  lg: string;
+  xl: string;
 }
 
-export interface JiraSprint {
-  id: number;
-  name: string;
-  state: "active" | "closed" | "future";
+export interface Assignee {
+  displayName: string;
+  emailAddress: string;
+  avatarUrls: AvatarUrls;
+}
+
+export interface CountSummary {
+  // release, task
+  reopenCount: number;
+  prCount: number;
+  commentCount: number;
+}
+
+export interface SprintDTO {
+  sprintId: number;
+  sprintName: string;
+  state: string;
+  boardId: number;
   startDate: string;
   endDate: string;
-  completeDate?: string;
 }
 
-export interface JiraReleaseInfo {
-  id: string;
-  name: string;
-  description?: string;
-}
-
-export interface GitStats {
-  branchName: string;
-  commitCount: number;
-  prCount: number;
-  lastCommitDate?: string;
-}
-
-interface BaseTicket {
+export interface SubTaskDTO {
+  ticketId: string;
   key: string;
   summary: string;
-  description?: string;
-  status: string;
-  statusCategory: "new" | "indeterminate" | "done";
-
-  type: "Story" | "Task" | "Bug" | "Sub-task";
+  type: string;
   priority: string;
+  status: string;
+  description: string;
+  assignee: Assignee;
+  countSummary: CountSummary;
+  timespent: string;
   created: string;
-  dueDate: string | null;
-  timeSpentSeconds: number | null;
-  assignee?: JiraUser;
-
-  sprint?: JiraSprint;
-  release?: JiraReleaseInfo;
 }
 
-export interface JiraSubtask extends BaseTicket {
-  type: "Sub-task";
-  parentKey: string;
+export interface TicketDTO {
+  ticketId: string;
+  key: string;
+  summary: string;
+  type: string;
+  priority: string;
+  status: string;
+  description: string;
+  assignee: Assignee;
+  timespent: string;
+  storyPoints: number;
+  sprints: SprintDTO[];
+  countSummary: CountSummary;
+  created: string;
 }
 
-export interface JiraIssue extends BaseTicket {
-  type: "Story" | "Task" | "Bug";
-  storyPoints: number | null;
-  reopenCount: number;
-
-  gitStats?: GitStats;
-
-  subtasks: JiraSubtask[];
+export interface PagedTickets {
+  tickets: TicketDTO[];
+  nextPageToken: string;
 }
 
-export interface DashboardResponse {
-  releaseInfo: JiraReleaseInfo;
-  stats: {
-    totalTicketCount: number;
-    totalStoryPoints: number;
-    totalTimeSeconds: number;
-  };
-  tickets: JiraIssue[];
+export interface ReleaseGroup {
+  releaseId: string;
+  releaseName: string;
 }
-
-export type TicketDetailType = JiraIssue | JiraSubtask;

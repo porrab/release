@@ -1,0 +1,4 @@
+{
+  "/releases/:id/tickets": "/tickets?releaseId=:id",
+  "/releases/:id/tickets/:key": "/tickets?key=:key"
+}

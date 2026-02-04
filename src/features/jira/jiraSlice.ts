@@ -1,81 +1,79 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import jiraApi from "../../api/jiraApi";
-import type { DashboardResponse, JiraReleaseInfo } from "../../types/jira";
+import type { SubTaskDTO } from "../../types/jira";
 
-export const fetchReleases = createAsyncThunk(
-  "jira/fetchReleases",
-  async (_, { rejectWithValue }) => {
-    try {
-      // await new Promise((resolve) => setTimeout(resolve, 2000));
-      const response = await jiraApi.getAllReleases();
-      return response.data;
-    } catch (err: any) {
-      return rejectWithValue(`fetchReleases failed: ${err}`);
-    }
-  },
-);
-
-export const fetchDashboardByRelease = createAsyncThunk(
-  "/jira/fetchDashboardByRelease",
-  async (releaseId: string, { rejectWithValue }) => {
-    try {
-      const response = await jiraApi.getDashboardByReleaseId(releaseId);
-      return response;
-    } catch (err: any) {
-      return rejectWithValue(`fetchReleasesById failed: ${err}`);
-    }
-  },
-);
-
-export interface JiraState {
-  releaseList: JiraReleaseInfo[];
+interface JiraState {
   dashboardDetail: DashboardResponse | null;
-
+  ticketSubtaskList: SubTaskDTO[] | null;
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
 }
 
 const initialState: JiraState = {
-  releaseList: [],
   dashboardDetail: null,
+  ticketSubtaskList: null,
   status: "idle",
   error: null,
 };
 
-export const releaseSlice = createSlice({
-  name: "releases",
+export const fetchReleaseById = createAsyncThunk(
+  "jira/fetchDashboardByRelease",
+  async (releaseId: string, { rejectWithValue }) => {
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const response = await jiraApi.getReleaseById(releaseId);
+      return response;
+    } catch (err: any) {
+      return rejectWithValue(`fetchDashboardByRelease failed: ${err}`);
+    }
+  },
+);
+
+export const fetchTicketDetail = createAsyncThunk(
+  "jira/fetchTicketDetail",
+  async (key: string, { rejectWithValue }) => {
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const response = await jiraApi.getSubtaskByKey(key);
+      return response;
+    } catch (err: any) {
+      rejectWithValue(`fetchTicketDetail failed: ${err}`);
+    }
+  },
+);
+
+const jiraSlice = createSlice({
+  name: "jira",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    // fetch release
     builder
-      .addCase(fetchReleases.pending, (state) => {
+      .addCase(fetchReleaseById.pending, (state) => {
         state.status = "loading";
         state.error = null;
       })
-      .addCase(fetchReleases.fulfilled, (state, action) => {
-        state.releaseList = action.payload;
-        state.status = "succeeded";
-      })
-      .addCase(fetchReleases.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.payload as string;
-      })
-      // fetch release by id
-      .addCase(fetchDashboardByRelease.pending, (state) => {
-        state.status = "loading";
-        state.error = null;
-      })
-      .addCase(fetchDashboardByRelease.fulfilled, (state, action) => {
+      .addCase(fetchReleaseById.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.dashboardDetail = action.payload;
       })
-      .addCase(fetchDashboardByRelease.rejected, (state, action) => {
+      .addCase(fetchReleaseById.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload as string;
+      })
+
+      // get ticket detail
+      .addCase(fetchTicketDetail.pending, (state) => {
+        state.error = null;
+      })
+      .addCase(fetchTicketDetail.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.ticketDetail = action.payload || null;
+      })
+      .addCase(fetchTicketDetail.rejected, (state, action) => {
+        state.error = action.payload as string;
+        state.status = "failed";
       });
   },
 });
 
-const releaseReducer = releaseSlice.reducer;
-export default releaseReducer;
+export default jiraSlice.reducer;
