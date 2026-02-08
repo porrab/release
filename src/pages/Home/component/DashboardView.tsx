@@ -22,14 +22,13 @@ import Status from "./Status";
 import { useAppDispatch } from "../../../hook/hook";
 import { fetchTicketDetail } from "../../../features/jira/jiraSlice";
 import { useAlert } from "../../../components/AlertContext";
-import jiraApi from "../../../api/jiraApi";
 
 interface DashboardViewProps {
   data: {
     releaseId?: string;
     releaseName: string;
     tickets: TicketDTO[];
-    nextPageToken?: string | null;
+
     stats?: {
       totalTicketCount: number;
       totalStoryPoints: number;
@@ -39,7 +38,8 @@ interface DashboardViewProps {
 }
 
 export default function DashboardView({ data }: DashboardViewProps) {
-  const { releaseName, tickets: initialTickets = [], stats, releaseId } = data;
+  const { releaseName, tickets = [], stats } = data;
+
   const [viewingTicket, setViewingTicket] = useState<
     TicketDTO | SubTaskDTO | null
   >(null);
@@ -52,19 +52,6 @@ export default function DashboardView({ data }: DashboardViewProps) {
   const { push } = useAlert();
 
   const dispatch = useAppDispatch();
-
-  const [tickets, setTickets] = useState<TicketDTO[]>(initialTickets);
-  const [nextPageToken, setNextPageToken] = useState<string | null>(
-    data.nextPageToken ?? null,
-  );
-  const [loadingMore, setLoadingMore] = useState(false);
-  const [hasMore, setHasMore] = useState<boolean>(!!data.nextPageToken);
-
-  useEffect(() => {
-    setTickets(initialTickets);
-    setNextPageToken(data.nextPageToken ?? null);
-    setHasMore(!!data.nextPageToken);
-  }, [releaseName, initialTickets, data.nextPageToken]);
 
   useEffect(() => {
     setPage(0);
@@ -109,37 +96,6 @@ export default function DashboardView({ data }: DashboardViewProps) {
     page * rowsPerPage,
     page * rowsPerPage + rowsPerPage,
   );
-
-  const handleLoadMore = async () => {
-    if (!releaseId) return;
-    if (!hasMore || loadingMore) return;
-    setLoadingMore(true);
-    setError(null);
-    try {
-      const resp = await jiraApi.fetchTicketsPage(releaseId, {
-        nextPageToken: nextPageToken ?? undefined,
-        pageSize: 30,
-      });
-      const incoming = (resp.tickets ?? []) as TicketDTO[];
-      setTickets((prev) => {
-        const map = new Map<string, TicketDTO>();
-        prev.forEach((t) => map.set(t.key, t));
-        incoming.forEach((t) => map.set(t.key, t));
-        return Array.from(map.values());
-      });
-      setNextPageToken(resp.nextPageToken ?? null);
-      setHasMore(!!resp.nextPageToken);
-    } catch (err: any) {
-      console.error("Load more error", err);
-      setError(err?.message ?? "Failed to load more tickets");
-      push({
-        severity: "error",
-        message: err?.message ?? "Failed to load more tickets",
-      });
-    } finally {
-      setLoadingMore(false);
-    }
-  };
 
   return (
     <Box>
