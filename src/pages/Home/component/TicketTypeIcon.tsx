@@ -2,22 +2,30 @@ import BugReportIcon from "@mui/icons-material/BugReport";
 import BuildIcon from "@mui/icons-material/Build";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import AutoStoriesIcon from "@mui/icons-material/AutoStories";
+import { Tooltip } from "@mui/material";
 
 interface TicketTypeIconProps {
   type: string;
+  description?: string;
 }
 
 export default function TicketTypeIcon({ type }: TicketTypeIconProps) {
+  let element;
   switch (type) {
     case "Bug":
-      return <BugReportIcon color="error" fontSize="small" />;
+      element = <BugReportIcon color="error" fontSize="small" />;
+      break;
     case "Story":
-      return <AutoStoriesIcon color="success" fontSize="small" />;
+      element = <AutoStoriesIcon color="success" fontSize="small" />;
+      break;
     case "Task":
-      return <BuildIcon color="primary" fontSize="small" />;
+      element = <BuildIcon color="primary" fontSize="small" />;
+      break;
     case "Sub-task":
-      return <CheckBoxIcon color="action" fontSize="small" />;
+      element = <CheckBoxIcon color="action" fontSize="small" />;
+      break;
     default:
-      return <CheckBoxIcon color="action" fontSize="small" />;
+      element = <CheckBoxIcon color="action" fontSize="small" />;
   }
+  return <Tooltip title={type}>{element}</Tooltip>;
 }

@@ -2,354 +2,355 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
-  DialogActions,
-  Button,
+  IconButton,
   Typography,
-  Divider,
   Box,
-  Avatar,
-  Breadcrumbs,
-  Link,
+  Divider,
   Grid,
-  Skeleton,
-  Stack,
-  Tooltip,
+  Avatar,
+  CircularProgress,
   Chip,
+  Stack,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Tooltip,
 } from "@mui/material";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-
-import type { JiraIssue, TicketDetailType } from "../../../types/jira";
+import CloseIcon from "@mui/icons-material/Close";
+import type { TicketDTO, SubTaskDTO, SprintDTO } from "../../../types/jira";
 import Status from "./Status";
+import TicketTypeIcon from "./TicketTypeIcon";
+import formatSecondsToHMS from "../../../utils/convertTime";
 import { formatDate } from "../../../utils/formatDate";
+import Priority from "./Priority";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeSanitize from "rehype-sanitize";
+import { mdComponents } from "./MarkDownMap";
 
 interface TicketDetailDialogProps {
   open: boolean;
   onClose: () => void;
-  ticket: TicketDetailType | null;
-  onNavigate?: (ticket: TicketDetailType) => void;
-  parentTicket?: JiraIssue | null;
+  ticket: TicketDTO | SubTaskDTO | null;
   loading?: boolean;
+  onNavigate?: (ticket: TicketDTO | SubTaskDTO) => void;
 }
+
+function getInitials(name?: string) {
+  if (!name) return "";
+  return name
+    .split(" ")
+    .map((s) => s[0])
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
+}
+
+const getSprintColor = (state?: string) => {
+  const s = (state || "").toLowerCase();
+  if (s.includes("active") || s.includes("in progress"))
+    return { bgcolor: "#e3f2fd", color: "#1565c0" };
+  if (s.includes("closed") || s.includes("completed"))
+    return { bgcolor: "#e8f5e9", color: "#2e7d32" };
+  if (s.includes("future") || s.includes("planned"))
+    return { bgcolor: "#fff8e1", color: "#f57f17" };
+  return { bgcolor: "#f5f5f5", color: "#616161" };
+};
 
 export default function TicketDetailDialog({
   open,
   onClose,
   ticket,
-  onNavigate,
-  parentTicket,
   loading = false,
 }: TicketDetailDialogProps) {
-  if (!open) return null;
+  if (!ticket && !loading) return null;
 
-  const isSubtask = ticket?.type?.toLowerCase().includes("sub");
+  const timespent = Number((ticket as any)?.timespent) || 0;
+  const storyPoints =
+    "storyPoints" in (ticket || {})
+      ? (ticket as TicketDTO).storyPoints
+      : undefined;
+
+  const subtasks = (ticket as any)?.subtasks ?? [];
+  const assignee = (ticket as any)?.assignee as
+    | {
+        displayName?: string;
+        emailAddress?: string;
+        avatarUrls?: { md?: string };
+      }
+    | undefined;
+
+  // normalize sprints: TicketDTO has sprints: SprintDTO[]
+  const sprints: SprintDTO[] = Array.isArray((ticket as any)?.sprints)
+    ? (ticket as any).sprints
+    : [];
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth>
-      {/* -------------------- Header -------------------- */}
-      <DialogTitle>
-        {loading ? (
-          <Box>
-            <Skeleton variant="text" width={120} height={24} sx={{ mb: 1 }} />
-            <Skeleton variant="text" width="60%" height={32} />
-          </Box>
-        ) : ticket ? (
-          <>
-            {isSubtask && parentTicket ? (
-              <Breadcrumbs aria-label="breadcrumb" sx={{ mb: 1 }}>
-                <Link
-                  underline="hover"
-                  color="inherit"
-                  sx={{
-                    cursor: "pointer",
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                  onClick={() => onNavigate?.(parentTicket)}
-                >
-                  {parentTicket.key}
-                </Link>
-                <Typography color="text.primary" fontWeight="bold">
-                  {ticket.key}
-                </Typography>
-              </Breadcrumbs>
-            ) : (
-              <Box display="flex" alignItems="center" gap={2}>
-                <Typography variant="h6" color="primary" fontWeight="bold">
-                  {ticket.key}
-                </Typography>
-              </Box>
+      <DialogTitle sx={{ px: 3, py: 2 }}>
+        <Box display="flex" justifyContent="space-between" alignItems="center">
+          <Box display="flex" alignItems="center" gap={2}>
+            {ticket && (
+              <TicketTypeIcon
+                description="Issue Type"
+                type={(ticket as any).type}
+              />
             )}
+            <Box>
+              <Typography variant="h6" component="div">
+                {ticket?.key ?? ""}
+              </Typography>
+              <Typography
+                component="span"
+                variant="subtitle1"
+                color="text.secondary"
+              >
+                {ticket?.summary ?? ""}
+              </Typography>
+            </Box>
+          </Box>
 
-            <Typography
-              variant="body1"
-              color="textSecondary"
-              mt={isSubtask ? 0 : 0}
-            >
-              {ticket.summary}
-            </Typography>
-          </>
-        ) : null}
+          <IconButton onClick={onClose} size="small" aria-label="close">
+            <CloseIcon />
+          </IconButton>
+        </Box>
       </DialogTitle>
 
-      {/* -------------------- Content -------------------- */}
-      <DialogContent dividers>
+      <Divider />
+
+      <DialogContent sx={{ px: 3, py: 3 }}>
         {loading ? (
-          <Grid container spacing={3}>
-            <Grid size={{ xs: 12, md: 8 }}>
-              <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
-                Description
-              </Typography>
-              <Skeleton
-                variant="rectangular"
-                height={100}
-                sx={{ borderRadius: 1 }}
-              />
-
-              <Divider sx={{ my: 2 }} />
-
-              <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
-                Sub-tasks
-              </Typography>
-              <Box>
-                <Skeleton variant="rounded" height={50} sx={{ mb: 1 }} />
-                <Skeleton variant="rounded" height={50} sx={{ mb: 1 }} />
-              </Box>
-            </Grid>
-
-            <Grid size={{ xs: 12, md: 4 }}>
-              <Box display="flex" flexDirection="column" gap={3}>
-                {[1, 2, 3, 4].map((item) => (
-                  <Box key={item}>
-                    <Skeleton variant="text" width={80} sx={{ mb: 0.5 }} />
-                    <Skeleton variant="rounded" height={32} width="100%" />
-                  </Box>
-                ))}
-              </Box>
-            </Grid>
-          </Grid>
-        ) : ticket ? (
-          <Grid container spacing={3}>
-            {/* ------------------------- Left  ----------------------- */}
-
-            <Grid size={{ xs: 12, md: 8 }}>
-              <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
-                Description
-              </Typography>
-              <Typography variant="body2" sx={{ whiteSpace: "pre-wrap" }}>
-                {ticket.description || "No description provided."}
-              </Typography>
-
-              <Divider sx={{ my: 2 }} />
-
-              {!isSubtask && (ticket as JiraIssue).subtasks?.length > 0 && (
-                <>
-                  <Typography
-                    variant="subtitle1"
-                    fontWeight="bold"
-                    gutterBottom
+          <Box display="flex" justifyContent="center" py={6}>
+            <CircularProgress />
+          </Box>
+        ) : (
+          ticket && (
+            <Grid container spacing={3}>
+              {/* Left column: main content */}
+              <Grid size={{ xs: 12, md: 8 }}>
+                <Typography
+                  variant="subtitle2"
+                  color="text.secondary"
+                  gutterBottom
+                >
+                  Description
+                </Typography>
+                <Box
+                  mb={2}
+                  sx={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}
+                >
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    rehypePlugins={[rehypeSanitize]}
+                    components={mdComponents}
                   >
-                    Sub-tasks ({(ticket as JiraIssue).subtasks.length})
-                  </Typography>
-                  <Box
-                    sx={{
-                      maxHeight: 200,
-                      overflowY: "auto",
-                      pr: 1,
-                    }}
-                  >
-                    {(ticket as JiraIssue).subtasks.map((sub) => (
-                      <div
-                        key={sub.key}
-                        onClick={() => onNavigate?.(sub)}
-                        style={{ cursor: "pointer" }}
-                      >
-                        <Box
-                          display="flex"
-                          justifyContent="space-between"
-                          mb={1}
-                          p={1}
-                          bgcolor="#f9f9f9"
-                          borderRadius={1}
-                          sx={{
-                            "&:hover": { bgcolor: "#eee" },
-                          }}
-                        >
-                          <Box display="flex" gap={1}>
-                            <Typography
-                              variant="body2"
-                              fontWeight="bold"
-                              color="primary"
-                            >
-                              {sub.key}
-                            </Typography>
-                            <Typography variant="body2">
-                              {sub.summary}
-                            </Typography>
-                          </Box>
-                          <Status
-                            status={sub.status.name}
-                            statusCategory={sub.status.statusCategory.key}
-                          />
-                        </Box>
-                      </div>
-                    ))}
-                  </Box>
-                </>
-              )}
-            </Grid>
-            {/* ------------------------- Right  ----------------------- */}
-            <Grid size={{ xs: 12, md: 4 }}>
-              <Box display="flex" flexDirection="column" gap={2}>
-                {/* Status */}
-                <Box>
-                  <Typography variant="caption" color="textSecondary">
-                    Status
-                  </Typography>
-                  <Box mt={0.5}>
-                    <Status
-                      status={
-                        typeof ticket.status === "string"
-                          ? ticket.status
-                          : ticket.status?.name
-                      }
-                      statusCategory={
-                        typeof ticket.status === "string"
-                          ? "default"
-                          : ticket.status?.statusCategory?.key
-                      }
-                    />
-                  </Box>
+                    {ticket.description || "No description provided."}
+                  </ReactMarkdown>
                 </Box>
 
-                {/* Assignee */}
-                <Box>
-                  <Typography variant="caption" color="textSecondary">
-                    Assignee
-                  </Typography>
-                  <Box display="flex" alignItems="center" gap={1} mt={0.5}>
-                    <Avatar
-                      src={ticket.assignee?.avatarUrl}
-                      sx={{ width: 24, height: 24 }}
-                    />
-                    <Typography variant="body2">
-                      {ticket.assignee?.displayName || "Unassigned"}
+                {Array.isArray(subtasks) && subtasks.length > 0 && (
+                  <Box mt={2}>
+                    <Typography
+                      variant="subtitle2"
+                      color="text.secondary"
+                      gutterBottom
+                    >
+                      Subtasks
                     </Typography>
-                  </Box>
-                </Box>
-
-                {!isSubtask && (
-                  <Box>
-                    <Typography variant="caption" color="textSecondary">
-                      Sprint
-                    </Typography>
-                    <Box mt={0.5}>
-                      {(ticket as JiraIssue).sprint &&
-                      (ticket as JiraIssue).sprint.length > 0 ? (
-                        <Stack direction="column" spacing={1}>
-                          {(ticket as JiraIssue).sprint.map((sp, idx) => (
-                            <Box
-                              key={sp.sprintId || idx}
-                              display="flex"
-                              alignItems="center"
-                              gap={1}
-                            >
-                              <Chip
-                                label={sp.sprintName || `Sprint ${sp.sprintId}`}
-                                size="small"
-                                sx={{ mr: 1 }}
-                              />
-                              <Tooltip
-                                title={
-                                  sp.startDate || sp.endDate
-                                    ? `${formatDate(sp.startDate)} — ${formatDate(sp.endDate)}`
-                                    : "No dates"
-                                }
-                              >
-                                <Box
-                                  display="flex"
-                                  alignItems="center"
+                    <List dense>
+                      {subtasks.map((st: any) => (
+                        <ListItem key={st.key} disableGutters>
+                          <ListItemAvatar>
+                            <Avatar sx={{ width: 28, height: 28 }}>
+                              {getInitials(st.assignee?.displayName)}
+                            </Avatar>
+                          </ListItemAvatar>
+                          <ListItemText
+                            primary={
+                              <Box display="flex" alignItems="center" gap={1}>
+                                <Typography variant="body2" fontWeight="bold">
+                                  {st.key}
+                                </Typography>
+                                <Typography
+                                  variant="body2"
                                   color="text.secondary"
                                 >
-                                  <CalendarTodayIcon
-                                    fontSize="small"
-                                    sx={{ mr: 0.5 }}
-                                  />
-                                  <Typography variant="caption">
-                                    {sp.startDate || sp.endDate
-                                      ? `${formatDate(sp.startDate)} — ${formatDate(sp.endDate)}`
-                                      : "No dates"}
-                                  </Typography>
-                                </Box>
-                              </Tooltip>
-                            </Box>
-                          ))}
-                        </Stack>
-                      ) : (
-                        <Typography variant="body2">Not in a sprint</Typography>
-                      )}
+                                  {st.summary}
+                                </Typography>
+                              </Box>
+                            }
+                            secondary={
+                              <Typography
+                                variant="caption"
+                                color="text.secondary"
+                              >
+                                {(st.assignee?.displayName ?? "Unassigned") +
+                                  " • " +
+                                  (st.status ?? "")}
+                              </Typography>
+                            }
+                          />
+                        </ListItem>
+                      ))}
+                    </List>
+                  </Box>
+                )}
+              </Grid>
+
+              {/* Right column: meta */}
+              <Grid
+                sx={{
+                  display: "flex",
+                  position: { xs: "static", md: "sticky" },
+                  top: { xs: "auto", md: 24 },
+                  alignSelf: "flex-start",
+                  zIndex: { md: 1 },
+                }}
+                size={{ xs: 12, md: 4 }}
+              >
+                <Box bgcolor="#f8f9fa" p={2} borderRadius={2}>
+                  <Typography
+                    variant="subtitle2"
+                    gutterBottom
+                    color="text.secondary"
+                  >
+                    Assignee
+                  </Typography>
+
+                  {assignee?.displayName ? (
+                    <Box display="flex" alignItems="center" gap={1} mb={2}>
+                      <Avatar
+                        src={assignee.avatarUrls?.md}
+                        sx={{ width: 40, height: 40 }}
+                      >
+                        {getInitials(assignee.displayName)}
+                      </Avatar>
+                      <Box>
+                        <Typography variant="body2" fontWeight="bold">
+                          {assignee.displayName}
+                        </Typography>
+                        <Typography variant="caption" color="text.secondary">
+                          {assignee.emailAddress}
+                        </Typography>
+                      </Box>
                     </Box>
-                  </Box>
-                )}
-
-                {!isSubtask && (
-                  <Box>
-                    <Typography variant="caption" color="textSecondary">
-                      Story Points
+                  ) : (
+                    <Typography variant="body2" color="text.secondary" mb={2}>
+                      Unassigned
                     </Typography>
-                    <Typography variant="body1" fontWeight="bold">
-                      {(ticket as JiraIssue).storyPoints || "-"}
-                    </Typography>
-                  </Box>
-                )}
+                  )}
 
-                {!isSubtask && (
-                  <Box>
-                    <Box>
-                      <Typography variant="caption" color="textSecondary">
-                        Git Branch
+                  <Divider sx={{ my: 1 }} />
+
+                  <Typography variant="body2" mb={1}>
+                    <strong>Time Spent:</strong> {formatSecondsToHMS(timespent)}
+                  </Typography>
+
+                  <Typography
+                    variant="caption"
+                    display="block"
+                    color="text.secondary"
+                  >
+                    <strong>Created:</strong> {formatDate(ticket.created)}
+                  </Typography>
+
+                  {/* Related Sprints */}
+                  <Divider sx={{ my: 1 }} />
+                  <Box mt={1}>
+                    <Typography
+                      variant="subtitle2"
+                      gutterBottom
+                      color="text.secondary"
+                    >
+                      Related Sprints
+                    </Typography>
+
+                    {Array.isArray(sprints) && sprints.length > 0 ? (
+                      <Box display="flex" gap={1} flexWrap="wrap">
+                        {sprints.map((sp) => {
+                          const color = getSprintColor(sp.state);
+                          const start = sp?.startDate
+                            ? formatDate(sp.startDate)
+                            : "N/A";
+                          const end = sp?.endDate
+                            ? formatDate(sp.endDate)
+                            : "N/A";
+                          const title = `${sp.sprintName} • ${sp.state ?? "Unknown"} •
+                          Start: ${start} • End: ${end}`;
+                          return (
+                            <Tooltip
+                              key={sp.sprintId ?? sp.sprintName}
+                              title={title}
+                            >
+                              <Chip
+                                label={sp.sprintName}
+                                size="small"
+                                sx={{
+                                  backgroundColor: color.bgcolor,
+                                  color: color.color,
+                                  fontWeight: 600,
+                                  fontSize: "0.75rem",
+                                  borderRadius: 1,
+                                  height: 28,
+                                }}
+                              />
+                            </Tooltip>
+                          );
+                        })}
+                      </Box>
+                    ) : (
+                      <Typography variant="body2" color="text.secondary">
+                        No related sprints
                       </Typography>
+                    )}
+                  </Box>
+
+                  <Divider sx={{ my: 1 }} />
+                  <Stack direction="row" spacing={2} flexWrap="wrap" mt={2}>
+                    <Box>
                       <Typography
                         variant="caption"
                         display="block"
-                        sx={{
-                          fontFamily: "monospace",
-                          bgcolor: "#eee",
-                          p: 0.5,
-                        }}
+                        color="text.secondary"
                       >
-                        {(ticket as JiraIssue).gitStats?.branchName || "-"}
+                        Status
                       </Typography>
+                      <Status status={(ticket as any).status} />
                     </Box>
+
                     <Box>
-                      <Typography variant="caption" color="textSecondary">
-                        Pull Request count
+                      <Typography
+                        variant="caption"
+                        display="block"
+                        color="text.secondary"
+                      >
+                        Priority
                       </Typography>
-                      <Typography variant="body1" fontWeight="bold">
-                        {(ticket as JiraIssue).gitStats?.prCount || "-"}
-                      </Typography>
+                      <Priority priority={ticket.priority}></Priority>
                     </Box>
-                  </Box>
-                )}
-              </Box>
+
+                    {typeof storyPoints !== "undefined" && (
+                      <Box>
+                        <Typography
+                          variant="caption"
+                          display="block"
+                          color="text.secondary"
+                        >
+                          Story Points
+                        </Typography>
+                        <Typography variant="body2" fontWeight="bold">
+                          {storyPoints ?? 0}
+                        </Typography>
+                      </Box>
+                    )}
+                  </Stack>
+                </Box>
+              </Grid>
             </Grid>
-          </Grid>
-        ) : (
-          <Typography align="center" py={5} color="textSecondary">
-            No data available.
-          </Typography>
+          )
         )}
       </DialogContent>
-
-      <DialogActions>
-        {isSubtask && parentTicket && !loading && (
-          <Button onClick={() => onNavigate?.(parentTicket)} color="primary">
-            Back to Parent
-          </Button>
-        )}
-        <Button onClick={onClose} color="inherit">
-          Close
-        </Button>
-      </DialogActions>
     </Dialog>
   );
 }

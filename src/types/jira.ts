@@ -11,8 +11,7 @@ export interface Assignee {
   avatarUrls: AvatarUrls;
 }
 
-export interface CountSummary {
-  // release, task
+export interface BitBucketSummary {
   reopenCount: number;
   prCount: number;
   commentCount: number;
@@ -36,30 +35,38 @@ export interface SubTaskDTO {
   status: string;
   description: string;
   assignee: Assignee;
-  countSummary: CountSummary;
+  BitBucketSummary: BitBucketSummary;
   timespent: string;
   created: string;
+  storyPoints: number;
 }
 
 export interface TicketDTO {
-  ticketId: string;
-  key: string;
-  summary: string;
-  type: string;
-  priority: string;
-  status: string;
-  description: string;
-  assignee: Assignee;
-  timespent: string;
-  storyPoints: number;
-  sprints: SprintDTO[];
-  countSummary: CountSummary;
-  created: string;
+  ticketId: string; //
+  key: string; //
+  summary: string; //
+  type: string; //
+  priority: string; //
+  status: string; //
+  description: string; //
+  assignee: Assignee; //
+  timespent: string; //
+  storyPoints: number; //
+  sprints: SprintDTO[]; //
+  BitBucketSummary: BitBucketSummary; // ?
+  created: string; //
+  releaseName: string; //
+
+  startDate: string;
+  endDate: string;
 }
 
 export interface PagedTickets {
+  releaseId: string;
+  releaseName: string;
+
   tickets: TicketDTO[];
-  nextPageToken: string;
+  nextPageToken: string | null; // !!
 }
 
 export interface ReleaseGroup {

@@ -12,45 +12,63 @@ import {
 } from "@mui/material";
 
 import TicketDetailDialog from "./TicketDetailDialog";
-import type { JiraIssue, TicketDetailType } from "../../../types/jira";
+
+import type { TicketDTO, SubTaskDTO } from "../../../types/jira";
 import StatCard from "./StatCard";
 import TicketTypeIcon from "./TicketTypeIcon";
 import formatSecondsToHMS from "../../../utils/convertTime";
 import Status from "./Status";
 
-import { useAppDispatch, useAppSelector } from "../../../hook/hook";
+import { useAppDispatch } from "../../../hook/hook";
 import { fetchTicketDetail } from "../../../features/jira/jiraSlice";
-import type { DashboardResponse } from "../../../types/dashboard";
+import { useAlert } from "../../../components/AlertContext";
+import jiraApi from "../../../api/jiraApi";
 
 interface DashboardViewProps {
-  data: DashboardResponse;
+  data: {
+    releaseId?: string;
+    releaseName: string;
+    tickets: TicketDTO[];
+    nextPageToken?: string | null;
+    stats?: {
+      totalTicketCount: number;
+      totalStoryPoints: number;
+      totalTimeSeconds: number;
+    };
+  };
 }
 
 export default function DashboardView({ data }: DashboardViewProps) {
-  const { releaseInfo, stats } = data;
-
-  const [viewingTicket, setViewingTicket] = useState<TicketDetailType | null>(
-    null,
-  );
+  const { releaseName, tickets: initialTickets = [], stats, releaseId } = data;
+  const [viewingTicket, setViewingTicket] = useState<
+    TicketDTO | SubTaskDTO | null
+  >(null);
   const [isLoadingDetail, setIsLoadingDetail] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const [currentParent, setCurrentParent] = useState<JiraIssue | null>(null);
-
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const { push } = useAlert();
 
-  const fullDetail = useAppSelector((state) => state.releases.ticketDetail);
   const dispatch = useAppDispatch();
 
-  const tickets = Array.isArray(releaseInfo?.tickets)
-    ? releaseInfo.tickets
-    : [];
+  const [tickets, setTickets] = useState<TicketDTO[]>(initialTickets);
+  const [nextPageToken, setNextPageToken] = useState<string | null>(
+    data.nextPageToken ?? null,
+  );
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [hasMore, setHasMore] = useState<boolean>(!!data.nextPageToken);
+
+  useEffect(() => {
+    setTickets(initialTickets);
+    setNextPageToken(data.nextPageToken ?? null);
+    setHasMore(!!data.nextPageToken);
+  }, [releaseName, initialTickets, data.nextPageToken]);
 
   useEffect(() => {
     setPage(0);
-  }, [releaseInfo.releaseId, tickets.length]);
+  }, [releaseName, tickets.length]);
 
   const handleTicketClick = async (ticketKey: string) => {
     setIsLoadingDetail(true);
@@ -58,39 +76,19 @@ export default function DashboardView({ data }: DashboardViewProps) {
     setIsOpen(true);
 
     try {
-      if (fullDetail?.key === ticketKey) {
-        setViewingTicket(fullDetail);
-        if (!fullDetail.type.toLowerCase().includes("sub")) {
-          setCurrentParent(fullDetail as JiraIssue);
-        }
-        return;
-      }
+      const result = await dispatch(fetchTicketDetail(ticketKey)).unwrap();
 
-      const releaseId = String(releaseInfo?.releaseId ?? "");
-
-      if (!releaseId) {
-        setError("Release id is missing");
-        return;
-      }
-
-      const result = await dispatch(
-        fetchTicketDetail({ releaseId, ticketKey }),
-      ).unwrap();
-
-      if (result) {
-        // If result is a parent issue, set as currentParent
-        if (!result.type.toLowerCase().includes("sub")) {
-          setCurrentParent(result as JiraIssue);
-        } else {
-          // If result is a sub-task, optionally fetch its parent
-          // (only if your API supports fetching parent by subtask; otherwise skip)
-          // Example: if result has parent key: result.parentKey -> dispatch fetchTicketDetail for parent
-        }
-        setViewingTicket(result);
+      if (result && result.length > 0) {
+        setViewingTicket(result[0]);
+      } else {
+        const mainTicket = tickets.find((t) => t.key === ticketKey);
+        if (mainTicket) setViewingTicket(mainTicket);
       }
     } catch (err: any) {
       console.error("Error fetching detail:", err);
-      setError(err?.message ?? "Cannot fetch task detail");
+      setError(err ?? "Cannot fetch task detail");
+
+      push({ severity: "error", message: err ?? "Cannot fetch task detail" });
     } finally {
       setIsLoadingDetail(false);
     }
@@ -112,40 +110,72 @@ export default function DashboardView({ data }: DashboardViewProps) {
     page * rowsPerPage + rowsPerPage,
   );
 
+  const handleLoadMore = async () => {
+    if (!releaseId) return;
+    if (!hasMore || loadingMore) return;
+    setLoadingMore(true);
+    setError(null);
+    try {
+      const resp = await jiraApi.fetchTicketsPage(releaseId, {
+        nextPageToken: nextPageToken ?? undefined,
+        pageSize: 30,
+      });
+      const incoming = (resp.tickets ?? []) as TicketDTO[];
+      setTickets((prev) => {
+        const map = new Map<string, TicketDTO>();
+        prev.forEach((t) => map.set(t.key, t));
+        incoming.forEach((t) => map.set(t.key, t));
+        return Array.from(map.values());
+      });
+      setNextPageToken(resp.nextPageToken ?? null);
+      setHasMore(!!resp.nextPageToken);
+    } catch (err: any) {
+      console.error("Load more error", err);
+      setError(err?.message ?? "Failed to load more tickets");
+      push({
+        severity: "error",
+        message: err?.message ?? "Failed to load more tickets",
+      });
+    } finally {
+      setLoadingMore(false);
+    }
+  };
+
   return (
     <Box>
       <Box mb={3}>
-        <Typography variant="h5">{releaseInfo.releaseName}</Typography>
+        <Typography variant="h5">{releaseName}</Typography>
         <Typography variant="h6" color="textSecondary">
-          {releaseInfo.description ||
-            `Dashboard for ${releaseInfo.releaseName}`}
+          Dashboard for {releaseName}
         </Typography>
       </Box>
 
-      {/* Stat Cards */}
-      <Grid container spacing={3} sx={{ mb: 4 }}>
-        <Grid size={{ xs: 12, sm: 4 }}>
-          <StatCard
-            title="Total Tickets"
-            value={stats.totalTicketCount}
-            color="#1976d2"
-          />
+      {/* Stat Cards stats */}
+      {stats && (
+        <Grid container spacing={3} sx={{ mb: 4 }}>
+          <Grid size={{ xs: 12, sm: 4 }}>
+            <StatCard
+              title="Total Tickets"
+              value={stats.totalTicketCount}
+              color="#1976d2"
+            />
+          </Grid>
+          <Grid size={{ xs: 12, sm: 4 }}>
+            <StatCard
+              title="Total Story Points"
+              value={stats.totalStoryPoints}
+              color="#2e7d32"
+            />
+          </Grid>
+          <Grid size={{ xs: 12, sm: 4 }}>
+            <StatCard
+              title="Total Hours Spent"
+              value={formatSecondsToHMS(stats.totalTimeSeconds || 0)}
+              color="#ed6c02"
+            />
+          </Grid>
         </Grid>
-        <Grid size={{ xs: 12, sm: 4 }}>
-          <StatCard
-            title="Total Story Points"
-            value={stats.totalStoryPoints}
-            color="#2e7d32"
-          />
-        </Grid>
-        <Grid size={{ xs: 12, sm: 4 }}>
-          <StatCard
-            title="Total Hours Spent"
-            value={formatSecondsToHMS(stats.totalTimeSeconds || 0)}
-            color="#ed6c02"
-          />
-        </Grid>
-      </Grid>
+      )}
 
       {/* Ticket Table Section */}
       <Paper sx={{ width: "100%", overflow: "hidden" }}>
@@ -173,7 +203,6 @@ export default function DashboardView({ data }: DashboardViewProps) {
                   gap={2}
                   sx={{ "&:hover": { bgcolor: "#fafafa" } }}
                 >
-                  {/* Icon + Key */}
                   <Box
                     sx={{
                       minWidth: "140px",
@@ -201,7 +230,6 @@ export default function DashboardView({ data }: DashboardViewProps) {
                     </span>
                   </Box>
 
-                  {/* Summary */}
                   <Typography
                     variant="body2"
                     sx={{ flexGrow: 1, overflow: "hidden" }}
@@ -211,20 +239,17 @@ export default function DashboardView({ data }: DashboardViewProps) {
                     {t.summary}
                   </Typography>
 
-                  {/* Status & Assignee */}
                   <Box display="flex" alignItems="center" gap={2}>
                     {t.assignee && (
                       <Tooltip title={t.assignee.displayName}>
                         <Avatar
-                          src={t.assignee.avatarUrl}
+                          src={t.assignee.avatarUrls?.md}
                           sx={{ width: 24, height: 24 }}
                         />
                       </Tooltip>
                     )}
-                    <Status
-                      status={t.status?.statusCategory?.name || "unKnow"}
-                      statusCategory={t.status?.statusCategory?.key}
-                    />
+
+                    <Status status={t.status} />
                   </Box>
                 </Box>
               ))}
@@ -255,7 +280,7 @@ export default function DashboardView({ data }: DashboardViewProps) {
                   onPageChange={handleChangePage}
                   rowsPerPage={rowsPerPage}
                   onRowsPerPageChange={handleChangeRowsPerPage}
-                  rowsPerPageOptions={[5, 10, 25]}
+                  rowsPerPageOptions={[5, 15, 30]}
                   labelRowsPerPage="Rows:"
                 />
               </Box>
@@ -273,9 +298,8 @@ export default function DashboardView({ data }: DashboardViewProps) {
         ticket={viewingTicket}
         loading={isLoadingDetail}
         onNavigate={(targetTicket) => {
-          setViewingTicket(targetTicket);
+          setViewingTicket(targetTicket as any);
         }}
-        parentTicket={currentParent}
       />
       <Snackbar
         open={!!error}
