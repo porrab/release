@@ -7,24 +7,15 @@ interface JiraState {
   dashboardDetail: PagedTickets | null;
   ticketSubtaskList: SubTaskDTO[] | null;
   status: "idle" | "loading" | "succeeded" | "failed";
+  isLoadingMore: boolean;
   error: string | null;
 }
-function loadAllReleasesFromStorage(): ReleaseGroup[] {
-  try {
-    const raw = localStorage.getItem("all-release");
-    if (!raw) return [];
-    const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : [];
-  } catch {
-    localStorage.removeItem("all-release");
-    return [];
-  }
-}
 const initialState: JiraState = {
-  allReleases: loadAllReleasesFromStorage() || [],
+  allReleases: [],
   dashboardDetail: null,
   ticketSubtaskList: null,
   status: "idle",
+  isLoadingMore: false,
   error: null,
 };
 
@@ -43,9 +34,15 @@ export const fetchAllReleases = createAsyncThunk<
 
 export const fetchReleaseById = createAsyncThunk(
   "jira/fetchDashboardByRelease",
-  async (releaseId: string, { rejectWithValue }) => {
+  async (
+    args: { releaseId: string; nextPageToken?: string },
+    { rejectWithValue },
+  ) => {
     try {
-      const response = await jiraApi.fetchTicketsPage(releaseId);
+      const response = await jiraApi.fetchTicketsPage(
+        args.releaseId,
+        args.nextPageToken ? { nextPageToken: args.nextPageToken } : undefined,
+      );
       return response;
     } catch (err: any) {
       return rejectWithValue(err.message);
@@ -98,11 +95,6 @@ const jiraSlice = createSlice({
         state.status = "succeeded";
         state.error = null;
         state.allReleases = action.payload || [];
-        if (Array.isArray(action.payload)) {
-          try {
-            localStorage.setItem("all-release", JSON.stringify(action.payload));
-          } catch {}
-        }
       })
       .addCase(fetchAllReleases.rejected, (state, action) => {
         state.status = "failed";
@@ -110,16 +102,33 @@ const jiraSlice = createSlice({
       })
 
       //  fetchReleaseById
-      .addCase(fetchReleaseById.pending, (state) => {
-        state.status = "loading";
+      .addCase(fetchReleaseById.pending, (state, action) => {
+        if (action.meta.arg.nextPageToken) {
+          state.isLoadingMore = true;
+        } else {
+          state.status = "loading";
+        }
         state.error = null;
       })
       .addCase(fetchReleaseById.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.dashboardDetail = action.payload || null;
+        state.isLoadingMore = false;
+
+        if (action.meta.arg.nextPageToken && state.dashboardDetail) {
+          state.dashboardDetail.tickets = [
+            ...state.dashboardDetail.tickets,
+            ...(action.payload.tickets || []),
+          ];
+          state.dashboardDetail.nextPageToken = action.payload.nextPageToken;
+        } else {
+          state.dashboardDetail = action.payload || null;
+        }
       })
       .addCase(fetchReleaseById.rejected, (state, action) => {
-        state.status = "failed";
+        if (!action.meta.arg.nextPageToken) {
+          state.status = "failed";
+        }
+        state.isLoadingMore = false;
         state.error = action.payload as string;
       })
 

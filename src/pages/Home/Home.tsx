@@ -1,108 +1,71 @@
 import { useEffect, useState } from "react";
-import {
-  Box,
-  CircularProgress,
-  Typography,
-  Container,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  type SelectChangeEvent,
-  Paper,
-  Skeleton,
-  Tooltip,
-  IconButton,
-} from "@mui/material";
+import { Box, Typography, Container, FormControl, Paper } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../hook/hook";
+import type { ReleaseGroup } from "../../types/jira";
+import { useAlert } from "../../components/AlertContext";
+import ReleaseSelect from "./component/ReleaseSelect";
+import { sortReleasesDesc } from "../../utils/releaseUtils";
+import { Outlet, useNavigate } from "react-router-dom";
 import {
   fetchAllReleases,
-  fetchReleaseById,
+  setSelectedRelease,
   updateCurrentRelease,
-} from "../../features/jira/jiraSlice";
-import DashboardView from "./component/DashboardView";
-import type { ReleaseGroup, PagedTickets } from "../../types/jira";
-import { useAlert } from "../../components/AlertContext";
-import { Refresh } from "@mui/icons-material";
+} from "../../features/releaseSlice/releaseSlice";
+
+import AppBottomNavigation from "./component/AppBottomNavigation";
 
 export default function Home() {
   const dispatch = useAppDispatch();
-  const [selectedRelease, setSelectedRelease] = useState<ReleaseGroup | null>(
-    null,
-  );
-  const [currentPage, setCurrentPage] = useState<PagedTickets | undefined>();
-  const [loadingRelease, setLoadingRelease] = useState(false);
   const { push } = useAlert();
+  const [currentPage, setCurrentPage] = useState<number | string>(
+    "performance",
+  );
+
+  const handleChange = (newValue: number | string) => {
+    setCurrentPage(newValue);
+    if (newValue === "performance") navigate("/performance");
+    else if (newValue === "favorites") navigate("/test");
+    else if (newValue === "nearby") navigate("/nearby");
+  };
+  const navigate = useNavigate();
 
   const {
     allReleases = [],
-    dashboardDetail,
     status,
-    error,
+    selectedRelease,
   } = useAppSelector((state) => state.releases);
 
-  const extractNumbers = (text: string): string => {
-    return text.replace(/[^0-9.]/g, "");
-  };
+  const [loadingRelease, setLoadingRelease] = useState(false);
 
+  // initial load of releases
   useEffect(() => {
-    if (!allReleases) {
-      dispatch(fetchAllReleases());
+    if (allReleases.length === 0 && status === "idle") {
+      dispatch(fetchAllReleases())
+        .unwrap()
+        .catch((err: string) => {
+          console.error("Caught error:", err);
+          push({
+            severity: "error",
+            message: err || "Failed to load releases",
+          });
+        });
     }
-  }, [dispatch]);
+  }, [dispatch, allReleases, status]);
 
+  // when releases change, pick default
   useEffect(() => {
     if (allReleases.length > 0 && !selectedRelease) {
-      const sortedDesc = [...allReleases].sort((a, b) =>
-        b.releaseName.localeCompare(a.releaseName, undefined, {
-          numeric: true,
-          sensitivity: "base",
-        }),
-      );
-      const first = sortedDesc[0];
-      setSelectedRelease(first);
+      const first = sortReleasesDesc(allReleases)[0];
+      dispatch(setSelectedRelease(first));
+    }
+  }, [allReleases, selectedRelease, dispatch]);
 
-      const releaseNumber = extractNumbers(first.releaseName);
-      if (releaseNumber) {
-        dispatch(fetchReleaseById(releaseNumber))
-          .unwrap()
-          .then(() => {
-            push({ severity: "success", message: "Load release success" });
-          })
-          .catch((err: string) => {
-            push({
-              severity: "error",
-              message: err || "Failed to load release detail",
-            });
-          });
-      }
-    }
-    if (selectedRelease) {
-      const found = allReleases.find(
-        (r) => r.releaseId === selectedRelease.releaseId,
-      );
-      if (!found) setSelectedRelease(null);
-    }
-  }, [allReleases, selectedRelease, dispatch, push]);
-
-  useEffect(() => {
-    if (dashboardDetail) {
-      setCurrentPage(dashboardDetail);
-    }
-  }, [dashboardDetail]);
-
-  const handleReleaseChange = (event: SelectChangeEvent<string>) => {
-    const value = event.target.value as string;
-    const found = allReleases.find((r) => r.releaseName === value) || null;
-    setSelectedRelease(found);
-    if (found) {
-      const releaseNumber = extractNumbers(found.releaseName);
-      if (releaseNumber) {
-        dispatch(fetchReleaseById(releaseNumber));
-      }
-    }
+  // handleSelect
+  const handleSelect = (release: ReleaseGroup | null) => {
+    dispatch(setSelectedRelease(release));
   };
 
+  // refreshRelease
   const refreshRelease = async () => {
     try {
       setLoadingRelease(true);
@@ -110,19 +73,11 @@ export default function Home() {
       const releases = await dispatch(fetchAllReleases()).unwrap();
       push({ severity: "success", message: "Releases updated" });
       if (Array.isArray(releases) && releases.length > 0) {
-        const sortedDesc = [...releases].sort((a, b) =>
-          b.releaseName.localeCompare(a.releaseName, undefined, {
-            numeric: true,
-            sensitivity: "base",
-          }),
-        );
-        setSelectedRelease(sortedDesc[0]);
+        const sortedDesc = sortReleasesDesc(releases);
+        dispatch(setSelectedRelease(sortedDesc[0]));
       }
     } catch (err: any) {
-      push({
-        severity: "error",
-        message: err?.toString() || "Failed to refresh releases",
-      });
+      push({ severity: "error", message: err || "Failed to refresh releases" });
     } finally {
       setLoadingRelease(false);
     }
@@ -140,156 +95,43 @@ export default function Home() {
             borderRadius: 2,
             display: "flex",
             justifyContent: "space-between",
+            alignItems: "center",
+            gap: 2,
           }}
         >
           <Box>
             <Typography variant="h4" fontWeight="bold" gutterBottom>
-              Jira Release Dashboard
+              Overview
             </Typography>
             <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
-              Select a release to view summary data and ticket status.
+              Select a release to view summary data.
             </Typography>
           </Box>
 
           <FormControl sx={{ minWidth: 320 }}>
-            {loadingRelease ? (
-              <Box>
-                <Skeleton
-                  variant="text"
-                  width={140}
-                  height={28}
-                  sx={{ mb: 1 }}
-                />
-
-                <Skeleton
-                  variant="rectangular"
-                  width="100%"
-                  height={40}
-                  sx={{ borderRadius: 1 }}
-                />
-              </Box>
-            ) : (
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  width: "50%",
-                  minWidth: 320,
-                }}
-              >
-                <Tooltip title="Update Release">
-                  <IconButton
-                    onClick={refreshRelease}
-                    disabled={loadingRelease || status === "loading"}
-                    size="medium"
-                    sx={{
-                      mr: 1,
-                      p: 1,
-                      minWidth: 40,
-                      width: 40,
-                      height: 40,
-                    }}
-                    aria-label="refresh releases"
-                  >
-                    <Refresh />
-                  </IconButton>
-                </Tooltip>
-                <FormControl>
-                  <InputLabel id="release-select-label">
-                    Select Release
-                  </InputLabel>
-                  <Select
-                    labelId="release-select-label"
-                    value={selectedRelease?.releaseName || ""}
-                    label="Select Release"
-                    onChange={handleReleaseChange}
-                    sx={{ minWidth: 300 }}
-                    disabled={loadingRelease || status === "loading"}
-                  >
-                    {Array.isArray(allReleases) &&
-                      [...allReleases]
-                        .sort((a, b) =>
-                          b.releaseName.localeCompare(
-                            a.releaseName,
-                            undefined,
-                            {
-                              numeric: true,
-                              sensitivity: "base",
-                            },
-                          ),
-                        )
-                        .map((release) => (
-                          <MenuItem
-                            key={release.releaseId}
-                            value={release.releaseName}
-                          >
-                            {release.releaseName}
-                          </MenuItem>
-                        ))}
-                  </Select>
-                </FormControl>
-              </Box>
-            )}
+            <ReleaseSelect
+              allReleases={allReleases}
+              selectedReleaseName={selectedRelease?.releaseName || ""}
+              loadingRelease={loadingRelease}
+              status={status}
+              onSelect={handleSelect}
+              onRefresh={refreshRelease}
+            />
           </FormControl>
         </Paper>
       </Box>
 
-      {status === "loading" && (
-        <Box
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-          py={10}
-        >
-          <CircularProgress />
-          <Typography sx={{ mt: 2 }}>Fetching release details...</Typography>
-        </Box>
-      )}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignContent: "center",
+        }}
+      >
+        <AppBottomNavigation value={currentPage} onChange={handleChange} />
+      </Box>
 
-      {status === "failed" && (
-        <Box py={5}>
-          <Typography color="error" align="center">
-            {error || "An error occurred while loading data."}
-          </Typography>
-        </Box>
-      )}
-
-      {status === "succeeded" && dashboardDetail && selectedRelease && (
-        <DashboardView
-          data={{
-            releaseId: extractNumbers(selectedRelease.releaseName),
-            releaseName: selectedRelease.releaseName || "not found",
-            tickets: currentPage?.tickets || [],
-            stats: {
-              totalTicketCount: dashboardDetail.tickets?.length || 0,
-              totalStoryPoints: (dashboardDetail.tickets || []).reduce(
-                (sum, t) => sum + (t.storyPoints || 0),
-                0,
-              ),
-              totalTimeSeconds: (dashboardDetail.tickets || []).reduce(
-                (sum, t) => sum + (Number(t.timespent) || 0),
-                0,
-              ),
-            },
-          }}
-        />
-      )}
-
-      {!selectedRelease && status !== "loading" && (
-        <Box
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-          py={10}
-          sx={{ color: "text.disabled" }}
-        >
-          <Typography variant="h6">
-            Please select a release from the menu above to start.
-          </Typography>
-        </Box>
-      )}
+      <Outlet></Outlet>
     </Container>
   );
 }

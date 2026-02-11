@@ -4,6 +4,6 @@ export const formatDate = (d?: string) => {
     const dt = new Date(d);
     return dt.toLocaleDateString();
   } catch {
-    return d;
+    return "d";
   }
 };

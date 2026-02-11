@@ -12,7 +12,7 @@ services:
       - "5173:5173"
     environment:
       - VITE_API_URL=http://demo-dps-postgres:5555
-      - VITE_API_TARGET=http://demo-dps-app:9999
+      - VITE_API_TARGET=http://localhost:9999
     networks:
       - my-networks
 

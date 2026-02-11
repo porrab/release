@@ -1,4 +1,3 @@
-// AlertContext.tsx
 import { Alert, Snackbar } from "@mui/material";
 import React, { createContext, useContext, useState } from "react";
 
@@ -9,8 +8,12 @@ export type AppAlert = {
   autoHide?: number;
 };
 
-const AlertContext = createContext({
-  push: (_a: Omit<AppAlert, "id">) => {},
+interface AlertContextType {
+  push: (a: Omit<AppAlert, "id">) => void;
+}
+
+const AlertContext = createContext<AlertContextType>({
+  push: () => {},
 });
 
 export function useAlert() {
@@ -18,35 +21,44 @@ export function useAlert() {
 }
 
 export function AlertProvider({ children }: { children: React.ReactNode }) {
-  const [queue, setQueue] = useState<AppAlert[]>([]);
+  const [alert, setAlert] = useState<AppAlert | null>(null);
 
   const push = (a: Omit<AppAlert, "id">) => {
     const id = String(Date.now()) + Math.random().toString(36).slice(2, 7);
-    setQueue((q) => [...q, { id, ...a }]);
+    setAlert({ id, ...a });
   };
 
-  const remove = (id: string) => setQueue((q) => q.filter((x) => x.id !== id));
+  const handleClose = (
+    _event?: React.SyntheticEvent | Event,
+    reason?: string,
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setAlert(null);
+  };
 
   return (
     <AlertContext.Provider value={{ push }}>
       {children}
-      {queue.map((a) => (
+      {alert && (
         <Snackbar
-          key={a.id}
-          open
-          autoHideDuration={a.autoHide ?? 4000}
-          onClose={() => remove(a.id)}
+          key={alert.id}
+          open={!!alert}
+          autoHideDuration={alert.autoHide ?? 4000}
+          onClose={handleClose}
           anchorOrigin={{ vertical: "top", horizontal: "center" }}
         >
           <Alert
-            onClose={() => remove(a.id)}
-            severity={a.severity}
+            onClose={handleClose}
+            severity={alert.severity}
             sx={{ width: "100%" }}
+            variant="filled"
           >
-            {a.message}
+            {alert.message}
           </Alert>
         </Snackbar>
-      ))}
+      )}
     </AlertContext.Provider>
   );
 }

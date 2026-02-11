@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import releaseReducer from "../features/jira/jiraSlice";
+import releaseReducer from "../features/releaseSlice/releaseSlice";
 
 export const store = configureStore({
   reducer: { releases: releaseReducer },

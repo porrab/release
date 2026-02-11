@@ -5,7 +5,6 @@ const jiraApi = {
   getAllRelease: async () => {
     try {
       const response = await axiosService.get(`/release/groups`);
-      console.log(response.data);
       return response.data;
     } catch (error) {
       console.error("Error fetching all releases:", error);
@@ -21,7 +20,7 @@ const jiraApi = {
       if (options?.pageSize) params.pageSize = String(options.pageSize);
       if (options?.nextPageToken) params.nextPageToken = options.nextPageToken;
       const response = await axiosService.get<PagedTickets>(
-        `/release/${encodeURIComponent(releaseNumber)}/tickets`,
+        `/release/${releaseNumber}/tickets`,
         { params },
       );
       return response.data;

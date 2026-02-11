@@ -57,8 +57,8 @@ export interface TicketDTO {
   created: string; //
   releaseName: string; //
 
-  startDate: string;
-  endDate: string;
+  startDate: string; //
+  endDate: string; //
 }
 
 export interface PagedTickets {

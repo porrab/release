@@ -8,10 +8,9 @@ services:
       POSTGRES_PASSWORD: password
     ports:
       - "5432:5432"
-    networks:
-      - dps-network
     volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      # - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgres_data:/var/lib/postgresql/data 
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
@@ -19,7 +18,7 @@ services:
       retries: 5
 
   app:
-    image: dps:3.0.0
+    image: dps:4.0.0
     container_name: demo-dps-app
     ports:
       - "8080:9999"
@@ -46,6 +45,8 @@ services:
       timeout: 5s
       retries: 5
 
+volumes:
+  postgres_data:
 networks:
   dps-network:
     name: dps-network
